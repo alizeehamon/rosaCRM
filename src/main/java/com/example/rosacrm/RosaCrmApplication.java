@@ -9,5 +9,4 @@ public class RosaCrmApplication {
     public static void main(String[] args) {
         SpringApplication.run(RosaCrmApplication.class, args);
     }
-
 }
