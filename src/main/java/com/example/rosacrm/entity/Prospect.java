@@ -1,4 +1,4 @@
-package com.example.rosacrm.repository.entity;
+package com.example.rosacrm.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -8,54 +8,47 @@ import java.util.List;
 public class Prospect {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
     private long id;
-    @Basic
-    @Column(name = "first_name")
+
     private String firstName;
-    @Basic
-    @Column(name = "last_name")
+
     private String lastName;
-    @Basic
-    @Column(name = "picture")
+
     private String picture;
-    @Basic
-    @Column(name = "email")
+
     private String email;
-    @Basic
-    @Column(name = "cell_phone")
+
     private String cellPhone;
-    @Basic
-    @Column(name = "home_phone")
+
     private String homePhone;
-    @Basic
-    @Column(name = "role_entreprise")
+
     private String roleEntreprise;
-    @Basic
-    @Column(name = "prospection_status")
+
     private String prospectionStatus;
-    @Basic
-    @Column(name = "creation_date")
+
     private Timestamp creationDate;
-    @Basic
-    @Column(name = "start_date")
+
     private Timestamp startDate;
-    @Basic
-    @Column(name = "relance_duration")
+
     private Integer relanceDuration;
-    @Basic
-    @Column(name = "id_user")
-    private Long idUser;
-    @Basic
-    @Column(name = "id_address")
-    private Long idAddress;
-    @Basic
-    @Column(name = "id_entreprise")
-    private Long idEntreprise;
-    @OneToMany(mappedBy = "idProspect")
+    @ManyToOne
+    private User user;
+
+    private String address1;
+    private String address2;
+    private String zipCode;
+    private String city;
+    private String country;
+
+    @ManyToOne
+    private Company company;
+    @OneToMany(mappedBy = "prospect")
     private List<Event> eventsById;
-    @OneToMany(mappedBy = "idProspect")
+    @OneToMany(mappedBy = "prospect")
     private List<Note> notesById;
+
+    public Prospect() {
+    }
 
     public long getId() {
         return id;
@@ -153,28 +146,60 @@ public class Prospect {
         this.relanceDuration = relanceDuration;
     }
 
-    public Long getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getIdAddress() {
-        return idAddress;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setIdAddress(Long idAddress) {
-        this.idAddress = idAddress;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
 
-    public Long getIdEntreprise() {
-        return idEntreprise;
+    public String getAddress2() {
+        return address2;
     }
 
-    public void setIdEntreprise(Long idEntreprise) {
-        this.idEntreprise = idEntreprise;
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public List<Event> getEventsById() {

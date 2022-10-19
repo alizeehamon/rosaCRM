@@ -1,49 +1,47 @@
-package com.example.rosacrm.repository.entity;
+package com.example.rosacrm.entity;
+
+import com.example.rosacrm.dto.CompanyDTO;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-public class Entreprise {
+public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
     private long id;
-    @Basic
-    @Column(name = "logo")
     private String logo;
-    @Basic
-    @Column(name = "name")
+
     private String name;
-    @Basic
-    @Column(name = "siret")
+
     private String siret;
-    @Basic
-    @Column(name = "email")
+
     private String email;
-    @Basic
-    @Column(name = "cell_phone")
+
     private String cellPhone;
-    @Basic
-    @Column(name = "home_phone")
+
     private String homePhone;
-    @Basic
-    @Column(name = "site_url")
+
     private String siteUrl;
-    @Basic
-    @Column(name = "id_address")
-    private Long idAddress;
-    @Basic
-    @Column(name = "id_sector")
-    private Long idSector;
-    @Basic
-    @Column(name = "entreprise_creation_date")
+
+    private String address1;
+    private String address2;
+    private String zipCode;
+    private String city;
+    private String country;
+
+    @ManyToOne
+    private Sector sector;
+
     private Date entrepriseCreationDate;
-    @OneToMany(mappedBy = "idEntreprise")
+    @OneToMany(mappedBy = "company")
     private List<Client> clientsById;
-    @OneToMany(mappedBy = "idEntreprise")
+    @OneToMany(mappedBy = "company")
     private List<Prospect> prospectsById;
+
+    public Company() {
+    }
 
     public long getId() {
         return id;
@@ -109,20 +107,52 @@ public class Entreprise {
         this.siteUrl = siteUrl;
     }
 
-    public Long getIdAddress() {
-        return idAddress;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setIdAddress(Long idAddress) {
-        this.idAddress = idAddress;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
 
-    public Long getIdSector() {
-        return idSector;
+    public String getAddress2() {
+        return address2;
     }
 
-    public void setIdSector(Long idSector) {
-        this.idSector = idSector;
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Sector getSector() {
+        return sector;
+    }
+
+    public void setSector(Sector sector) {
+        this.sector = sector;
     }
 
     public Date getEntrepriseCreationDate() {
@@ -147,5 +177,24 @@ public class Entreprise {
 
     public void setProspectsById(List<Prospect> prospectsById) {
         this.prospectsById = prospectsById;
+    }
+
+    public CompanyDTO toDTO() {
+        CompanyDTO dto = new CompanyDTO();
+        dto.setId(this.getId());
+        dto.setName(this.getName());
+        dto.setEmail(this.getEmail());
+        dto.setCellPhone(this.getCellPhone());
+        dto.setHomePhone(this.getHomePhone());
+        dto.setLogo(this.getLogo());
+        dto.setSiret(this.getSiret());
+        dto.setEntrepriseCreationDate(this.getEntrepriseCreationDate());
+        dto.setSiteUrl(this.getSiteUrl());
+        dto.setAddress1(this.getAddress1());
+        dto.setAddress2(this.getAddress2());
+        dto.setCity(this.getCity());
+        dto.setZipCode(this.getZipCode());
+        dto.setSector(this.getSector());
+        return dto;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.rosacrm.repository.entity;
+package com.example.rosacrm.entity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -7,27 +7,24 @@ import java.util.List;
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
     private long id;
-    @Basic
-    @Column(name = "first_name")
+
     private String firstName;
-    @Basic
-    @Column(name = "last_name")
+
     private String lastName;
-    @Basic
-    @Column(name = "email")
+
     private String email;
-    @Basic
-    @Column(name = "password")
+
     private String password;
-    @Basic
-    @Column(name = "role")
+
     private String role;
-    @OneToMany(mappedBy = "idUser")
+    @OneToMany(mappedBy = "user")
     private List<Client> clientsById;
-    @OneToMany(mappedBy = "idUser")
+    @OneToMany(mappedBy = "user")
     private List<Prospect> prospectsById;
+
+    public User() {
+    }
 
     public long getId() {
         return id;
