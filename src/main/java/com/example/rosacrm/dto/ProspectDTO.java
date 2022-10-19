@@ -1,16 +1,9 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto;
 
-import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.entity.Company;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.List;
+public class ProspectDTO {
 
-@Entity
-public class Prospect {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
     private long id;
 
     private String firstName;
@@ -29,13 +22,11 @@ public class Prospect {
 
     private String prospectionStatus;
 
-    private Timestamp creationDate;
+    private String creationDate;
 
-    private Timestamp startDate;
+    private String startDate;
 
     private Integer relanceDuration;
-    @ManyToOne
-    private User user;
 
     private String address1;
     private String address2;
@@ -43,14 +34,9 @@ public class Prospect {
     private String city;
     private String country;
 
-    @ManyToOne
     private Company company;
-    @OneToMany(mappedBy = "prospect")
-    private List<Event> eventsById;
-    @OneToMany(mappedBy = "prospect")
-    private List<Note> notesById;
 
-    public Prospect() {
+    public ProspectDTO() {
     }
 
     public long getId() {
@@ -125,19 +111,19 @@ public class Prospect {
         this.prospectionStatus = prospectionStatus;
     }
 
-    public Timestamp getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Timestamp getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
@@ -147,14 +133,6 @@ public class Prospect {
 
     public void setRelanceDuration(Integer relanceDuration) {
         this.relanceDuration = relanceDuration;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getAddress1() {
@@ -203,52 +181,5 @@ public class Prospect {
 
     public void setCompany(Company company) {
         this.company = company;
-    }
-
-    public List<Event> getEventsById() {
-        return eventsById;
-    }
-
-    public void setEventsById(List<Event> eventsById) {
-        this.eventsById = eventsById;
-    }
-
-    public List<Note> getNotesById() {
-        return notesById;
-    }
-
-    public void setNotesById(List<Note> notesById) {
-        this.notesById = notesById;
-    }
-
-    public ProspectDTO toDTO() {
-        ProspectDTO dto = new ProspectDTO();
-        dto.setId(this.getId());
-        dto.setFirstName(this.getFirstName());
-        dto.setLastName(this.getLastName());
-        dto.setCellPhone(this.getCellPhone());
-        dto.setHomePhone(this.getHomePhone());
-        dto.setCompany(this.getCompany());
-        dto.setAddress1(this.getAddress1());
-        dto.setAddress2(this.getAddress2());
-        dto.setCity(this.getCity());
-        dto.setCountry(this.getCountry());
-        dto.setCreationDate(convertDateToString(this.getCreationDate()));
-        dto.setEmail(this.getEmail());
-        dto.setPicture(this.getPicture());
-        dto.setProspectionStatus(this.getProspectionStatus());
-        dto.setZipCode(this.getZipCode());
-        dto.setRoleEntreprise(this.getRoleEntreprise());
-        dto.setRelanceDuration(this.getRelanceDuration());
-        dto.setStartDate(convertDateToString(this.getStartDate()));
-        return dto;
-    }
-
-    private String convertDateToString(Timestamp date) {
-        if (date != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            return sdf.format(date);
-        }
-        return "";
     }
 }
