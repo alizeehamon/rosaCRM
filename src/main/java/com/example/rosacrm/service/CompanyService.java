@@ -3,7 +3,6 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.repository.CompanyRepository;
-import com.example.rosacrm.repository.SectorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +12,16 @@ import java.util.stream.Collectors;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
-    private final SectorRepository sectorRepository;
 
-    public CompanyService(CompanyRepository companyRepository, SectorRepository sectorRepository) {
+    public CompanyService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
-        this.sectorRepository = sectorRepository;
     }
 
-    public List<CompanyDTO> getAllCompanies() {
+    public List<CompanyDTO> getAllCompanies(String companyName) {
+        if (companyName != null) {
+            List<Company> searchCompanies = this.companyRepository.findAllByName(companyName);
+            return searchCompanies.stream().map(e -> e.toDTO()).collect(Collectors.toList());
+        }
         List<Company> entreprises = (List<Company>) this.companyRepository.findAll();
         List<CompanyDTO> entreprisesDTO = entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
         return entreprisesDTO;
