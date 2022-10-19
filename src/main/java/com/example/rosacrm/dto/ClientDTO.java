@@ -1,16 +1,12 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto;
 
-import com.example.rosacrm.dto.ClientDTO;
+import com.example.rosacrm.entity.Company;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity
-public class Client {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private long id;
+public class ClientDTO {
+
+    private Long id;
 
     private String firstName;
 
@@ -25,6 +21,8 @@ public class Client {
     private String homePhone;
     private String roleEntreprise;
 
+    private Company company;
+
     private LocalDate creationDate;
 
     private String address1;
@@ -33,24 +31,15 @@ public class Client {
     private String city;
     private String country;
 
-    @ManyToOne
-    private User user;
 
-    @ManyToOne
-    private Company company;
-    @OneToMany(mappedBy = "client")
-    private List<Event> eventsById;
-    @OneToMany(mappedBy = "client")
-    private List<Note> notesById;
-
-    public Client() {
+    public ClientDTO() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -158,56 +147,11 @@ public class Client {
         this.country = country;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Company getCompany() {
         return company;
     }
 
     public void setCompany(Company company) {
         this.company = company;
-    }
-
-    public List<Event> getEventsById() {
-        return eventsById;
-    }
-
-    public void setEventsById(List<Event> eventsById) {
-        this.eventsById = eventsById;
-    }
-
-    public List<Note> getNotesById() {
-        return notesById;
-    }
-
-    public void setNotesById(List<Note> notesById) {
-        this.notesById = notesById;
-    }
-
-    public ClientDTO toDTO() {
-        ClientDTO dto = new ClientDTO();
-        dto.setId(this.getId());
-        dto.setFirstName(this.getFirstName());
-        dto.setLastName(this.getLastName());
-        dto.setEmail(this.getEmail());
-        dto.setCellPhone(this.getCellPhone());
-        dto.setAddress1(this.getAddress1());
-        dto.setAddress2(this.getAddress2());
-        dto.setZipCode(this.getZipCode());
-        dto.setCity(this.getCity());
-        dto.setCountry(this.getCountry());
-        dto.setHomePhone(this.getHomePhone());
-        dto.setCreationDate(this.getCreationDate());
-        dto.setCompany(this.getCompany());
-        dto.setPicture(this.getPicture());
-        dto.setRoleEntreprise(this.getRoleEntreprise());
-        return dto;
-
     }
 }
