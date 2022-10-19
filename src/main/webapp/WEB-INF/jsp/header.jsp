@@ -32,7 +32,7 @@
                     <a class="nav-link" style="color: #891919" href="/">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="#">Companies</a>
+                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all">Companies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: #891919" href="#">Prospects</a>
