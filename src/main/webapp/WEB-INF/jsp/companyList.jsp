@@ -107,7 +107,7 @@
 </div>
 <script type="text/javascript">
     function clearSearch() {
-        window.location = "${pageContext.request.contextPath}/companies";
+        window.location = "${pageContext.request.contextPath}/companies/all";
     }
 </script>
 </body>
