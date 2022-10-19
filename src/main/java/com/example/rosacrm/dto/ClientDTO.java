@@ -2,8 +2,6 @@ package com.example.rosacrm.dto;
 
 import com.example.rosacrm.entity.Company;
 
-import java.time.LocalDate;
-
 public class ClientDTO {
 
     private Long id;
@@ -23,7 +21,7 @@ public class ClientDTO {
 
     private Company company;
 
-    private LocalDate creationDate;
+    private String creationDate;
 
     private String address1;
     private String address2;
@@ -99,11 +97,11 @@ public class ClientDTO {
         this.roleEntreprise = roleEntreprise;
     }
 
-    public LocalDate getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 

@@ -3,7 +3,8 @@ package com.example.rosacrm.entity;
 import com.example.rosacrm.dto.ClientDTO;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Client {
     private String homePhone;
     private String roleEntreprise;
 
-    private LocalDate creationDate;
+    private Timestamp creationDate;
 
     private String address1;
     private String address2;
@@ -110,11 +111,11 @@ public class Client {
         this.roleEntreprise = roleEntreprise;
     }
 
-    public LocalDate getCreationDate() {
+    public Timestamp getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -203,11 +204,18 @@ public class Client {
         dto.setCity(this.getCity());
         dto.setCountry(this.getCountry());
         dto.setHomePhone(this.getHomePhone());
-        dto.setCreationDate(this.getCreationDate());
+        dto.setCreationDate(convertDateToString(this.getCreationDate()));
         dto.setCompany(this.getCompany());
         dto.setPicture(this.getPicture());
         dto.setRoleEntreprise(this.getRoleEntreprise());
         return dto;
+    }
 
+    private String convertDateToString(Timestamp date) {
+        if (date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            return sdf.format(date);
+        }
+        return "";
     }
 }
