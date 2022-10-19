@@ -35,10 +35,10 @@
                     <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all">Companies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="#">Prospects</a>
+                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/prospects/all">Prospects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="#">Clients</a>
+                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/clients/all">Clients</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: #891919" href="#">Calendar</a>
