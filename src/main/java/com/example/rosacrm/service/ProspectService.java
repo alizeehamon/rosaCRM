@@ -3,7 +3,11 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
+
+import com.example.rosacrm.entity.User;
+
 import com.example.rosacrm.enumeration.ProspectionStatus;
+
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;
@@ -29,70 +33,67 @@ public class ProspectService {
     }
 
 
-    public List<ProspectDTO> findAll() {
-        //List<Prospect> prospects = this.prospectRepository.findAllActiveProspects();
-        List<Prospect> prospects = (List<Prospect>) this.prospectRepository.findAll();
-        return prospects.stream().map((p -> p.toDTO())).collect(Collectors.toList());
-    }
-
-    public void addProspect(ProspectDTO prospectDTO) {
+    public void addProspect(ProspectDTO prospectDTO, User user) {
         Prospect prospect = new Prospect(prospectDTO);
         Optional<Company> company = companyRepository.findById(prospectDTO.getCompanyId());
         if (company.isPresent()) {
             prospect.setCompany(company.get());
         }
         prospect.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        prospect.setUser(user);
         prospectRepository.save(prospect);
-    }
-
-    public List<ProspectDTO> searchProspects(String prospectName) {
-        if (prospectName != null && prospectName.contains(" ")) {
-            List<String> param = List.of(prospectName.split(" "));
-            String firstName = param.get(0);
-            String lastName = param.get(1);
-            List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByFullName(firstName, lastName);
-            return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
-        } else if (prospectName != null) {
-            List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByName(prospectName);
-            return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
-        }
-        List<Prospect> prospects = this.prospectRepository.findAllActiveProspects();
-        return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 
     public List<String> getAllProspectStatus() {
         return this.prospectRepository.findAllProspectStatus();
     }
 
-    public List<ProspectDTO> searchProspectsByStatus(ProspectionStatus prospectStatus) {
-        List<Prospect> prospectsByStatus = this.prospectRepository.filterByStatus(prospectStatus);
+
+    public List<ProspectDTO> searchProspectsByStatusUserAndFullName(String prospectName, String filterByStatus, User user) {
+        List<String> param = List.of(prospectName.split(" "));
+        String firstName = param.get(0);
+        String lastName = param.get(1);
+        List<Prospect> prospectsByStatusAndFullName = this.prospectRepository.filterByStatusUserAndFullName(firstName, lastName, filterByStatus, user);
+        return prospectsByStatusAndFullName.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
+
+    public List<ProspectDTO> searchActiveProspectsByNameUserAndStatus(String prospectName, String filterByStatus, User user) {
+        List<Prospect> prospectsByStatusAndName = this.prospectRepository.filterByStatusUserAndName(prospectName, filterByStatus, user);
+        return prospectsByStatusAndName.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
+
+    List<ProspectDTO> searchActiveProspectsByFullNameAndUser(String prospectName, User user) {
+        List<String> param = List.of(prospectName.split(" "));
+        String firstName = param.get(0);
+        String lastName = param.get(1);
+        List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByFullNameAndUser(firstName, lastName, user);
+        return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
+
+    List<ProspectDTO> searchActiveProspectsByNameAndUser(String prospectName, User user) {
+        List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByNameAndUser(prospectName, user);
+        return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
+
+
+    List<ProspectDTO> searchActiveProspectsByStatusAndUser(String filterByStatus, User user) {
+        List<Prospect> prospectsByStatus = this.prospectRepository.filterByStatusAndUser(filterByStatus, user);
         return prospectsByStatus.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 
-    public List<ProspectDTO> searchProspectsByStatusAndName(String prospectName, ProspectionStatus filterByStatus) {
+    public List<ProspectDTO> searchProspectsByStatusAndName(String prospectName, String filterByStatus, User user) {
         if (prospectName != null && prospectName != "" && prospectName.contains(" ") && !Objects.equals(filterByStatus, "All prospection status")) {
-            List<String> param = List.of(prospectName.split(" "));
-            String firstName = param.get(0);
-            String lastName = param.get(1);
-            List<Prospect> prospectsByStatusAndFullName = this.prospectRepository.filterByStatusAndFullName(firstName, lastName, filterByStatus);
-            return prospectsByStatusAndFullName.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+            return searchProspectsByStatusUserAndFullName(prospectName, filterByStatus, user);
         } else if (prospectName != null && prospectName != "" && !Objects.equals(filterByStatus, "All prospection status")) {
-            List<Prospect> prospectsByStatusAndName = this.prospectRepository.filterByStatusAndName(prospectName, filterByStatus);
-            return prospectsByStatusAndName.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+            return searchActiveProspectsByNameUserAndStatus(prospectName, filterByStatus, user);
         } else if (prospectName != null && prospectName != "" && prospectName.contains(" ")) {
-            List<String> param = List.of(prospectName.split(" "));
-            String firstName = param.get(0);
-            String lastName = param.get(1);
-            List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByFullName(firstName, lastName);
-            return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+            return searchActiveProspectsByFullNameAndUser(prospectName, user);
         } else if (prospectName != null && prospectName != "") {
-            List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByName(prospectName);
-            return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+            return searchActiveProspectsByNameAndUser(prospectName, user);
         } else if (!Objects.equals(filterByStatus, "All prospection status") && filterByStatus != null) {
-            List<Prospect> prospectsByStatus = this.prospectRepository.filterByStatus(filterByStatus);
-            return prospectsByStatus.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+            return searchActiveProspectsByStatusAndUser(filterByStatus, user);
         }
-        List<Prospect> prospects = this.prospectRepository.findAllActiveProspects();
+        List<Prospect> prospects = this.prospectRepository.findAllActiveProspects(user);
         return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 

@@ -23,6 +23,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Prospect> prospectsById;
 
+    @OneToMany(mappedBy = "user")
+    private List<Company> companiesById;
+
     public User() {
     }
 

@@ -1,14 +1,11 @@
 package com.example.rosacrm.service;
 
-import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
-import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,20 +25,22 @@ public class CompanyService {
         return entreprisesDTO;
     }
 
-    public List<CompanyDTO> getAllCompanies(String companyName) {
+    public List<CompanyDTO> getAllCompanies(String companyName, User user) {
         if (companyName != null) {
-            List<Company> searchCompanies = this.companyRepository.findAllByName(companyName);
+            List<Company> searchCompanies = this.companyRepository.findAllByNameAndUser(companyName, user);
             return searchCompanies.stream().map(e -> e.toDTO()).collect(Collectors.toList());
         }
-        return getAllCompanies();
+        List<Company> entreprises = this.companyRepository.findAllByUser(user);
+        return entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
     }
 
     public Optional<Company> findCompanyById(Long id) {
         return this.companyRepository.findById(id);
     }
 
-    public void createCompany(CompanyDTO companyDTO) {
+    public void createCompany(CompanyDTO companyDTO, User user) {
         Company company = new Company(companyDTO);
+        company.setUser(user);
         companyRepository.save(company);
     }
 
