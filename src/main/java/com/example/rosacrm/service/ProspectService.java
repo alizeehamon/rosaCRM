@@ -29,4 +29,19 @@ public class ProspectService {
         Prospect prospect = new Prospect(prospectDTO);
         prospectRepository.save(prospect);
     }
+
+    public List<ProspectDTO> searchProspects(String prospectName) {
+        if (prospectName != null && prospectName.contains(" ")) {
+            List<String> param = List.of(prospectName.split(" "));
+            String firstName = param.get(0);
+            String lastName = param.get(1);
+            List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByFullName(firstName, lastName);
+            return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+        } else if (prospectName != null) {
+            List<Prospect> prospects = this.prospectRepository.findAllActiveProspectsByName(prospectName);
+            return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+        }
+        List<Prospect> prospects = this.prospectRepository.findAllActiveProspects();
+        return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
 }

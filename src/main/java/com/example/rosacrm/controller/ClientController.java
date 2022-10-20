@@ -2,13 +2,9 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
-import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.service.ClientService;
-
-import org.springframework.data.repository.query.Param;
-
 import com.example.rosacrm.service.CompanyService;
-
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,12 +33,11 @@ public class ClientController {
         model.addAttribute("clients", clientDTOList);
         model.addAttribute("clientName", clientName);
         model.addAttribute("companies", companyList);
-
         return "clientList";
     }
 
     @PostMapping("/add")
-    public String addProspect(ClientDTO clientDTO){
+    public String addProspect(ClientDTO clientDTO) {
         clientService.addClient(clientDTO);
         return "redirect:/clients/all";
     }
