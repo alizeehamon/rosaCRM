@@ -21,6 +21,8 @@ public class ClientDTO {
 
     private Company company;
 
+    private Long companyId;
+
     private String creationDate;
 
     private String address1;
@@ -151,5 +153,13 @@ public class ClientDTO {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 }
