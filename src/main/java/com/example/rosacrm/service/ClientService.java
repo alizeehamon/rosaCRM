@@ -22,6 +22,7 @@ public class ClientService {
         return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
     }
 
+
     public List<ClientDTO> searchContacts(String clientName) {
         if (clientName != null && clientName.contains(" ")) {
             List<String> param = List.of(clientName.split(" "));
@@ -35,5 +36,10 @@ public class ClientService {
         }
         List<Client> clients = (List<Client>) this.clientRepository.findAll();
         return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+
+    public void addClient(ClientDTO clientDTO) {
+        Client client = new Client(clientDTO);
+        clientRepository.save(client);
+
     }
 }

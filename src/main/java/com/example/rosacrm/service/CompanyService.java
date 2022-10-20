@@ -17,13 +17,18 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
+    public List<CompanyDTO> getAllCompanies() {
+        List<Company> entreprises = (List<Company>) this.companyRepository.findAll();
+        List<CompanyDTO> entreprisesDTO = entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
+        return entreprisesDTO;
+    }
+
     public List<CompanyDTO> getAllCompanies(String companyName) {
         if (companyName != null) {
             List<Company> searchCompanies = this.companyRepository.findAllByName(companyName);
             return searchCompanies.stream().map(e -> e.toDTO()).collect(Collectors.toList());
         }
-        List<Company> entreprises = (List<Company>) this.companyRepository.findAll();
-        List<CompanyDTO> entreprisesDTO = entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
-        return entreprisesDTO;
+        return getAllCompanies();
     }
+
 }
