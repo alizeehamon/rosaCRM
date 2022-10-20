@@ -36,7 +36,7 @@ public class Company {
     private User user;
     @ManyToOne
     private Sector sector;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date entrepriseCreationDate;
     @OneToMany(mappedBy = "company")
     private List<Client> clientsById;

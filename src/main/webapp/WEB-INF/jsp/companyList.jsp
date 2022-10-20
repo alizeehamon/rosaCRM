@@ -1,9 +1,8 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="header.jsp">
-    <c:param name="title" value="clients"></c:param>
+    <c:param name="title" value="ROSACRM | Companies"/>
 </c:import>
 
 <div class="container mt-2 bg-light p-2 rounded">
@@ -112,8 +111,8 @@
 
 </div>
 
-<c:import url="addCompanyForm.jsp"></c:import>
-<c:import url="footer.jsp"></c:import>
+<c:import url="addCompanyForm.jsp"/>
+<c:import url="footer.jsp"/>
 
 
 

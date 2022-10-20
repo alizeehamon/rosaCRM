@@ -32,7 +32,7 @@ public class CompanyDTO {
     private String zipCode;
     private String country;
     private Sector sector;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date entrepriseCreationDate;
 
     private List<Client> clientsById;
