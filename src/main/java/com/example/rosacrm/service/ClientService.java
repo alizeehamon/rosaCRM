@@ -44,6 +44,7 @@ public class ClientService {
         }
         List<Client> clients = (List<Client>) this.clientRepository.findAll();
         return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+    }
 
     public void addClient(ClientDTO clientDTO) {
         Client client = new Client(clientDTO);
@@ -53,6 +54,5 @@ public class ClientService {
         }
         client.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         clientRepository.save(client);
-
     }
 }
