@@ -59,5 +59,11 @@ public class CompanyController {
         return new RedirectView("/companies/all");
     }
 
+    @GetMapping("/delete/{id}")
+    public RedirectView deleteCompany(@PathVariable("id") Long id ){
+        companyService.deleteCompanyById(id);
+        return new RedirectView("/companies/all");
+    }
+
 
 }
