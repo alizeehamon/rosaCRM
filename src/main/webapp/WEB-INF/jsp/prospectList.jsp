@@ -12,10 +12,18 @@
                 <h5 class="card-title">Prospects list </h5>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+    </div>
+    <div class="row align-items-center">
+        <div class="">
+            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-3">
                 <div>
                     <form class="d-flex" action="${pageContext.request.contextPath}/prospects/all">
+                        <select class="form-select me-2" aria-label="Default select example" name="filterByStatus">
+                            <option selected>All prospection status</option>
+                            <c:forEach items="${prospectStatusList}" var="prospectStatus">
+                                <option value="${prospectStatus}">${prospectStatus}</option>
+                            </c:forEach>
+                        </select>
                         <input class="form-control me-2 w-30" type="search" placeholder="search a prospect"
                                name="prospectName"
                                aria-label="Search" value="${prospectName}">
@@ -24,7 +32,8 @@
                     </form>
                 </div>
                 <div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#addProspect">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#addProspect">
                         <i class="bx bx-plus me-1"></i> Add New
                     </button>
                 </div>
@@ -73,7 +82,7 @@
                                                class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="${pageContext.request.contextPath}/clients/delete/${prospect.id}"
+                                            <a href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}"
                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
                                                class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
                                         </li>

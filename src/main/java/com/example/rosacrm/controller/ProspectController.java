@@ -27,12 +27,15 @@ public class ProspectController {
     }
 
     @GetMapping("/all")
-    public String displayProspectList(Model model, @Param("prospectName") String prospectName) {
+    public String displayProspectList(Model model, @Param("prospectName") String prospectName, @Param("filterByStatus") String filterByStatus) {
         List<ProspectDTO> prospectList = prospectService.searchProspects(prospectName);
         List<CompanyDTO> companyList = companyService.getAllCompanies();
-        model.addAttribute("prospects", prospectList);
+        List<String> prospectStatusList = prospectService.getAllProspectStatus();
+        List<ProspectDTO> searchProspectsByStatusAndName = prospectService.searchProspectsByStatusAndName(prospectName, filterByStatus);
+        model.addAttribute("prospects", searchProspectsByStatusAndName);
         model.addAttribute("prospectName", prospectName);
         model.addAttribute("companies", companyList);
+        model.addAttribute("prospectStatusList", prospectStatusList);
         return "prospectList";
     }
 
