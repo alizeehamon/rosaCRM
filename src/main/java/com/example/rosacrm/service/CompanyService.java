@@ -4,6 +4,7 @@ import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.CompanyRepository;
+import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class CompanyService {
             company1.setCountry(companyDTO.getCountry());
             company1.setAddress1(companyDTO.getAddress1());
             company1.setAddress2(companyDTO.getAddress2());
-            company1.setEntrepriseCreationDate(companyDTO.getEntrepriseCreationDate());
+            company1.setEntrepriseCreationDate(DateUtils.convertStringToDate(companyDTO.getEntrepriseCreationDate()));
             company1.setSiteUrl(companyDTO.getSiteUrl());
             company1.setSector(company1.getSector());
             company1.setClientsById(company1.getClientsById());
@@ -67,7 +68,7 @@ public class CompanyService {
         });
     }
 
-    public void deleteCompanyById(Long id){
+    public void deleteCompanyById(Long id) {
         this.companyRepository.deleteById(id);
     }
 

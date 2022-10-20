@@ -1,10 +1,10 @@
 package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.CompanyDTO;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.example.rosacrm.utils.DateUtils;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -215,7 +215,7 @@ public class Company {
         dto.setHomePhone(this.getHomePhone());
         dto.setLogo(this.getLogo());
         dto.setSiret(this.getSiret());
-        dto.setEntrepriseCreationDate(this.getEntrepriseCreationDate());
+        dto.setEntrepriseCreationDate(DateUtils.convertDateToString(this.getEntrepriseCreationDate()));
         dto.setSiteUrl(this.getSiteUrl());
         dto.setAddress1(this.getAddress1());
         dto.setAddress2(this.getAddress2());
