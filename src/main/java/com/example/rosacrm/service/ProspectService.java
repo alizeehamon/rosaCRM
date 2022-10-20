@@ -20,7 +20,13 @@ public class ProspectService {
 
 
     public List<ProspectDTO> findAll() {
-        List<Prospect> prospects = this.prospectRepository.findAllActiveProspects();
+        //List<Prospect> prospects = this.prospectRepository.findAllActiveProspects();
+        List<Prospect> prospects = (List<Prospect>) this.prospectRepository.findAll();
         return prospects.stream().map((p -> p.toDTO())).collect(Collectors.toList());
+    }
+
+    public void addProspect(ProspectDTO prospectDTO) {
+        Prospect prospect = new Prospect(prospectDTO);
+        prospectRepository.save(prospect);
     }
 }

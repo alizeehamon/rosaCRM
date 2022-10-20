@@ -20,7 +20,6 @@ public class ClientController {
     }
 
     @GetMapping("/all")
-
     public String displayClientList(Model model) {
         List<ClientDTO> clientDTOList = clientService.findAll();
         model.addAttribute("clients", clientDTOList);

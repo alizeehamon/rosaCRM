@@ -5,6 +5,8 @@ import com.example.rosacrm.service.ProspectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -24,5 +26,11 @@ public class ProspectController {
         List<ProspectDTO> prospectList = prospectService.findAll();
         model.addAttribute("prospects", prospectList);
         return "prospectList";
+    }
+
+    @PostMapping("/add")
+    public String addProspect(ProspectDTO prospectDTO){
+        prospectService.addProspect(prospectDTO);
+        return "redirect:/prospectList";
     }
 }
