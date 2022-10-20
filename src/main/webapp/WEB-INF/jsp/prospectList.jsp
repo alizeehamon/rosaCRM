@@ -20,7 +20,7 @@
                     <form class="d-flex" action="${pageContext.request.contextPath}/prospects/all">
                         <select class="form-select me-2" aria-label="Default select example" name="filterByStatus">
                             <c:forEach items="${prospectStatusList}" var="prospectStatus">
-                                <option value="${prospectStatus}">${prospectStatus.value}</option>
+                                <option value="${prospectStatus}">${prospectStatus}</option>
                             </c:forEach>
                         </select>
                         <input class="form-control me-2 w-30" type="search" placeholder="search a prospect"
@@ -81,7 +81,8 @@
                                                class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <button type="button" class="px-2 text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirm${prospect.id}">
+                                            <button type="button" class="px-2 text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteConfirm${prospect.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
                                             </button>
                                         </li>

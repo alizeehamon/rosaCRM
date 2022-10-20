@@ -3,11 +3,7 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
-
 import com.example.rosacrm.entity.User;
-
-import com.example.rosacrm.enumeration.ProspectionStatus;
-
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;
@@ -43,11 +39,6 @@ public class ProspectService {
         prospect.setUser(user);
         prospectRepository.save(prospect);
     }
-
-    public List<String> getAllProspectStatus() {
-        return this.prospectRepository.findAllProspectStatus();
-    }
-
 
     public List<ProspectDTO> searchProspectsByStatusUserAndFullName(String prospectName, String filterByStatus, User user) {
         List<String> param = List.of(prospectName.split(" "));
