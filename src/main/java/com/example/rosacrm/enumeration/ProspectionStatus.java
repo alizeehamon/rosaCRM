@@ -1,7 +1,7 @@
 package com.example.rosacrm.enumeration;
 
 public enum ProspectionStatus {
-    NONE("None"), IN_PROGRESS("In progress"), TO_CONTACT("To contact"), OVER("Over");
+    NOT_STARTED("Not started"), IN_PROGRESS("In progress"), TO_CONTACT("To contact"), OVER("Over");
 
     private String value;
 

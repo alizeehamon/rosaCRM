@@ -1,6 +1,9 @@
 package com.example.rosacrm.dto;
 
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Prospect;
+
+import java.util.List;
 
 public class ProspectDTO {
 
@@ -37,6 +40,10 @@ public class ProspectDTO {
     private Company company;
 
     private Long companyId;
+
+    private List<Prospect> prospectionStatusList;
+
+    private String filterByStatus;
 
     public ProspectDTO() {
     }
@@ -191,5 +198,21 @@ public class ProspectDTO {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public List<Prospect> getProspectionStatusList() {
+        return prospectionStatusList;
+    }
+
+    public void setProspectionStatusList(List<Prospect> prospectionStatusList) {
+        this.prospectionStatusList = prospectionStatusList;
+    }
+
+    public String getFilterByStatus() {
+        return filterByStatus;
+    }
+
+    public void setFilterByStatus(String filterByStatus) {
+        this.filterByStatus = filterByStatus;
     }
 }
