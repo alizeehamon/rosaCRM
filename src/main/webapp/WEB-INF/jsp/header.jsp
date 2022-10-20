@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,7 +41,7 @@
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="/">
+            <a class="navbar-brand mt-2 mt-lg-0" href="${pageContext.request.contextPath}/">
                 <img
                         src="https://zupimages.net/up/22/41/5la4.jpg"
                         height="45"
@@ -50,10 +52,10 @@
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="/">Dashboard</a>
+                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all">Companies</a>
+                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all" >Companies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/prospects/all">Prospects</a>

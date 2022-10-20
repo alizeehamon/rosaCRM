@@ -1,6 +1,6 @@
 ### application.properties ###
 **/src/main/resources/application.properties
-
+**/src/main/resources/persistence.xml
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

@@ -31,4 +31,8 @@ public class CompanyService {
         return getAllCompanies();
     }
 
+    public void createCompany(Company company){
+        this.companyRepository.save(company);
+    }
+
 }

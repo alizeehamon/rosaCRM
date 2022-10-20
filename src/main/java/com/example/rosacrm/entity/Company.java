@@ -195,6 +195,7 @@ public class Company {
         dto.setCity(this.getCity());
         dto.setZipCode(this.getZipCode());
         dto.setSector(this.getSector());
+        dto.setCountry(this.getCountry());
         return dto;
     }
 }
