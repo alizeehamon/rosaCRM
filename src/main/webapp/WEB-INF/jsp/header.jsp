@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -55,7 +56,7 @@
                     <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all" >Companies</a>
+                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all">Companies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/prospects/all">Prospects</a>
@@ -74,25 +75,44 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
 
-            <!-- Notifications -->
-
-            <a
-                    class="text-reset me-3"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    aria-expanded="false"
-            >
-                <i class="bi bi-gear-fill" style="color: #891919; font-size: 1.5rem;"></i>
-            </a>
-
+            <!-- Login and co -->
+            <sec:authorize access="!isAuthenticated()">
+                <a
+                        class="nav-link"
+                        href="${pageContext.request.contextPath}/signin"
+                        role="button"
+                        aria-expanded="false"
+                        style="color: #891919"
+                >
+                    Login
+                </a>
+                <a
+                        class="nav-link"
+                        href="${pageContext.request.contextPath}/register"
+                        role="button"
+                        aria-expanded="false"
+                        style="color: #891919"
+                >
+                    Register
+                </a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <a
+                        class="nav-link p-2"
+                        href="${pageContext.request.contextPath}/logout"
+                        role="button"
+                        aria-expanded="false"
+                        style="color: #891919"
+                >
+                    Logout
+                </a>
+            </sec:authorize>
 
             <!-- Avatar -->
 
             <a
-                    class="d-flex align-items-center"
+                    class="nav-link"
                     href="#"
-                    id="navbarDropdownMenuAvatar"
                     role="button"
                     aria-expanded="false"
             >

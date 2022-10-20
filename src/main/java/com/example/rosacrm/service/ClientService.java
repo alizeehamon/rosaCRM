@@ -3,6 +3,7 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
@@ -31,28 +32,29 @@ public class ClientService {
     }
 
 
-    public List<ClientDTO> searchContacts(String clientName) {
+    public List<ClientDTO> searchContacts(String clientName, User user) {
         if (clientName != null && clientName.contains(" ")) {
             List<String> param = List.of(clientName.split(" "));
             String firstName = param.get(0);
             String lastName = param.get(1);
-            List<Client> clients = this.clientRepository.findAllByFullName(firstName, lastName);
+            List<Client> clients = this.clientRepository.findAllByFullName(firstName, lastName, user);
             return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
         } else if (clientName != null) {
-            List<Client> clients = this.clientRepository.findAllByName(clientName);
+            List<Client> clients = this.clientRepository.findAllByName(clientName, user);
             return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
         }
-        List<Client> clients = (List<Client>) this.clientRepository.findAll();
+        List<Client> clients = this.clientRepository.findAllByUser(user);
         return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
     }
 
-    public void addClient(ClientDTO clientDTO) {
+    public void addClient(ClientDTO clientDTO, User user) {
         Client client = new Client(clientDTO);
         Optional<Company> company = companyRepository.findById(clientDTO.getCompanyId());
-        if(company.isPresent()){
+        if (company.isPresent()) {
             client.setCompany(company.get());
         }
         client.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        client.setUser(user);
         clientRepository.save(client);
     }
 }

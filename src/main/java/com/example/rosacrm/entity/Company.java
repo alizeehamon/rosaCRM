@@ -33,6 +33,8 @@ public class Company {
     private String country;
 
     @ManyToOne
+    private User user;
+    @ManyToOne
     private Sector sector;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entrepriseCreationDate;
@@ -194,6 +196,14 @@ public class Company {
 
     public void setProspectsById(List<Prospect> prospectsById) {
         this.prospectsById = prospectsById;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public CompanyDTO toDTO() {

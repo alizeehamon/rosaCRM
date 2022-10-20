@@ -2,9 +2,12 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.entity.User;
 import com.example.rosacrm.service.ClientService;
 import com.example.rosacrm.service.CompanyService;
+import com.example.rosacrm.service.UserService;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +23,18 @@ public class ClientController {
     private final ClientService clientService;
 
     private final CompanyService companyService;
+    private final UserService userService;
 
-    public ClientController(ClientService clientService, CompanyService companyService) {
+    public ClientController(ClientService clientService, CompanyService companyService, UserService userService) {
         this.clientService = clientService;
         this.companyService = companyService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
-    public String displayClientList(Model model, @Param("clientName") String clientName) {
-        List<ClientDTO> clientDTOList = clientService.searchContacts(clientName);
+    public String displayClientList(Model model, @Param("clientName") String clientName, Authentication authentication) {
+        User user = userService.getCurrentUser(authentication.getName());
+        List<ClientDTO> clientDTOList = clientService.searchContacts(clientName, user);
         List<CompanyDTO> companyList = companyService.getAllCompanies();
         model.addAttribute("clients", clientDTOList);
         model.addAttribute("clientName", clientName);
@@ -37,8 +43,9 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public String addProspect(ClientDTO clientDTO) {
-        clientService.addClient(clientDTO);
+    public String addProspect(ClientDTO clientDTO, Authentication authentication) {
+        User user = userService.getCurrentUser(authentication.getName());
+        clientService.addClient(clientDTO, user);
         return "redirect:/clients/all";
     }
 }

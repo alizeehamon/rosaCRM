@@ -18,7 +18,8 @@
     <c:param name="title" value="Clients"></c:param>
 </c:import>
 <div class="container d-flex align-content-center justify-content-center">
-    <form class="d-flex justify-content-center flex-column w-50" action="${pageContext.request.contextPath}/companies/edit/${company.id}" method="post">
+    <form class="d-flex justify-content-center flex-column w-50"
+          action="${pageContext.request.contextPath}/companies/edit/${company.id}" method="post">
         <label for="name">Company name</label>
         <input type="text" id="name" name="name" value="${company.name}">
         <label for="siret">Siret</label>
@@ -38,7 +39,7 @@
         <input type="date" id="creationDate" name="entrepriseCreationDate" value="${company.entrepriseCreationDate}">
 
         <label for="sector">Sector</label>
-        <select name="sector" id="sector" >
+        <select name="sector" id="sector">
             <c:forEach items="${sectorList}" var="sector">
                 <option value="${sector.id}">${sector.activitySector}</option>
             </c:forEach>
@@ -55,10 +56,14 @@
 
         <label for="city">City</label>
         <input id="city" type="text" name="city" value="${company.city}">
+        
+        <label for="logo">Logo</label>
+        <input id="logo" type="text" name="logo" value="${company.logo}">
+
 
         <label for="country">Country</label>
         <input id="country" type="text" name="country" value="${company.country}">
-
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type="submit">
     </form>
 </div>
