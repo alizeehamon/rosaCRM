@@ -19,7 +19,6 @@
                 <div>
                     <form class="d-flex" action="${pageContext.request.contextPath}/prospects/all">
                         <select class="form-select me-2" aria-label="Default select example" name="filterByStatus">
-                            <option selected>All prospection status</option>
                             <c:forEach items="${prospectStatusList}" var="prospectStatus">
                                 <option value="${prospectStatus}">${prospectStatus.value}</option>
                             </c:forEach>

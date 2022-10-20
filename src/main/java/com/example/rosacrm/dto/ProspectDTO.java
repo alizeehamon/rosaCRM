@@ -44,8 +44,6 @@ public class ProspectDTO {
 
     private List<Prospect> prospectionStatusList;
 
-    private String filterByStatus;
-
     public ProspectDTO() {
     }
 
@@ -208,12 +206,5 @@ public class ProspectDTO {
     public void setProspectionStatusList(List<Prospect> prospectionStatusList) {
         this.prospectionStatusList = prospectionStatusList;
     }
-
-    public String getFilterByStatus() {
-        return filterByStatus;
-    }
-
-    public void setFilterByStatus(String filterByStatus) {
-        this.filterByStatus = filterByStatus;
-    }
+    
 }

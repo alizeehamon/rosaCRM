@@ -17,7 +17,7 @@
             <div class="modal-footer">
                 <form action="${pageContext.request.contextPath}/prospects/delete" method="post">
                     <input hidden name="prospectId" value="${param.prospectId}">
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-white border-danger"><i class="bx bx-trash-alt font-size-18"></i></button>
                 </form>
             </div>
 
