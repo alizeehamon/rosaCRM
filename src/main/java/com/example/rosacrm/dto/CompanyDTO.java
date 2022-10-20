@@ -30,7 +30,6 @@ public class CompanyDTO {
     private String zipCode;
     private String country;
     private Sector sector;
-
     private String entrepriseCreationDate;
 
     private List<Client> clientsById;

@@ -36,6 +36,7 @@ public class Company {
     private User user;
     @ManyToOne
     private Sector sector;
+
     private Date entrepriseCreationDate;
     @OneToMany(mappedBy = "company")
     private List<Client> clientsById;

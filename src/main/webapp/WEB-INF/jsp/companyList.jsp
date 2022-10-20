@@ -1,9 +1,8 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="header.jsp">
-    <c:param name="title" value="clients"></c:param>
+    <c:param name="title" value="ROSACRM | Companies"/>
 </c:import>
 
 <div class="container mt-2 bg-light p-2 rounded">
@@ -48,6 +47,12 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <!%-- conditionnal error message on delete --%>
+                        <c:if test="${errorsql == true}">
+                            <div class="alert alert-danger" role="alert">
+                                Error, the company that you tried to delete still contains clients or prospects
+                            </div>
+                        </c:if>
                         <c:forEach items="${companies}" var="company">
                             <tr>
                                 <td><img src="${company.logo}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
@@ -71,8 +76,9 @@
                                                class="px-2 text-primary "><i class="bx bx-pencil font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="px-2 text-danger delete-modal-toggler" style="cursor: pointer" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal" value="${company.id}">
+                                            <a class="px-2 text-danger delete-modal-toggler" style="cursor: pointer"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#exampleModal" value="${company.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
                                             </a>
                                         </li>
@@ -112,8 +118,8 @@
 
 </div>
 
-<c:import url="addCompanyForm.jsp"></c:import>
-<c:import url="footer.jsp"></c:import>
+<c:import url="addCompanyForm.jsp"/>
+<c:import url="footer.jsp"/>
 
 
 

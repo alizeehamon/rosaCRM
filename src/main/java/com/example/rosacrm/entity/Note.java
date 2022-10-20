@@ -48,11 +48,9 @@ public class Note {
     public Client getClient() {
         return client;
     }
-
     public void setClient(Client client) {
         this.client = client;
     }
-
     public Prospect getProspect() {
         return prospect;
     }
