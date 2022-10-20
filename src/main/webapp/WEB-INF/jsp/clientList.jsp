@@ -22,8 +22,9 @@
                     </form>
                 </div>
                 <div>
-                    <a href="${pageContext.request.contextPath}/clients/add" data-bs-toggle="modal"
-                       data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#addClient">
+                        <i class="bx bx-plus me-1"></i> Add New
+                    </button>
                 </div>
             </div>
         </div>
@@ -85,5 +86,8 @@
     </div>
 </div>
 </div>
+
+<c:set var="companies" value="${companies}" scope="request"/>
+<c:import url="addClientForm.jsp"></c:import>
 
 <c:import url="footer.jsp"></c:import>

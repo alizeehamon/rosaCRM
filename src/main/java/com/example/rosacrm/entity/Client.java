@@ -47,6 +47,22 @@ public class Client {
     public Client() {
     }
 
+    public Client(ClientDTO clientDTO) {
+        this.firstName = clientDTO.getFirstName();
+        this.lastName = clientDTO.getLastName();
+        this.picture = clientDTO.getPicture();
+        this.email = clientDTO.getEmail();
+        this.cellPhone = clientDTO.getCellPhone();
+        this.homePhone = clientDTO.getHomePhone();
+        this.roleEntreprise = clientDTO.getRoleEntreprise();
+        this.address1 = clientDTO.getAddress1();
+        this.address2 = clientDTO.getAddress2();
+        this.zipCode = clientDTO.getZipCode();
+        this.city = clientDTO.getCity();
+        this.country = clientDTO.getCountry();
+        this.company = clientDTO.getCompany();
+    }
+
     public long getId() {
         return id;
     }

@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="offcanvas offcanvas-end" id="addProspect">
+<div class="offcanvas offcanvas-end" id="addClient">
     <div class="offcanvas-header">
-        <h1 class="offcanvas-title">New Prospect</h1>
+        <h1 class="offcanvas-title">New Client</h1>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
-        <form class="text-center" action="${pageContext.request.contextPath}/prospects/add" method="post">
+        <form class="text-center" action="${pageContext.request.contextPath}/clients/add" method="post">
             <div class="row text-start">
                 <div class="col-6 mb-3">
                     <div class="form-group">
@@ -70,7 +70,7 @@
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="address2" class="form-label">Address:Line2</label>
-                        <input id="address2" name="address2" class="form-control">
+                        <input id="address2" name="adress2" class="form-control">
                     </div>
                 </div>
                 <div class="col-6 mb-3">

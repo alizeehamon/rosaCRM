@@ -27,4 +27,5 @@ public class CompanyController {
         model.addAttribute("companyName", companyName);
         return "companyList";
     }
+
 }

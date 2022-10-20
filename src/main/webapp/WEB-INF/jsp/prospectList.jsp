@@ -89,6 +89,8 @@
     </div>
 </div>
 
+
+<c:set var="companies" value="${companies}" scope="request"/>
 <c:import url="addProspectForm.jsp"></c:import>
 
 <c:import url="footer.jsp"></c:import>
