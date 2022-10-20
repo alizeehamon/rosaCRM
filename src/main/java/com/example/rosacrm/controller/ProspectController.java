@@ -2,11 +2,8 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-
 import com.example.rosacrm.entity.User;
-
 import com.example.rosacrm.enumeration.ProspectionStatus;
-
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;
 import com.example.rosacrm.service.UserService;
@@ -38,13 +35,12 @@ public class ProspectController {
     @GetMapping("/all")
     public String displayProspectList(Model model, @Param("prospectName") String prospectName, @Param("filterByStatus") String filterByStatus, Authentication authentication) {
         User user = userService.getCurrentUser(authentication.getName());
-        List<CompanyDTO> companyList = companyService.getAllCompanies();
-        List<String> prospectStatusList = prospectService.getAllProspectStatus();
+        List<CompanyDTO> companyList = companyService.getAllCompanies(null, user);
         List<ProspectDTO> searchProspectsByStatusAndName = prospectService.searchProspectsByStatusAndName(prospectName, filterByStatus, user);
         model.addAttribute("prospects", searchProspectsByStatusAndName);
         model.addAttribute("prospectName", prospectName);
         model.addAttribute("companies", companyList);
-        model.addAttribute("prospectStatusList", ProspectionStatus.values());
+        model.addAttribute("prospectStatusList", ProspectionStatus.getValuesWithoutOver());
         return "prospectList";
     }
 
@@ -56,7 +52,7 @@ public class ProspectController {
     }
 
     @PostMapping("/delete")
-    public String deleteProspect(String prospectId){
+    public String deleteProspect(String prospectId) {
         prospectService.deleteProspect(Long.parseLong(prospectId));
         return "redirect:/prospects/all";
     }

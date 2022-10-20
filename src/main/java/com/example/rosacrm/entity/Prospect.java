@@ -1,11 +1,10 @@
 package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.enumeration.ProspectionStatus;
+import com.example.rosacrm.utils.DateUtils;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Entity
@@ -27,8 +26,8 @@ public class Prospect {
     private String homePhone;
 
     private String roleEntreprise;
-    @Enumerated(EnumType.STRING)
-    private ProspectionStatus prospectionStatus;
+
+    private String prospectionStatus;
 
     private Timestamp creationDate;
 
@@ -135,11 +134,11 @@ public class Prospect {
         this.roleEntreprise = roleEntreprise;
     }
 
-    public ProspectionStatus getProspectionStatus() {
+    public String getProspectionStatus() {
         return prospectionStatus;
     }
 
-    public void setProspectionStatus(ProspectionStatus prospectionStatus) {
+    public void setProspectionStatus(String prospectionStatus) {
         this.prospectionStatus = prospectionStatus;
     }
 
@@ -251,22 +250,15 @@ public class Prospect {
         dto.setAddress2(this.getAddress2());
         dto.setCity(this.getCity());
         dto.setCountry(this.getCountry());
-        dto.setCreationDate(convertDateToString(this.getCreationDate()));
+        dto.setCreationDate(DateUtils.convertDateToString(this.getCreationDate()));
         dto.setEmail(this.getEmail());
         dto.setPicture(this.getPicture());
         dto.setProspectionStatus(this.getProspectionStatus());
         dto.setZipCode(this.getZipCode());
         dto.setRoleEntreprise(this.getRoleEntreprise());
         dto.setRelanceDuration(this.getRelanceDuration());
-        dto.setStartDate(convertDateToString(this.getStartDate()));
+        dto.setStartDate(DateUtils.convertDateToString(this.getStartDate()));
         return dto;
     }
 
-    private String convertDateToString(Timestamp date) {
-        if (date != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            return sdf.format(date);
-        }
-        return "";
-    }
 }
