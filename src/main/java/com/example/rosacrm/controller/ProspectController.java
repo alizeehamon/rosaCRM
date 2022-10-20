@@ -2,6 +2,7 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;
 import org.springframework.data.repository.query.Param;
@@ -27,21 +28,27 @@ public class ProspectController {
     }
 
     @GetMapping("/all")
-    public String displayProspectList(Model model, @Param("prospectName") String prospectName, @Param("filterByStatus") String filterByStatus) {
+    public String displayProspectList(Model model, @Param("prospectName") String prospectName, @Param("filterByStatus") ProspectionStatus filterByStatus) {
         List<ProspectDTO> prospectList = prospectService.searchProspects(prospectName);
         List<CompanyDTO> companyList = companyService.getAllCompanies();
-        List<String> prospectStatusList = prospectService.getAllProspectStatus();
+        //List<String> prospectStatusList = prospectService.getAllProspectStatus();
         List<ProspectDTO> searchProspectsByStatusAndName = prospectService.searchProspectsByStatusAndName(prospectName, filterByStatus);
         model.addAttribute("prospects", searchProspectsByStatusAndName);
         model.addAttribute("prospectName", prospectName);
         model.addAttribute("companies", companyList);
-        model.addAttribute("prospectStatusList", prospectStatusList);
+        model.addAttribute("prospectStatusList", ProspectionStatus.values());
         return "prospectList";
     }
 
     @PostMapping("/add")
     public String addProspect(ProspectDTO prospectDTO) {
         prospectService.addProspect(prospectDTO);
+        return "redirect:/prospects/all";
+    }
+
+    @PostMapping("/delete")
+    public String deleteProspect(String prospectId){
+        prospectService.deleteProspect(Long.parseLong(prospectId));
         return "redirect:/prospects/all";
     }
 }

@@ -3,6 +3,7 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
+import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;
@@ -63,12 +64,12 @@ public class ProspectService {
         return this.prospectRepository.findAllProspectStatus();
     }
 
-    public List<ProspectDTO> searchProspectsByStatus(String prospectStatus) {
+    public List<ProspectDTO> searchProspectsByStatus(ProspectionStatus prospectStatus) {
         List<Prospect> prospectsByStatus = this.prospectRepository.filterByStatus(prospectStatus);
         return prospectsByStatus.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 
-    public List<ProspectDTO> searchProspectsByStatusAndName(String prospectName, String filterByStatus) {
+    public List<ProspectDTO> searchProspectsByStatusAndName(String prospectName, ProspectionStatus filterByStatus) {
         if (prospectName != null && prospectName != "" && prospectName.contains(" ") && !Objects.equals(filterByStatus, "All prospection status")) {
             List<String> param = List.of(prospectName.split(" "));
             String firstName = param.get(0);
@@ -95,4 +96,8 @@ public class ProspectService {
         return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 
+    public void deleteProspect(long prospectId) {
+        Prospect prospect = prospectRepository.findById(prospectId).get();
+        prospectRepository.delete(prospect);
+    }
 }

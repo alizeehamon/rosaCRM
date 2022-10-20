@@ -2,6 +2,7 @@ package com.example.rosacrm.dto;
 
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
+import com.example.rosacrm.enumeration.ProspectionStatus;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ProspectDTO {
 
     private String roleEntreprise;
 
-    private String prospectionStatus;
+    private ProspectionStatus prospectionStatus;
 
     private String creationDate;
 
@@ -112,11 +113,11 @@ public class ProspectDTO {
         this.roleEntreprise = roleEntreprise;
     }
 
-    public String getProspectionStatus() {
+    public ProspectionStatus getProspectionStatus() {
         return prospectionStatus;
     }
 
-    public void setProspectionStatus(String prospectionStatus) {
+    public void setProspectionStatus(ProspectionStatus prospectionStatus) {
         this.prospectionStatus = prospectionStatus;
     }
 

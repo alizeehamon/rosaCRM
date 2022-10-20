@@ -1,6 +1,7 @@
 package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.enumeration.ProspectionStatus;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -26,8 +27,8 @@ public class Prospect {
     private String homePhone;
 
     private String roleEntreprise;
-
-    private String prospectionStatus;
+    @Enumerated(EnumType.STRING)
+    private ProspectionStatus prospectionStatus;
 
     private Timestamp creationDate;
 
@@ -67,6 +68,7 @@ public class Prospect {
         this.zipCode = prospectDTO.getZipCode();
         this.city = prospectDTO.getCity();
         this.country = prospectDTO.getCountry();
+        this.prospectionStatus = prospectDTO.getProspectionStatus();
     }
 
     public long getId() {
@@ -133,11 +135,11 @@ public class Prospect {
         this.roleEntreprise = roleEntreprise;
     }
 
-    public String getProspectionStatus() {
+    public ProspectionStatus getProspectionStatus() {
         return prospectionStatus;
     }
 
-    public void setProspectionStatus(String prospectionStatus) {
+    public void setProspectionStatus(ProspectionStatus prospectionStatus) {
         this.prospectionStatus = prospectionStatus;
     }
 
