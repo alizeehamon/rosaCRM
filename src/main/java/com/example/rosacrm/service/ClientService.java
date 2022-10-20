@@ -30,6 +30,21 @@ public class ClientService {
         return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
     }
 
+
+    public List<ClientDTO> searchContacts(String clientName) {
+        if (clientName != null && clientName.contains(" ")) {
+            List<String> param = List.of(clientName.split(" "));
+            String firstName = param.get(0);
+            String lastName = param.get(1);
+            List<Client> clients = this.clientRepository.findAllByFullName(firstName, lastName);
+            return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+        } else if (clientName != null) {
+            List<Client> clients = this.clientRepository.findAllByName(clientName);
+            return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+        }
+        List<Client> clients = (List<Client>) this.clientRepository.findAll();
+        return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+
     public void addClient(ClientDTO clientDTO) {
         Client client = new Client(clientDTO);
         Optional<Company> company = companyRepository.findById(clientDTO.getCompanyId());
@@ -38,5 +53,6 @@ public class ClientService {
         }
         client.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         clientRepository.save(client);
+
     }
 }
