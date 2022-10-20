@@ -1,5 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -104,13 +106,11 @@
         </div>
     </div>
 </div>
-</div>
+
 <script type="text/javascript">
     function clearSearch() {
         window.location = "${pageContext.request.contextPath}/companies/all";
     }
 </script>
-</body>
-</html>
 </body>
 </html>

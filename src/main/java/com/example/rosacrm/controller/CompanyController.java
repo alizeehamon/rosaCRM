@@ -1,5 +1,8 @@
 package com.example.rosacrm.controller;
 
+import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Sector;
+import com.example.rosacrm.service.SectorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -16,9 +19,11 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
+    private final SectorService sectorService;
 
-    public CompanyController(CompanyService companyService) {
+    public CompanyController(CompanyService companyService, SectorService sectorService) {
         this.companyService = companyService;
+        this.sectorService = sectorService;
     }
 
     @GetMapping("/all")
@@ -29,10 +34,16 @@ public class CompanyController {
         return "companyList";
     }
 
+    @GetMapping("/create")
+    public String getCreateCompany(Model model){
+        List<Sector> sectorList = sectorService.getAllSectors();
+        model.addAttribute("sectorList", sectorList);
+        return "createCompany";
+    }
 
-    @PostMapping
-    public RedirectView createCompany (){
-
-        return new RedirectView("/dashboard");
+    @PostMapping("/create")
+    public RedirectView postCreateCompany(Company company){
+        companyService.createCompany(company);
+        return new RedirectView("/companies/all");
     }
 }

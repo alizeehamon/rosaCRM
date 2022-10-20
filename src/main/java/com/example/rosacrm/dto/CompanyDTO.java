@@ -29,7 +29,7 @@ public class CompanyDTO {
     private String address2;
     private String city;
     private String zipCode;
-
+    private String country;
     private Sector sector;
 
     private Date entrepriseCreationDate;
@@ -167,5 +167,13 @@ public class CompanyDTO {
 
     public void setSector(Sector sector) {
         this.sector = sector;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

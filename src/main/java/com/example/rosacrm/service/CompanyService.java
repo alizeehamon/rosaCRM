@@ -26,4 +26,8 @@ public class CompanyService {
         List<CompanyDTO> entreprisesDTO = entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
         return entreprisesDTO;
     }
+
+    public void createCompany(Company company){
+        this.companyRepository.save(company);
+    }
 }
