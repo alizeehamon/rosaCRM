@@ -22,9 +22,10 @@
     <title>Companies</title>
 </head>
 
-<jsp:include page="header.jsp"></jsp:include>
+<c:import url="header.jsp">
+    <c:param name="title" value="clients"></c:param>
+</c:import>
 
-<body class="bg-light">
 <div class="container mt-2 bg-light p-2 rounded">
     <div class="row align-items-center">
         <div class="col-md-6">
@@ -107,6 +108,8 @@
     </div>
 </div>
 
+
+<c:import url="footer.jsp"></c:import>
 <script type="text/javascript">
     function clearSearch() {
         window.location = "${pageContext.request.contextPath}/companies/all";
@@ -114,3 +117,6 @@
 </script>
 </body>
 </html>
+
+
+

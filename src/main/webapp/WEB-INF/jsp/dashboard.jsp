@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,5 +17,8 @@
     <jsp:include page="header.jsp"/>
 </header>
 
-</body>
-</html>
+<c:import url="header.jsp">
+    <c:param name="title" value="Dashboard"></c:param>
+</c:import>
+
+<c:import url="footer.jsp"></c:import>

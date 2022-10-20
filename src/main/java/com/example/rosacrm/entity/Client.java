@@ -1,7 +1,10 @@
 package com.example.rosacrm.entity;
 
+import com.example.rosacrm.dto.ClientDTO;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Entity
@@ -42,6 +45,22 @@ public class Client {
     private List<Note> notesById;
 
     public Client() {
+    }
+
+    public Client(ClientDTO clientDTO) {
+        this.firstName = clientDTO.getFirstName();
+        this.lastName = clientDTO.getLastName();
+        this.picture = clientDTO.getPicture();
+        this.email = clientDTO.getEmail();
+        this.cellPhone = clientDTO.getCellPhone();
+        this.homePhone = clientDTO.getHomePhone();
+        this.roleEntreprise = clientDTO.getRoleEntreprise();
+        this.address1 = clientDTO.getAddress1();
+        this.address2 = clientDTO.getAddress2();
+        this.zipCode = clientDTO.getZipCode();
+        this.city = clientDTO.getCity();
+        this.country = clientDTO.getCountry();
+        this.company = clientDTO.getCompany();
     }
 
     public long getId() {
@@ -186,5 +205,33 @@ public class Client {
 
     public void setNotesById(List<Note> notesById) {
         this.notesById = notesById;
+    }
+
+    public ClientDTO toDTO() {
+        ClientDTO dto = new ClientDTO();
+        dto.setId(this.getId());
+        dto.setFirstName(this.getFirstName());
+        dto.setLastName(this.getLastName());
+        dto.setEmail(this.getEmail());
+        dto.setCellPhone(this.getCellPhone());
+        dto.setAddress1(this.getAddress1());
+        dto.setAddress2(this.getAddress2());
+        dto.setZipCode(this.getZipCode());
+        dto.setCity(this.getCity());
+        dto.setCountry(this.getCountry());
+        dto.setHomePhone(this.getHomePhone());
+        dto.setCreationDate(convertDateToString(this.getCreationDate()));
+        dto.setCompany(this.getCompany());
+        dto.setPicture(this.getPicture());
+        dto.setRoleEntreprise(this.getRoleEntreprise());
+        return dto;
+    }
+
+    private String convertDateToString(Timestamp date) {
+        if (date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            return sdf.format(date);
+        }
+        return "";
     }
 }

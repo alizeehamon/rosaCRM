@@ -46,4 +46,5 @@ public class CompanyController {
         companyService.createCompany(company);
         return new RedirectView("/companies/all");
     }
+
 }
