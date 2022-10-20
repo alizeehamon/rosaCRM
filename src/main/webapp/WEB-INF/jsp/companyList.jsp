@@ -21,7 +21,7 @@
           integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous"/>
     <title>Companies</title>
 </head>
-
+<body>
 <c:import url="header.jsp">
     <c:param name="title" value="clients"></c:param>
 </c:import>
@@ -44,10 +44,9 @@
                         <button class="btn btn-outline-danger m-1" type="button" onclick="clearSearch()">Clear</button>
                     </form>
                 </div>
-                <div>
-                    <a href="${pageContext.request.contextPath}/companies/add" data-bs-toggle="modal"
-                       data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
-                </div>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#addCompany">
+                    <i class="bx bx-plus me-1"></i> Add New
+                </button>
             </div>
         </div>
     </div>
@@ -108,7 +107,7 @@
     </div>
 </div>
 
-
+<c:import url="addCompanyForm.jsp"></c:import>
 <c:import url="footer.jsp"></c:import>
 <script type="text/javascript">
     function clearSearch() {
