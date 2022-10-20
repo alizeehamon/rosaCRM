@@ -13,12 +13,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-<header>
-    <jsp:include page="header.jsp"/>
-</header>
 
 <c:import url="header.jsp">
     <c:param name="title" value="Dashboard"></c:param>
 </c:import>
 
-<c:import url="footer.jsp"></c:import>
+<c:import url="footer.jsp"/>

@@ -1,6 +1,7 @@
 package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.CompanyDTO;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -33,7 +34,7 @@ public class Company {
 
     @ManyToOne
     private Sector sector;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entrepriseCreationDate;
     @OneToMany(mappedBy = "company")
     private List<Client> clientsById;
@@ -41,6 +42,22 @@ public class Company {
     private List<Prospect> prospectsById;
 
     public Company() {
+    }
+
+    public Company(CompanyDTO companyDTO) {
+        this.name = companyDTO.getName();
+        this.siret = companyDTO.getSiret();
+        this.logo = companyDTO.getLogo();
+        this.email = companyDTO.getEmail();
+        this.siteUrl = companyDTO.getSiteUrl();
+        this.cellPhone = companyDTO.getCellPhone();
+        this.homePhone = companyDTO.getHomePhone();
+        this.address1 = companyDTO.getAddress1();
+        this.address2 = companyDTO.getAddress2();
+        this.sector = companyDTO.getSector();
+        this.zipCode = companyDTO.getZipCode();
+        this.city = companyDTO.getCity();
+        this.country = companyDTO.getCountry();
     }
 
     public long getId() {

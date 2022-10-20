@@ -14,7 +14,6 @@ public class SectorService {
     public SectorService(SectorRepository sectorRepository) {
         this.sectorRepository = sectorRepository;
     }
-
     public List<Sector> getAllSectors(){
         return (List<Sector>) this.sectorRepository.findAll();
     }
