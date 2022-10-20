@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class CompanyController {
     }
 
     @GetMapping("/all")
-    public String displayCompanies(Authentication authentication, Model model, @Param("companyName") String companyName) {
+    public String displayCompanies(Authentication authentication, Model model, @Param("companyName") String companyName, RedirectAttributes redir) {
         User user = userService.getCurrentUser(authentication.getName());
         List<CompanyDTO> companyList = companyService.getAllCompanies(companyName, user);
         List<Sector> sectorList = sectorService.getAllSectors();
@@ -66,12 +67,19 @@ public class CompanyController {
         companyService.editCompany(id, companyDTO);
         return new RedirectView("/companies/all");
     }
-
-    @GetMapping("/delete/{id}")
-    public RedirectView deleteCompany(@PathVariable("id") Long id ){
-        companyService.deleteCompanyById(id);
+    /* get company id -> check if present -> if yes -> check is they are clients or prospects connected to it */
+    @RequestMapping("/delete/{id}")
+    public RedirectView deleteCompany(@PathVariable("id") Long id, RedirectAttributes redir){
+        Optional<Company> company = companyService.findCompanyById(id);
+        if (company.isPresent()) {
+            if (!company.get().getClientsById().isEmpty() || !company.get().getProspectsById().isEmpty()) {
+                redir.addFlashAttribute("errorsql" , true);
+                return new RedirectView("/companies/all/");
+            } else {
+                this.companyService.deleteCompanyById(id);
+            }
+        }
         return new RedirectView("/companies/all");
     }
-
-
 }
+

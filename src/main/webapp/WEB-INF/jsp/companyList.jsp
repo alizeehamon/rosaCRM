@@ -47,6 +47,12 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <!%-- conditionnal error message on delete --%>
+                        <c:if test="${errorsql == true}">
+                            <div class="alert alert-danger" role="alert">
+                                Error, the company that you tried to delete still contains clients or prospects
+                            </div>
+                        </c:if>
                         <c:forEach items="${companies}" var="company">
                             <tr>
                                 <td><img src="${company.logo}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
@@ -70,8 +76,9 @@
                                                class="px-2 text-primary "><i class="bx bx-pencil font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="px-2 text-danger delete-modal-toggler" style="cursor: pointer" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal" value="${company.id}">
+                                            <a class="px-2 text-danger delete-modal-toggler" style="cursor: pointer"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#exampleModal" value="${company.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
                                             </a>
                                         </li>
