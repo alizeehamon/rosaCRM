@@ -4,7 +4,11 @@ import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.service.ClientService;
+
+import org.springframework.data.repository.query.Param;
+
 import com.example.rosacrm.service.CompanyService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +31,13 @@ public class ClientController {
     }
 
     @GetMapping("/all")
-    public String displayClientList(Model model) {
-        List<ClientDTO> clientDTOList = clientService.findAll();
+    public String displayClientList(Model model, @Param("clientName") String clientName) {
+        List<ClientDTO> clientDTOList = clientService.searchContacts(clientName);
         List<CompanyDTO> companyList = companyService.getAllCompanies();
         model.addAttribute("clients", clientDTOList);
+        model.addAttribute("clientName", clientName);
         model.addAttribute("companies", companyList);
+
         return "clientList";
     }
 
