@@ -36,6 +36,8 @@ public class ProspectDTO {
 
     private Company company;
 
+    private Long companyId;
+
     public ProspectDTO() {
     }
 
@@ -181,5 +183,13 @@ public class ProspectDTO {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 }

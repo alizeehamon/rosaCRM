@@ -54,7 +54,7 @@
                 <div class="col-6 mb-3">
                     <div class="form-group">
                         <label for="company" class="form-label">Company</label>
-                        <select id="company" class="form-select" aria-label="Choose company">
+                        <select id="company" class="form-select" aria-label="Choose company" name="companyId">
                             <c:forEach items="${requestScope.companies}" var="company">
                                 <option value="${company.id}">${company.name}</option>
                             </c:forEach>
@@ -91,7 +91,12 @@
                         <input id="country" name="country" class="form-control">
                     </div>
                 </div>
-
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="relanceDuration" class="form-label">Relance duration</label>
+                        <input id="relanceDuration" name="relanceDuration" class="form-control">
+                    </div>
+                </div>
             </div>
             <input type="submit" class="btn btn-secondary" value="Save">
 

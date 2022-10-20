@@ -67,7 +67,6 @@ public class Prospect {
         this.zipCode = prospectDTO.getZipCode();
         this.city = prospectDTO.getCity();
         this.country = prospectDTO.getCountry();
-        this.company = prospectDTO.getCompany();
     }
 
     public long getId() {
