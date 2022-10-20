@@ -2,7 +2,11 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
+
 import com.example.rosacrm.entity.User;
+
+import com.example.rosacrm.enumeration.ProspectionStatus;
+
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;
 import com.example.rosacrm.service.UserService;
@@ -40,7 +44,7 @@ public class ProspectController {
         model.addAttribute("prospects", searchProspectsByStatusAndName);
         model.addAttribute("prospectName", prospectName);
         model.addAttribute("companies", companyList);
-        model.addAttribute("prospectStatusList", prospectStatusList);
+        model.addAttribute("prospectStatusList", ProspectionStatus.values());
         return "prospectList";
     }
 
@@ -48,6 +52,12 @@ public class ProspectController {
     public String addProspect(ProspectDTO prospectDTO, Authentication authentication) {
         User user = userService.getCurrentUser(authentication.getName());
         prospectService.addProspect(prospectDTO, user);
+        return "redirect:/prospects/all";
+    }
+
+    @PostMapping("/delete")
+    public String deleteProspect(String prospectId){
+        prospectService.deleteProspect(Long.parseLong(prospectId));
         return "redirect:/prospects/all";
     }
 }

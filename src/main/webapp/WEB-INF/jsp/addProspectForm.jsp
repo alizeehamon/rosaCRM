@@ -63,6 +63,16 @@
                 </div>
                 <div class="col-12 mb-3">
                     <div class="form-group">
+                        <label for="prospectionStatus" class="form-label">Prospection status</label>
+                        <select id="prospectionStatus" class="form-select" aria-label="Choose company" name="prospectionStatus">
+                            <c:forEach items="${requestScope.prospectStatusList}" var="prospectStatus">
+                                <option value="${prospectStatus}">${prospectStatus.value}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
                         <label for="address1" class="form-label">Address</label>
                         <input id="address1" name="address1" class="form-control">
                     </div>

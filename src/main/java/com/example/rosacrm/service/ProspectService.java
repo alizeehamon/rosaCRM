@@ -3,7 +3,11 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
+
 import com.example.rosacrm.entity.User;
+
+import com.example.rosacrm.enumeration.ProspectionStatus;
+
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;
@@ -71,6 +75,7 @@ public class ProspectService {
         return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 
+
     List<ProspectDTO> searchActiveProspectsByStatusAndUser(String filterByStatus, User user) {
         List<Prospect> prospectsByStatus = this.prospectRepository.filterByStatusAndUser(filterByStatus, user);
         return prospectsByStatus.stream().map(p -> p.toDTO()).collect(Collectors.toList());
@@ -92,4 +97,8 @@ public class ProspectService {
         return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
     }
 
+    public void deleteProspect(long prospectId) {
+        Prospect prospect = prospectRepository.findById(prospectId).get();
+        prospectRepository.delete(prospect);
+    }
 }

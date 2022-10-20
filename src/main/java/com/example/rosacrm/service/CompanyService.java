@@ -67,4 +67,8 @@ public class CompanyService {
         });
     }
 
+    public void deleteCompanyById(Long id){
+        this.companyRepository.deleteById(id);
+    }
+
 }

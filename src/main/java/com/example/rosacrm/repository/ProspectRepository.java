@@ -1,7 +1,11 @@
 package com.example.rosacrm.repository;
 
 import com.example.rosacrm.entity.Prospect;
+
 import com.example.rosacrm.entity.User;
+
+import com.example.rosacrm.enumeration.ProspectionStatus;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -31,4 +35,5 @@ public interface ProspectRepository extends CrudRepository<Prospect, Long> {
 
     @Query("select p from Prospect p where (p.firstName like %?1% and p.lastName like %?2%) and p.prospectionStatus = ?3 and p.user = ?4")
     List<Prospect> filterByStatusUserAndFullName(String firstName, String lastName, String filterByStatus, User user);
+
 }
