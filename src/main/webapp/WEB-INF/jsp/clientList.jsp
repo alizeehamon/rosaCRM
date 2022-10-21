@@ -52,8 +52,8 @@
                                 <td><img src="${client.picture}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
                                         href="${pageContext.request.contextPath}/clients/see/${client.id}"
                                         class="text-body">${client.firstName} ${client.lastName}</a></td>
-                                <td><span
-                                        class="badge badge-soft-success mb-0">${client.address1} - ${client.zipCode} ${client.city}</span>
+                                <td><a
+                                        class="badge badge-soft-success mb-0 entity-address">${client.address1} - ${client.zipCode} ${client.city}</a>
                                 </td>
                                 <td><a href="mailto:${client.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${client.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a

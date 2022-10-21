@@ -58,8 +58,8 @@
                                 <td><img src="${company.logo}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
                                         href="${pageContext.request.contextPath}/companies/see/${company.id}"
                                         class="text-body">${company.name}</a></td>
-                                <td><span
-                                        class="badge badge-soft-success mb-0">${company.address1} - ${company.zipCode} ${company.city}</span>
+                                <td><a
+                                        class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
                                 </td>
                                 <td><a href="mailto:${company.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${company.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a
@@ -117,9 +117,14 @@
     </div>
 
 </div>
-
+<footer></footer>
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "${pageContext.request.contextPath}/prospects/all";
+    }
+</script>
 <c:import url="addCompanyForm.jsp"/>
+<script src="../../resources/static/js/displayAddressGMap.js"></script>
 <c:import url="footer.jsp"/>
-
 
 
