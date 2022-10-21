@@ -1,6 +1,7 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.User;
@@ -93,6 +94,11 @@ public class ProspectService {
     public void deleteProspect(long prospectId) {
         Prospect prospect = prospectRepository.findById(prospectId).get();
         prospectRepository.delete(prospect);
+    }
+
+    public List<ProspectDTO> findAllProspectsByCompanyId(User user, Long id) {
+        List<Prospect> prospectsList = prospectRepository.findAllByUserandCompanyId(user, id);
+        return prospectsList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
     }
 
     public ProspectDTO findProspectById(Long id) {

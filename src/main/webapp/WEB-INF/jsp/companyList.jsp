@@ -47,19 +47,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!%-- conditionnal error message on delete --%>
+                        <!%-- conditional error message on delete --%>
                         <c:if test="${errorsql == true}">
                             <div class="alert alert-danger" role="alert">
                                 Error, the company that you tried to delete still contains clients or prospects
                             </div>
                         </c:if>
+
+                        <!-- Company for each start-->
                         <c:forEach items="${companies}" var="company">
                             <tr>
                                 <td><img src="${company.logo}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
                                         href="${pageContext.request.contextPath}/companies/see/${company.id}"
                                         class="text-body">${company.name}</a></td>
-                                <td><a
-                                        class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
+                                <td>
+                                    <a class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
                                 </td>
                                 <td><a href="mailto:${company.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${company.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a
@@ -86,12 +88,14 @@
                                 </td>
                             </tr>
                         </c:forEach>
+                        <!-- Company for each end-->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -115,15 +119,13 @@
             </div>
         </div>
     </div>
-
 </div>
-<footer></footer>
+<c:import url="addCompanyForm.jsp"/>
 <script type="text/javascript">
     function clearSearch() {
-        window.location = "${pageContext.request.contextPath}/prospects/all";
+        window.location = "${pageContext.request.contextPath}/companies/all";
     }
 </script>
-<c:import url="addCompanyForm.jsp"/>
 <script src="../../resources/static/js/displayAddressGMap.js"></script>
 <c:import url="footer.jsp"/>
 

@@ -19,4 +19,8 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 
     @Query("select c from Client c where c.user = ?1")
     List<Client> findAllByUser(User user);
+
+    @Query("select c from Client c where c.user = ?1 AND c.company.id = ?2")
+    List<Client> findAllByUserandCompanyId(User user , Long id);
+
 }
