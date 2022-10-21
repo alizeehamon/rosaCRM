@@ -43,7 +43,7 @@
         <div class="col-lg-12">
             <div class="">
                 <div class="table-responsive">
-                    <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <table id="table_id" class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -81,7 +81,7 @@
                                                class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <button type="button" class="px-2 text-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
                                                     data-bs-target="#deleteConfirm${prospect.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
                                             </button>
@@ -100,7 +100,6 @@
         </div>
     </div>
 </div>
-
 
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:set var="prospectStatusList" value="${prospectStatusList}" scope="request"/>

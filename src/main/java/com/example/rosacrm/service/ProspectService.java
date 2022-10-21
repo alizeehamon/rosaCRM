@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -97,5 +98,9 @@ public class ProspectService {
     public List<ProspectDTO> findAllProspectsByCompanyId(User user, Long id) {
         List<Prospect> prospectsList = prospectRepository.findAllByUserandCompanyId(user , id);
         return prospectsList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+
+    public ProspectDTO findProspectById(Long id) {
+        Optional<Prospect> prospectOpt = this.prospectRepository.findById(id);
+        return prospectOpt.orElseThrow(() -> new NoSuchElementException("Prospect not found with the id " + id)).toDTO();
     }
 }
