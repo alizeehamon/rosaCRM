@@ -172,6 +172,7 @@ public class ClientDTO {
         this.companyId = companyId;
     }
 
+
     public Integer getContactDuration() {
         return contactDuration;
     }
@@ -187,6 +188,7 @@ public class ClientDTO {
     public void setContactStatus(String contactStatus) {
         this.contactStatus = contactStatus;
     }
+
 
     public List<Note> getNotesById() {
         return notesById;

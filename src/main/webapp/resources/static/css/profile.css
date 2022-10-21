@@ -741,3 +741,80 @@
 .card-span-title{
     font-weight: 500;
 }
+/*NOTES*/
+
+.addtxt {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 13px;
+    /*width: 350px*/;
+    background-color: #e5e8ed;
+    font-weight: 500;
+}
+
+.second {
+    width: 50vw;
+    background-color: #F2F2F2;
+    border-radius: 4px;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.text1 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #56575b;
+}
+
+.text2 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #CE2626;
+}
+
+.text3 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 4px;
+    color: #CE2626;
+}
+
+.text3o {
+    color: #00a5f4;
+
+}
+
+.text4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #891919;
+}
+
+.text4i {
+    color: #00a5f4;
+}
+
+.text4o {
+    color: white;
+}
+
+.thumbup {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 5px;
+    color: #CE2626;
+}
+
+.thumbupo {
+    color: #17a2b8;
+}
+
+a {
+    text-decoration: none;
+}
+
+.note-container {
+
+
+}
