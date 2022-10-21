@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -91,5 +92,10 @@ public class ProspectService {
     public void deleteProspect(long prospectId) {
         Prospect prospect = prospectRepository.findById(prospectId).get();
         prospectRepository.delete(prospect);
+    }
+
+    public ProspectDTO findProspectById(Long id) {
+        Optional<Prospect> prospectOpt = this.prospectRepository.findById(id);
+        return prospectOpt.orElseThrow(() -> new NoSuchElementException("Prospect not found with the id " + id)).toDTO();
     }
 }
