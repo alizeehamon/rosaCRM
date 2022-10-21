@@ -28,6 +28,10 @@ public class ClientDTO {
 
     private String creationDate;
 
+    private Integer contactDuration;
+
+    private String contactStatus;
+
     private String address1;
     private String address2;
     private String zipCode;
@@ -167,6 +171,24 @@ public class ClientDTO {
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
+
+
+    public Integer getContactDuration() {
+        return contactDuration;
+    }
+
+    public void setContactDuration(Integer contactDuration) {
+        this.contactDuration = contactDuration;
+    }
+
+    public String getContactStatus() {
+        return contactStatus;
+    }
+
+    public void setContactStatus(String contactStatus) {
+        this.contactStatus = contactStatus;
+    }
+
 
     public List<Note> getNotesById() {
         return notesById;

@@ -28,6 +28,8 @@ public class Client {
 
     private Timestamp creationDate;
 
+    private Integer contactDuration;
+
     private String address1;
     private String address2;
     private String zipCode;
@@ -61,6 +63,7 @@ public class Client {
         this.city = clientDTO.getCity();
         this.country = clientDTO.getCountry();
         this.company = clientDTO.getCompany();
+        this.contactDuration = clientDTO.getContactDuration();
     }
 
     public long getId() {
@@ -207,6 +210,14 @@ public class Client {
         this.notesById = notesById;
     }
 
+    public Integer getContactDuration() {
+        return contactDuration;
+    }
+
+    public void setContactDuration(Integer contactDuration) {
+        this.contactDuration = contactDuration;
+    }
+
     public ClientDTO toDTO() {
         ClientDTO dto = new ClientDTO();
         dto.setId(this.getId());
@@ -221,6 +232,7 @@ public class Client {
         dto.setCountry(this.getCountry());
         dto.setHomePhone(this.getHomePhone());
         dto.setCreationDate(convertDateToString(this.getCreationDate()));
+        dto.setContactDuration(this.contactDuration);
         dto.setCompany(this.getCompany());
         dto.setPicture(this.getPicture());
         dto.setRoleEntreprise(this.getRoleEntreprise());
@@ -235,4 +247,6 @@ public class Client {
         }
         return "";
     }
+
+
 }

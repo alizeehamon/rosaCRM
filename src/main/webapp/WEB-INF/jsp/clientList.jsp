@@ -41,7 +41,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Company - Fonction</th>
-                            <th scope="col">Contract date</th>
+                            <th scope="col">Creation date</th>
                             <th scope="col">Last exchange</th>
                             <th scope="col" style="width: 200px;">Action</th>
                         </tr>
@@ -61,7 +61,7 @@
                                         class="bi bi-phone"></i></a></td>
                                 <td>${client.company.name} - ${client.roleEntreprise}</td>
                                 <td>${client.creationDate}</td>
-                                <td>TO DO// Date de la derniere note...</td>
+                                <td>${client.contactStatus}</td>
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
@@ -89,5 +89,9 @@
 
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:import url="addClientForm.jsp"/>
-
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "${pageContext.request.contextPath}/clients/all";
+    }
+</script>
 <c:import url="footer.jsp"></c:import>

@@ -104,5 +104,9 @@
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:set var="prospectStatusList" value="${prospectStatusList}" scope="request"/>
 <c:import url="addProspectForm.jsp"></c:import>
-
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "${pageContext.request.contextPath}/prospects/all";
+    }
+</script>
 <c:import url="footer.jsp"></c:import>
