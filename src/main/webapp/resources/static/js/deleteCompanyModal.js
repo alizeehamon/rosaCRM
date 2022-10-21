@@ -1,5 +1,6 @@
 let modalToggler = document.getElementsByClassName("delete-modal-toggler")
 let modalDelete = document.querySelector(".delete-modal-trigger")
+
 let modaldeletehref = modalDelete.getAttribute("href")
 
 
