@@ -10,29 +10,28 @@
         <div class="media clearfix">
             <div class="media-left pr30">
                 <a href="#">
-                    <img class="media-object mw150" src="${prospect.picture}" alt="icon-partner">
+                    <img class="media-object mw150" src="${client.picture}" alt="icon-partner">
                 </a>
             </div>
             <div class="media-body va-m">
-                <h2 class="media-heading">${prospect.firstName} ${prospect.lastName}
+                <h2 class="media-heading">${client.firstName} ${client.lastName}
                     <small> - Details</small>
                 </h2>
-                <p class="lead">${prospect.firstName} was added to your list of prospects
-                    on: ${prospect.creationDate}</p>
+                <p class="lead">${client.firstName} was added to your list of clients on: ${client.creationDate}</p>
                 <div class="media-links">
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <a href="tel:${prospect.cellPhone}" title="cellphone link">
+                            <a href="tel:${client.cellPhone}" title="cellphone link">
                                 <span class="fa fa-mobile fs35 text-system"></span>
                             </a>
                         </li>
                         <li class="m-1">
-                            <a href="tel:${prospect.homePhone}" title="homephone link">
+                            <a href="tel:${client.homePhone}" title="homephone link">
                                 <span class="fa fa-phone-square fs35 text-system"></span>
                             </a>
                         </li>
                         <li class="m-1">
-                            <a href="mailto:${prospect.email}" title="email link">
+                            <a href="mailto:${client.email}" title="email link">
                                 <span class="fa fa-envelope-square fs35 text-muted"></span>
                             </a>
                         </li>
@@ -45,18 +44,18 @@
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
                             <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}">Edit
+                                                                             href="${pageContext.request.contextPath}/clients/edit/${client.id}">Edit
                                 profile</a></button>
                         </li>
                         <li class="m-1">
                             <button type="button" class="btn btn-danger"><a class="text-white"
-                                                                            href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}">Delete
+                                                                            href="${pageContext.request.contextPath}/clients/delete/${client.id}">Delete
                                 profile</a></button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class="btn btn-success"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/TDO">Become
-                                a client</a></button>
+                            <button type="button" class="btn btn-warning"><a class="text-white"
+                                                                             href="${pageContext.request.contextPath}/TODO">Change
+                                company</a></button>
                         </li>
                     </ul>
                 </div>
@@ -74,11 +73,11 @@
                     <span class="panel-title"> Contact infos</span>
                 </div>
                 <div class="panel-body pn">
-                    <p>Name : ${prospect.firstName} ${prospect.lastName}</p>
-                    <p>Address : ${prospect.address1} ${prospect.address2} - ${prospect.zipCode} ${prospect.city}</p>
-                    <p>Cellphone : ${prospect.cellPhone}</p>
-                    <p>Home phone : ${prospect.homePhone}</p>
-                    <p>Email : ${prospect.email}</p>
+                    <p>Name : ${client.firstName} ${client.lastName}</p>
+                    <p>Address : ${client.address1} ${client.address2} - ${client.zipCode} ${client.city}</p>
+                    <p>Cellphone : ${client.cellPhone}</p>
+                    <p>Home phone : ${client.homePhone}</p>
+                    <p>Email : ${client.email}</p>
                 </div>
             </div>
             <div class="panel">
@@ -89,8 +88,8 @@
                     <span class="panel-title"> My work</span>
                 </div>
                 <div class="panel-body pb5">
-                    <p>My company : ${prospect.company.name}</p>
-                    <p>My function : ${prospect.roleEntreprise}</p>
+                    <p>My company : ${client.company.name}</p>
+                    <p>My function : ${client.roleEntreprise}</p>
                 </div>
             </div>
             <div class="panel">
@@ -98,24 +97,17 @@
               <span class="panel-icon">
                 <i class="fa fa-pencil"></i>
               </span>
-                    <span class="panel-title">History of our exchanges</span>
+                    <span class="panel-title">History with my client</span>
                 </div>
                 <div class="panel-body pb5">
 
-                    <h6>Prospect creation date</h6>
-                    <p class="text-muted"> ${prospect.creationDate}
+                    <h6>Client creation date</h6>
+                    <p class="text-muted"> ${client.creationDate}
                     </p>
 
                     <hr class="short br-lighter">
 
-                    <h6>Prospection status / starting date </h6>
-
-                    <p class="text-muted"> ${prospect.prospectionStatus} - ${prospect.startDate}
-                    </p>
-
-                    <hr class="short br-lighter">
-
-                    <h6>Dates I contacted ${prospect.firstName}</h6>
+                    <h6>Dates I contacted ${client.firstName}</h6>
                     <p class="text-muted pb10"> //TO DO - Dates des diverses notes
                     </p>
 
@@ -127,7 +119,7 @@
 
                     <hr class="short br-lighter">
 
-                    <h6>Events with ${prospect.firstName}</h6>
+                    <h6>Events with ${client.firstName}</h6>
 
                     <p class="text-muted pb10"> //TO DO - Dates des events
                     </p>
@@ -147,7 +139,7 @@
                         <a href="#tab1" data-toggle="tab">Notes</a>
                     </li>
                     <li>
-                        <a href="#tab2" data-toggle="tab">TAB</a>
+                        <a href="#tab2" data-toggle="tab">Prospection History</a>
                     </li>
                     <li>
                         <a href="#tab3" data-toggle="tab">TAB</a>
@@ -155,10 +147,11 @@
                 </ul>
                 <div class="tab-content p30" style="height: 730px;">
                     <div id="tab1" class="tab-pane active">
-
                     </div>
                 </div>
-                <div id="tab2" class="tab-pane"></div>
+                <div id="tab2" class="tab-pane active">
+                </div>
+
                 <div id="tab3" class="tab-pane"></div>
                 <div id="tab4" class="tab-pane"></div>
             </div>

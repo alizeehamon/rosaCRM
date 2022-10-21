@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,5 +48,12 @@ public class ClientController {
         User user = userService.getCurrentUser(authentication.getName());
         clientService.addClient(clientDTO, user);
         return "redirect:/clients/all";
+    }
+
+    @GetMapping("/see/{id}")
+    public String displayProspectDetails(Model model, @PathVariable Long id) {
+        ClientDTO clientDTO = clientService.findClientById(id);
+        model.addAttribute("client", clientDTO);
+        return "clientPage";
     }
 }
