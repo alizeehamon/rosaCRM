@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -63,5 +64,11 @@ public class ProspectController {
         ProspectDTO prospectDTO = prospectService.findProspectById(id);
         model.addAttribute("prospect", prospectDTO);
         return "prospectPage";
+    }
+
+    @PostMapping("/edit")
+    public RedirectView postEditCompany(ProspectDTO prospectDTO) {
+        prospectService.editProspect(prospectDTO);
+        return new RedirectView("/prospects/all");
     }
 }

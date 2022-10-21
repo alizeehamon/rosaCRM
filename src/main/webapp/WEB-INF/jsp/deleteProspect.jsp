@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="deleteConfirm${param.prospectId}">
+<div class="modal fade" id="deleteConfirm${requestScope.prospect.id}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -16,7 +16,8 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <form action="${pageContext.request.contextPath}/prospects/delete" method="post">
-                    <input hidden name="prospectId" value="${param.prospectId}">
+                    <input hidden name="prospectId" value="${requestScope.prospect.id}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-white border-danger"><i class="bx bx-trash-alt font-size-18"></i></button>
                 </form>
             </div>
