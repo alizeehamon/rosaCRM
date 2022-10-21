@@ -2,8 +2,11 @@ package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +39,7 @@ public class Company {
     private User user;
     @ManyToOne
     private Sector sector;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entrepriseCreationDate;
     @OneToMany(mappedBy = "company")
     private List<Client> clientsById;
@@ -46,7 +49,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(CompanyDTO companyDTO) {
+    public Company(CompanyDTO companyDTO)  {
         this.name = companyDTO.getName();
         this.siret = companyDTO.getSiret();
         this.logo = companyDTO.getLogo();
@@ -60,6 +63,11 @@ public class Company {
         this.zipCode = companyDTO.getZipCode();
         this.city = companyDTO.getCity();
         this.country = companyDTO.getCountry();
+        try {
+            this.entrepriseCreationDate = new SimpleDateFormat("dd/MM/yyyy").parse(companyDTO.getEntrepriseCreationDate());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public long getId() {

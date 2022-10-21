@@ -1,6 +1,8 @@
 package com.example.rosacrm.controller;
 
+import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Sector;
 import com.example.rosacrm.entity.User;
@@ -80,6 +82,17 @@ public class CompanyController {
             }
         }
         return new RedirectView("/companies/all");
+    }
+
+
+    @RequestMapping("/{id}")
+    public String showCompanyChildren(@PathVariable("id") Long id, Authentication authentication, Model model){
+        User user = userService.getCurrentUser(authentication.getName());
+        List<ClientDTO> companyClients = this.companyService.findAllCompanyClients(user, id);
+        List<ProspectDTO> companyProspects = this.companyService.findAllCompanyProspects(user, id);
+        model.addAttribute("compClients" , companyClients);
+        model.addAttribute("compProspects" , companyProspects);
+        return "companyList";
     }
 }
 

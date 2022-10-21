@@ -1,12 +1,17 @@
 package com.example.rosacrm.service;
 
+import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.CompanyRepository;
+import com.example.rosacrm.repository.ProspectRepository;
 import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,9 +20,13 @@ import java.util.stream.Collectors;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final ClientService clientService;
+    private final ProspectService prospectService;
 
-    public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(CompanyRepository companyRepository, ClientService clientService, ProspectService prospectService) {
         this.companyRepository = companyRepository;
+        this.clientService = clientService;
+        this.prospectService = prospectService;
     }
 
     public List<CompanyDTO> getAllCompanies() {
@@ -39,7 +48,7 @@ public class CompanyService {
         return this.companyRepository.findById(id);
     }
 
-    public void createCompany(CompanyDTO companyDTO, User user) {
+    public void createCompany(CompanyDTO companyDTO, User user){
         Company company = new Company(companyDTO);
         company.setUser(user);
         companyRepository.save(company);
@@ -72,4 +81,12 @@ public class CompanyService {
         this.companyRepository.deleteById(id);
     }
 
+
+    public List<ClientDTO> findAllCompanyClients(User user,Long id ){
+        return this.clientService.findAllClientsByCompanyId(user, id);
+    }
+
+    public List<ProspectDTO> findAllCompanyProspects(User user, Long id){
+        return this.prospectService.findAllProspectsByCompanyId(user, id);
+    }
 }

@@ -57,4 +57,11 @@ public class ClientService {
         client.setUser(user);
         clientRepository.save(client);
     }
+
+    public List<ClientDTO> findAllClientsByCompanyId(User user , Long id){
+        List<Client> clientList = clientRepository.findAllByUserandCompanyId(user , id);
+        return clientList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+    }
+
+
 }
