@@ -3,6 +3,7 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -62,5 +64,20 @@ public class ClientService {
     public ClientDTO findClientById(Long id) {
         Optional<Client> clientOpt = this.clientRepository.findById(id);
         return clientOpt.orElseThrow(() -> new NoSuchElementException("Client not found with the id " + id)).toDTO();
+    }
+
+    public void updateContactStatus(ClientDTO clientDTO) {
+        List<Note> notes = clientDTO.getNotesById();
+        Calendar contactDate = Calendar.getInstance();
+        contactDate.setTimeInMillis(notes.get(notes.size()-1).getNoteCreationDate().getTime());
+        contactDate.add(Calendar.DATE, clientDTO.getContactDuration());
+        contactDate.set(Calendar.HOUR_OF_DAY, 0);
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        if(contactDate.compareTo(today)<0){
+            clientDTO.setContactStatus("To contact");
+        }else {
+            clientDTO.setContactStatus(contactDate.getTime().toString());
+        }
     }
 }

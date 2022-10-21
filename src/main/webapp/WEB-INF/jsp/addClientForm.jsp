@@ -63,6 +63,12 @@
                 </div>
                 <div class="col-12 mb-3">
                     <div class="form-group">
+                        <label for="contactDuration" class="form-label">Contact duration</label>
+                        <input id="contactDuration" name="contactDuration" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
                         <label for="address1" class="form-label">Address</label>
                         <input id="address1" name="address1" class="form-control">
                     </div>
@@ -81,7 +87,7 @@
                 </div>
                 <div class="col-6 mb-3">
                     <div class="form-group">
-                        <label for="city" class="form-label">Last name</label>
+                        <label for="city" class="form-label">City</label>
                         <input id="city" name="city" class="form-control">
                     </div>
                 </div>
