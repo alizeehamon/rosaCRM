@@ -69,6 +69,7 @@ public class CompanyController {
         return new RedirectView("/companies/all");
     }
     /* get company id -> check if present -> if yes -> check is they are clients or prospects connected to it */
+
     @RequestMapping("/delete/{id}")
     public RedirectView deleteCompany(@PathVariable("id") Long id, RedirectAttributes redir){
         Optional<CompanyDTO> company = companyService.findCompanyById(id);
@@ -82,17 +83,6 @@ public class CompanyController {
         }
         return new RedirectView("/companies/all");
     }
-
-/*
-    @RequestMapping("/{id}")
-    public String showCompanyChildren(@PathVariable("id") Long id, Authentication authentication, Model model){
-        User user = userService.getCurrentUser(authentication.getName());
-        List<ClientDTO> companyClients = this.companyService.findAllCompanyClients(user, id);
-        List<ProspectDTO> companyProspects = this.companyService.findAllCompanyProspects(user, id);
-        model.addAttribute("compClients" , companyClients);
-        model.addAttribute("compProspects" , companyProspects);
-        return "companyList";
-    }*/
 
     @GetMapping("/see/{id}")
     public String displayProspectDetails(Model model, @PathVariable Long id) {

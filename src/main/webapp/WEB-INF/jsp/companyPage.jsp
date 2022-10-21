@@ -90,51 +90,13 @@
                     <p><span class="card-span-title">Activity : </span>${company.sector.activitySector}</p>
                 </div>
             </div>
-            <div class="panel">
-                <div class="panel-heading">
-              <span class="panel-icon">
-                <i class="fa fa-pencil"></i>
-              </span>
-                    <span class="panel-title">History with my client</span>
-                </div>
-                <div class="panel-body pb5">
-
-
-                    <hr class="short br-lighter">
-
-                    <h6>Dates I contacted ${company.name}</h6>
-                    <p class="text-muted pb10"> //TO DO - Dates des diverses notes
-                    </p>
-
-                    <hr class="short br-lighter">
-
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Choose
-                        your time before calling again</a></button>
-
-                    <hr class="short br-lighter">
-
-                    <h6>Events with ${company.name}</h6>
-
-                    <p class="text-muted pb10"> //TO DO - Dates des events
-                    </p>
-
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Add
-                        an event</a></button>
-
-                </div>
-            </div>
         </div>
         <div class="col-md-8">
 
             <div class="tab-block">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#tab1" data-toggle="tab">Notes</a>
-                    </li>
-                    <li>
-                        <a href="#tab2" data-toggle="tab">Prospection History</a>
+                        <a href="#tab1" data-toggle="tab">Clients & Prospects</a>
                     </li>
                     <li>
                         <a href="#tab3" data-toggle="tab">TAB</a>
@@ -144,7 +106,7 @@
                     <div id="tab1" class="tab-pane active container">
 
                         <div>
-                            <h5>Clients from this company</h5>
+                            <h5>Clients from ${company.name}</h5>
                             <c:forEach items="${clients}" var="client">
                                 <div class="card text-dark bg-light border-grey shadow-sm  mb-3">
                                     <div class="card-header p-3">
@@ -166,7 +128,7 @@
                         </div>
                         <hr>
                         <div>
-                            <h5>Prospects from this company</h5>
+                            <h5>Prospects from ${company.name}</h5>
                             <c:forEach items="${prospects}" var="prospect">
                                 <div class="card text-dark bg-light border border-grey shadow-sm mb-3">
                                     <div class="card-header p-3">
@@ -185,8 +147,6 @@
                             </c:forEach>
                         </div>
                     </div>
-                </div>
-                <div id="tab2" class="tab-pane active">
                 </div>
 
                 <div id="tab3" class="tab-pane"></div>
