@@ -5,6 +5,9 @@
     <c:param name="title" value="Prospects"></c:param>
 </c:import>
 
+<c:set var="companies" value="${companies}" scope="request"/>
+<c:set var="prospectStatusList" value="${prospectStatusList}" scope="request"/>
+
 <div class="container mt-2 bg-light p-2 rounded">
     <div class="row align-items-center">
         <div class="col-md-6">
@@ -76,10 +79,12 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
-                                               class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                            <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#editProspect${prospect.id}">
+                                                <i class="bx bx-pencil font-size-18"></i>
+                                            </button>
                                         </li>
+
                                         <li class="list-inline-item">
                                             <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
                                                     data-bs-target="#deleteConfirm${prospect.id}">
@@ -89,9 +94,9 @@
                                     </ul>
                                 </td>
                             </tr>
-                            <c:import url="deleteProspect.jsp">
-                                <c:param name="prospectId" value="${prospect.id}"></c:param>
-                            </c:import>
+                            <c:set var="prospect" value="${prospect}" scope="request"/>
+                            <c:import url="editProspect.jsp"></c:import>
+                            <c:import url="deleteProspect.jsp"></c:import>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -101,8 +106,7 @@
     </div>
 </div>
 
-<c:set var="companies" value="${companies}" scope="request"/>
-<c:set var="prospectStatusList" value="${prospectStatusList}" scope="request"/>
+
 <c:import url="addProspectForm.jsp"></c:import>
 
 <c:import url="footer.jsp"></c:import>

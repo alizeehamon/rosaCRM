@@ -261,4 +261,22 @@ public class Prospect {
         return dto;
     }
 
+    public Prospect fromDTO(ProspectDTO prospectDTO){
+        this.firstName = prospectDTO.getFirstName();
+        this.lastName = prospectDTO.getLastName();
+        this.picture = prospectDTO.getPicture();
+        this.email = prospectDTO.getEmail();
+        this.cellPhone = prospectDTO.getCellPhone();
+        this.homePhone = prospectDTO.getHomePhone();
+        this.roleEntreprise = prospectDTO.getRoleEntreprise();
+        this.relanceDuration = prospectDTO.getRelanceDuration();
+        this.address1 = prospectDTO.getAddress1();
+        this.address2 = prospectDTO.getAddress2();
+        this.zipCode = prospectDTO.getZipCode();
+        this.city = prospectDTO.getCity();
+        this.country = prospectDTO.getCountry();
+        this.prospectionStatus = prospectDTO.getProspectionStatus();
+        return this;
+    }
+
 }

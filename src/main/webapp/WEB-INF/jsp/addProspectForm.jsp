@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="offcanvas offcanvas-end" id="addProspect">
     <div class="offcanvas-header">
         <h1 class="offcanvas-title">New Prospect</h1>
