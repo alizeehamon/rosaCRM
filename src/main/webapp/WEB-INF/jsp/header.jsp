@@ -106,24 +106,18 @@
                 >
                     Logout
                 </a>
+
+                <!-- Avatar -->
+
+                <a
+                        class="nav-link"
+                        href="${pageContext.request.contextPath}/account"
+                        role="button"
+                        aria-expanded="false"
+                >
+                    <i class="bi bi-person-circle" style="font-size: 2rem; color: #CE2626;"></i>
+                </a>
             </sec:authorize>
-
-            <!-- Avatar -->
-
-            <a
-                    class="nav-link"
-                    href="#"
-                    role="button"
-                    aria-expanded="false"
-            >
-                <img
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        class="rounded-circle"
-                        height="40"
-                        alt="User image"
-                        loading="lazy"
-                />
-            </a>
 
         </div>
         <!-- Right elements -->
