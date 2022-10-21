@@ -231,4 +231,23 @@ public class Company {
         dto.setClientsById(this.getClientsById());
         return dto;
     }
+    /* to do update date */
+    public Company fromDTO(CompanyDTO companyDTO){
+        this.name = companyDTO.getName();
+        this.logo = companyDTO.getLogo();
+        this.email = companyDTO.getEmail();
+        this.siret = companyDTO.getSiret();
+        this.siteUrl = companyDTO.getSiteUrl();
+        this.cellPhone = companyDTO.getCellPhone();
+        this.homePhone = companyDTO.getHomePhone();
+        this.address1 = companyDTO.getAddress1();
+        this.address2 = companyDTO.getAddress2();
+        this.zipCode = companyDTO.getZipCode();
+        this.city = companyDTO.getCity();
+        this.country = companyDTO.getCountry();
+        this.sector = companyDTO.getSector();
+        this.clientsById = companyDTO.getClientsById();
+        this.prospectsById = companyDTO.getProspectsById();
+        return this;
+    }
 }
