@@ -44,8 +44,8 @@ public class CompanyService {
         return entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
     }
 
-    public Optional<Company> findCompanyById(Long id) {
-        return this.companyRepository.findById(id);
+    public Optional<CompanyDTO> findCompanyById(Long id) {
+        return Optional.ofNullable(this.companyRepository.findById(id).get().toDTO());
     }
 
     public void createCompany(CompanyDTO companyDTO, User user){

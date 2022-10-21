@@ -39,7 +39,6 @@ public class Company {
     private User user;
     @ManyToOne
     private Sector sector;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entrepriseCreationDate;
     @OneToMany(mappedBy = "company")
     private List<Client> clientsById;
@@ -63,11 +62,8 @@ public class Company {
         this.zipCode = companyDTO.getZipCode();
         this.city = companyDTO.getCity();
         this.country = companyDTO.getCountry();
-        try {
-            this.entrepriseCreationDate = new SimpleDateFormat("dd/MM/yyyy").parse(companyDTO.getEntrepriseCreationDate());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        this.clientsById = companyDTO.getClientsById();
+        this.prospectsById = companyDTO.getProspectsById();
     }
 
     public long getId() {
@@ -231,6 +227,8 @@ public class Company {
         dto.setZipCode(this.getZipCode());
         dto.setSector(this.getSector());
         dto.setCountry(this.getCountry());
+        dto.setProspectsById(this.getProspectsById());
+        dto.setClientsById(this.getClientsById());
         return dto;
     }
 }

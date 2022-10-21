@@ -96,8 +96,9 @@ public class ProspectService {
     }
 
     public List<ProspectDTO> findAllProspectsByCompanyId(User user, Long id) {
-        List<Prospect> prospectsList = prospectRepository.findAllByUserandCompanyId(user , id);
+        List<Prospect> prospectsList = prospectRepository.findAllByUserandCompanyId(user, id);
         return prospectsList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+    }
 
     public ProspectDTO findProspectById(Long id) {
         Optional<Prospect> prospectOpt = this.prospectRepository.findById(id);

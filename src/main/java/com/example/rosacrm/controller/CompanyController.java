@@ -1,9 +1,8 @@
 package com.example.rosacrm.controller;
 
-import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
-import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Client;
+import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.Sector;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.service.CompanyService;
@@ -58,7 +57,7 @@ public class CompanyController {
     @GetMapping("/edit/{id}")
     public String getEditCompany(@PathVariable("id") Long id, Model model) {
         List<Sector> sectorList = sectorService.getAllSectors();
-        Optional<Company> company = companyService.findCompanyById(id);
+        Optional<CompanyDTO> company = companyService.findCompanyById(id);
         company.ifPresent(company1 -> model.addAttribute("company", company1));
         model.addAttribute("sectorList", sectorList);
         return "editCompany";
@@ -72,7 +71,7 @@ public class CompanyController {
     /* get company id -> check if present -> if yes -> check is they are clients or prospects connected to it */
     @RequestMapping("/delete/{id}")
     public RedirectView deleteCompany(@PathVariable("id") Long id, RedirectAttributes redir){
-        Optional<Company> company = companyService.findCompanyById(id);
+        Optional<CompanyDTO> company = companyService.findCompanyById(id);
         if (company.isPresent()) {
             if (!company.get().getClientsById().isEmpty() || !company.get().getProspectsById().isEmpty()) {
                 redir.addFlashAttribute("errorsql" , true);
@@ -84,7 +83,7 @@ public class CompanyController {
         return new RedirectView("/companies/all");
     }
 
-
+/*
     @RequestMapping("/{id}")
     public String showCompanyChildren(@PathVariable("id") Long id, Authentication authentication, Model model){
         User user = userService.getCurrentUser(authentication.getName());
@@ -93,6 +92,17 @@ public class CompanyController {
         model.addAttribute("compClients" , companyClients);
         model.addAttribute("compProspects" , companyProspects);
         return "companyList";
+    }*/
+
+    @GetMapping("/see/{id}")
+    public String displayProspectDetails(Model model, @PathVariable Long id) {
+        CompanyDTO companyDTO = companyService.findCompanyById(id).get();
+        List<Prospect> prospectsById = companyDTO.getProspectsById();
+        List<Client> clientList = companyDTO.getClientsById();
+        model.addAttribute("company", companyDTO);
+        model.addAttribute("prospects" , prospectsById);
+        model.addAttribute("clients" , prospectsById);
+        return "companyPage";
     }
 }
 
