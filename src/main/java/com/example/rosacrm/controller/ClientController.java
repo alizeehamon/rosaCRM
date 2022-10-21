@@ -66,4 +66,6 @@ public class ClientController {
         model.addAttribute("notes", notes);
         return "clientPage";
     }
+
+
 }

@@ -65,7 +65,6 @@ public class NoteDTO {
     public Note toNote() {
         Note n = new Note();
         n.setClient(this.getClient());
-        n.setId(this.getId());
         n.setMessage(this.getMessage());
         n.setNoteCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         n.setProspect(this.getProspect());
