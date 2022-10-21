@@ -52,11 +52,6 @@
                                                                             href="${pageContext.request.contextPath}/companies/delete/${company.id}">Delete
                                 profile</a></button>
                         </li>
-                        <li class="m-1">
-                            <button type="button" class="btn btn-warning"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/TODO">Change
-                                company</a></button>
-                        </li>
                     </ul>
                 </div>
             </div>
