@@ -48,31 +48,16 @@ public class CompanyService {
         return Optional.ofNullable(this.companyRepository.findById(id).get().toDTO());
     }
 
-    public void createCompany(CompanyDTO companyDTO, User user){
+    public void createCompany(CompanyDTO companyDTO, User user) {
         Company company = new Company(companyDTO);
         company.setUser(user);
         companyRepository.save(company);
     }
 
-    public void editCompany(Long id, CompanyDTO companyDTO) {
-        Optional<Company> company = this.companyRepository.findById(id);
-
+    public void editCompany(CompanyDTO companyDTO) {
+        Optional<Company> company = this.companyRepository.findById(companyDTO.getId());
         company.ifPresent(company1 -> {
-            company1.setName(companyDTO.getName());
-            company1.setSiret(companyDTO.getSiret());
-            company1.setEmail(companyDTO.getEmail());
-            company1.setCellPhone(companyDTO.getCellPhone());
-            company1.setHomePhone(companyDTO.getHomePhone());
-            company1.setLogo(companyDTO.getLogo());
-            company1.setCity(companyDTO.getCity());
-            company1.setCountry(companyDTO.getCountry());
-            company1.setAddress1(companyDTO.getAddress1());
-            company1.setAddress2(companyDTO.getAddress2());
-            company1.setEntrepriseCreationDate(DateUtils.convertStringToDate(companyDTO.getEntrepriseCreationDate()));
-            company1.setSiteUrl(companyDTO.getSiteUrl());
-            company1.setSector(company1.getSector());
-            company1.setClientsById(company1.getClientsById());
-            company1.setProspectsById(company1.getProspectsById());
+            company1.fromDTO(companyDTO);
             this.companyRepository.save(company1);
         });
     }
@@ -81,7 +66,7 @@ public class CompanyService {
         this.companyRepository.deleteById(id);
     }
 
-
+/*
     public List<ClientDTO> findAllCompanyClients(User user,Long id ){
         return this.clientService.findAllClientsByCompanyId(user, id);
     }
@@ -89,4 +74,6 @@ public class CompanyService {
     public List<ProspectDTO> findAllCompanyProspects(User user, Long id){
         return this.prospectService.findAllProspectsByCompanyId(user, id);
     }
+    */
+
 }

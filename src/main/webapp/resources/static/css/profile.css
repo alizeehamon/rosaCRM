@@ -738,6 +738,9 @@
     border-top: 1px solid #FFF;
 }
 
+.card-span-title{
+    font-weight: 500;
+}
 /*NOTES*/
 
 .addtxt {
@@ -812,5 +815,6 @@ a {
 }
 
 .note-container {
+
 
 }

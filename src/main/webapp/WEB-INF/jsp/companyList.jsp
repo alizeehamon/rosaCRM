@@ -5,6 +5,9 @@
     <c:param name="title" value="ROSACRM | Companies"/>
 </c:import>
 
+<c:set var="companies" value="${companies}" scope="request"/>
+<c:set var="sectorList" value="${sectorList}" scope="request"/>
+
 <div class="container mt-2 bg-light p-2 rounded">
     <div class="row align-items-center">
         <div class="col-md-6">
@@ -73,20 +76,24 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="${pageContext.request.contextPath}/companies/edit/${company.id}"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
-                                               class="px-2 text-primary "><i class="bx bx-pencil font-size-18"></i></a>
+                                            <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#editCompany${company.id}">
+                                                <i class="bx bx-pencil font-size-18"></i>
+                                            </button>
                                         </li>
+
                                         <li class="list-inline-item">
-                                            <a class="px-2 text-danger delete-modal-toggler" style="cursor: pointer"
-                                               data-bs-toggle="modal"
-                                               data-bs-target="#exampleModal" value="${company.id}">
+                                            <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteConfirm${company.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
-                                            </a>
+                                            </button>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
+                            <c:set var="company" value="${company}" scope="request"/>
+                            <c:import url="editCompany.jsp"></c:import>
+                            <c:import url="deleteCompany.jsp"></c:import>
                         </c:forEach>
                         <!-- Company for each end-->
                         </tbody>
@@ -96,29 +103,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Do you really want to delete this company ?
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-white border-danger">
-                        <a href="${pageContext.request.contextPath}/companies/delete/"
-                           data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
-                           class="px-2 text-danger delete-modal-trigger"><i class="bx bx-trash-alt font-size-18"></i>
-                        </a>
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <c:import url="addCompanyForm.jsp"/>
 <script type="text/javascript">

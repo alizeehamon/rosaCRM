@@ -54,45 +54,25 @@ public class CompanyController {
         return new RedirectView("/companies/all");
     }
 
-    @GetMapping("/edit/{id}")
-    public String getEditCompany(@PathVariable("id") Long id, Model model) {
-        List<Sector> sectorList = sectorService.getAllSectors();
-        Optional<CompanyDTO> company = companyService.findCompanyById(id);
-        company.ifPresent(company1 -> model.addAttribute("company", company1));
-        model.addAttribute("sectorList", sectorList);
-        return "editCompany";
-    }
-
     @PostMapping("/edit/{id}")
-    public RedirectView postEditCompany(@PathVariable("id") Long id, CompanyDTO companyDTO) {
-        companyService.editCompany(id, companyDTO);
+    public RedirectView postEditCompany(CompanyDTO companyDTO) {
+        companyService.editCompany(companyDTO);
         return new RedirectView("/companies/all");
     }
-    /* get company id -> check if present -> if yes -> check is they are clients or prospects connected to it */
-    @RequestMapping("/delete/{id}")
-    public RedirectView deleteCompany(@PathVariable("id") Long id, RedirectAttributes redir){
-        Optional<CompanyDTO> company = companyService.findCompanyById(id);
+
+    @PostMapping("/delete/{id}")
+    public RedirectView deleteCompany(CompanyDTO companyDTO, RedirectAttributes redir){
+        Optional<CompanyDTO> company = companyService.findCompanyById(companyDTO.getId());
         if (company.isPresent()) {
             if (!company.get().getClientsById().isEmpty() || !company.get().getProspectsById().isEmpty()) {
                 redir.addFlashAttribute("errorsql" , true);
                 return new RedirectView("/companies/all/");
             } else {
-                this.companyService.deleteCompanyById(id);
+                this.companyService.deleteCompanyById(companyDTO.getId());
             }
         }
         return new RedirectView("/companies/all");
     }
-
-/*
-    @RequestMapping("/{id}")
-    public String showCompanyChildren(@PathVariable("id") Long id, Authentication authentication, Model model){
-        User user = userService.getCurrentUser(authentication.getName());
-        List<ClientDTO> companyClients = this.companyService.findAllCompanyClients(user, id);
-        List<ProspectDTO> companyProspects = this.companyService.findAllCompanyProspects(user, id);
-        model.addAttribute("compClients" , companyClients);
-        model.addAttribute("compProspects" , companyProspects);
-        return "companyList";
-    }*/
 
     @GetMapping("/see/{id}")
     public String displayProspectDetails(Model model, @PathVariable Long id) {
