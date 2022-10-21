@@ -1,8 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="header.jsp">
-    <c:param name="title" value="Prospect Details"></c:param>
+    <c:param name="title" value="Client Details"></c:param>
 </c:import>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="../../resources/static/css/profile.css" rel="stylesheet"/>
 <section id="content" class="container">
     <!-- Begin .page-heading -->
@@ -147,15 +149,44 @@
                 </ul>
                 <div class="tab-content p30" style="height: 730px;">
                     <div id="tab1" class="tab-pane active">
+                        <div class="container justify-content-center mt-5 border-left border-right">
+                            <form method="post" action="${pageContext.request.contextPath}/notes/add">
+                                <div class="d-flex justify-content-center pt-3 pb-2">
+                                    <input type="text" name="message" placeholder="+ Write your message"
+                                           class="form-control addtxt">
+                                    <input type="hidden" name="client" value="${client.id}"/>
+                                </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Add
+                                        a note
+                                    </button>
+                                </div>
+                            </form>
+                            <c:forEach items="${notes}" var="note">
+                                <div class="note-container">
+                                    <div class="d-flex justify-content-center py-2">
+                                        <div class="second py-2 px-2"><span class="text1">${note.message}</span>
+                                            <div class="d-flex justify-content-end py-1 pt-2">
+                                                <div><span class="text3">Date</span><span class="thumbup"><i
+                                                        class="fa fa-clock-o"></i></span><span
+                                                        class="text4">${note.noteCreationDate}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
-                <div id="tab2" class="tab-pane active">
-                </div>
-
-                <div id="tab3" class="tab-pane"></div>
-                <div id="tab4" class="tab-pane"></div>
             </div>
+            <div id="tab2" class="tab-pane active">
+            </div>
+
+            <div id="tab3" class="tab-pane"></div>
+            <div id="tab4" class="tab-pane"></div>
         </div>
+    </div>
     </div>
     </div>
 </section>

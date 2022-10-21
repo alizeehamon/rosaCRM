@@ -224,6 +224,7 @@ public class Client {
         dto.setCompany(this.getCompany());
         dto.setPicture(this.getPicture());
         dto.setRoleEntreprise(this.getRoleEntreprise());
+        dto.setNotesById(this.getNotesById());
         return dto;
     }
 

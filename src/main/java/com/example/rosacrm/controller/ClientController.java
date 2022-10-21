@@ -2,10 +2,13 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.service.ClientService;
 import com.example.rosacrm.service.CompanyService;
+import com.example.rosacrm.service.NoteService;
 import com.example.rosacrm.service.UserService;
+import com.example.rosacrm.utils.SortByDate;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -26,10 +29,13 @@ public class ClientController {
     private final CompanyService companyService;
     private final UserService userService;
 
-    public ClientController(ClientService clientService, CompanyService companyService, UserService userService) {
+    private final NoteService noteService;
+
+    public ClientController(ClientService clientService, CompanyService companyService, UserService userService, NoteService noteService) {
         this.clientService = clientService;
         this.companyService = companyService;
         this.userService = userService;
+        this.noteService = noteService;
     }
 
     @GetMapping("/all")
@@ -54,6 +60,9 @@ public class ClientController {
     public String displayProspectDetails(Model model, @PathVariable Long id) {
         ClientDTO clientDTO = clientService.findClientById(id);
         model.addAttribute("client", clientDTO);
+        List<Note> notes = clientDTO.getNotesById();
+        notes.sort(new SortByDate());
+        model.addAttribute("notes", notes);
         return "clientPage";
     }
 }
