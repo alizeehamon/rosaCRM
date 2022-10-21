@@ -7,6 +7,7 @@ import com.example.rosacrm.entity.User;
 import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
+import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -105,9 +106,18 @@ public class ProspectService {
         return prospectOpt.orElseThrow(() -> new NoSuchElementException("Prospect not found with the id " + id)).toDTO();
     }
 
+
     public void changeProspectionStatus(Prospect prospect) {
         prospect.setProspectionStatus(ProspectionStatus.IN_PROGRESS.getValue());
         prospect.setStartDate(Timestamp.valueOf(LocalDateTime.now()));
         this.prospectRepository.save(prospect);
+    }
+    
+    public void editProspect(ProspectDTO prospectDTO) {
+        Optional<Prospect> prospect = prospectRepository.findById(prospectDTO.getId());
+        prospect.ifPresent(prospect1 -> {
+            prospect1.fromDTO(prospectDTO);
+            this.prospectRepository.save(prospect1);
+        });
     }
 }
