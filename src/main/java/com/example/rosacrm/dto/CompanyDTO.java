@@ -4,6 +4,7 @@ import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.Sector;
 
+import java.util.Date;
 import java.util.List;
 
 public class CompanyDTO {

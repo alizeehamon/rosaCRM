@@ -89,5 +89,9 @@
 
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:import url="addClientForm.jsp"/>
-
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "${pageContext.request.contextPath}/clients/all";
+    }
+</script>
 <c:import url="footer.jsp"></c:import>

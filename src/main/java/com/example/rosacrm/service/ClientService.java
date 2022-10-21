@@ -61,6 +61,12 @@ public class ClientService {
         clientRepository.save(client);
     }
 
+
+    public List<ClientDTO> findAllClientsByCompanyId(User user , Long id){
+        List<Client> clientList = clientRepository.findAllByUserandCompanyId(user , id);
+        return clientList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+    }
+
     public ClientDTO findClientById(Long id) {
         Optional<Client> clientOpt = this.clientRepository.findById(id);
         return clientOpt.orElseThrow(() -> new NoSuchElementException("Client not found with the id " + id)).toDTO();
