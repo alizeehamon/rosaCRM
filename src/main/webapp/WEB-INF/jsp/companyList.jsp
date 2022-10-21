@@ -33,7 +33,7 @@
         <div class="col-lg-12">
             <div class="">
                 <div class="table-responsive">
-                    <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <table id="table_id" class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
