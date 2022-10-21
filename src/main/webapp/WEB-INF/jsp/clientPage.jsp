@@ -109,8 +109,8 @@
 
                     <hr class="short br-lighter">
 
-                    <h6>Dates I contacted ${client.firstName}</h6>
-                    <p class="text-muted pb10"> //TO DO - Dates des diverses notes
+                    <h6>Last time I contacted ${client.firstName}</h6>
+                    <p class="text-muted pb10"> ${client.notesById[0].noteCreationDate}
                     </p>
 
                     <hr class="short br-lighter">

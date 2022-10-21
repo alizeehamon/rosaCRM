@@ -1,10 +1,10 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.User;
+import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;
@@ -103,5 +103,11 @@ public class ProspectService {
     public ProspectDTO findProspectById(Long id) {
         Optional<Prospect> prospectOpt = this.prospectRepository.findById(id);
         return prospectOpt.orElseThrow(() -> new NoSuchElementException("Prospect not found with the id " + id)).toDTO();
+    }
+
+    public void changeProspectionStatus(Prospect prospect) {
+        prospect.setProspectionStatus(ProspectionStatus.IN_PROGRESS.getValue());
+        prospect.setStartDate(Timestamp.valueOf(LocalDateTime.now()));
+        this.prospectRepository.save(prospect);
     }
 }

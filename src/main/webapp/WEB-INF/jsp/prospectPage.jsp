@@ -53,11 +53,20 @@
                                                                             href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}">Delete
                                 profile</a></button>
                         </li>
-                        <li class="m-1">
-                            <button type="button" class="btn btn-success"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/TDO">Become
-                                a client</a></button>
-                        </li>
+                        <c:if test="${prospect.prospectionStatus eq notStarted}">
+                            <li class="m-1">
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#startProspection">Start prospection
+                                </button>
+                            </li>
+                        </c:if>
+                        <c:if test="${prospect.prospectionStatus ne notStarted}">
+                            <li class="m-1">
+                                <button type="button" class="btn btn-success"><a class="text-white"
+                                                                                 href="${pageContext.request.contextPath}/TDO">Become
+                                    a client</a></button>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
@@ -166,3 +175,5 @@
     </div>
     </div>
 </section>
+<c:import url="startProspection.jsp"/>
+<c:import url="footer.jsp"></c:import>

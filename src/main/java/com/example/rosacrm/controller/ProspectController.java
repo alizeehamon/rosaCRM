@@ -62,6 +62,8 @@ public class ProspectController {
     public String displayProspectDetails(Model model, @PathVariable Long id) {
         ProspectDTO prospectDTO = prospectService.findProspectById(id);
         model.addAttribute("prospect", prospectDTO);
+        model.addAttribute("notStarted", ProspectionStatus.NOT_STARTED.getValue());
         return "prospectPage";
     }
+
 }
