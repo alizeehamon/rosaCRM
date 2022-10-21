@@ -81,7 +81,7 @@ public class CompanyService {
         this.companyRepository.deleteById(id);
     }
 
-
+/*
     public List<ClientDTO> findAllCompanyClients(User user,Long id ){
         return this.clientService.findAllClientsByCompanyId(user, id);
     }
@@ -89,4 +89,6 @@ public class CompanyService {
     public List<ProspectDTO> findAllCompanyProspects(User user, Long id){
         return this.prospectService.findAllProspectsByCompanyId(user, id);
     }
+    */
+
 }

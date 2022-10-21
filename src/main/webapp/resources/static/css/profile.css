@@ -737,3 +737,7 @@
     border-color: #DDD;
     border-top: 1px solid #FFF;
 }
+
+.card-span-title{
+    font-weight: 500;
+}
