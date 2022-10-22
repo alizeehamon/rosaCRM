@@ -76,14 +76,14 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn-link px-2 btn border-0 text-primary" data-bs-toggle="modal"
                                                     data-bs-target="#editCompany${company.id}">
                                                 <i class="bx bx-pencil font-size-18"></i>
                                             </button>
                                         </li>
 
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn-link px-2 text-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn-link btn border-0 px-2 text-danger" data-bs-toggle="modal"
                                                     data-bs-target="#deleteConfirm${company.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
                                             </button>
