@@ -191,12 +191,11 @@
                                     <div class="note-container border border-1 container my-3 bg-light shadow">
                                         <div class="row note-container-row">
                                             <div class="col-8 p-2 border border-right">
-                                                <h6 class="card-title border-bottom">Note message :</h6>
+                                                <h6 class="card-title border-bottom mb-3">Note message :</h6>
                                                 <form class="note-content" action="${pageContext.request.contextPath}/notes/edit/" method="post">
                                                     <div class="form-group">
-                                                        <input hidden class="form-control" id="id" name="id" type="text" value="${note.id}" />
-                                                        <label for="message"></label>
-                                                        <textarea class="form-control bg-light text-areaControl" readonly="readonly" id="message" name="message" rows="3">${note.message}</textarea>
+                                                        <input hidden class="form-control" name="id" type="text" value="${note.id}" />
+                                                        <textarea class="form-control bg-light text-areaControl" readonly="readonly" name="message" rows="3">${note.message}</textarea>
                                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary align-self-end mt-1"><i class="bx bx-pencil font-size-18"></i></button>
