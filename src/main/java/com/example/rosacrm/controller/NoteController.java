@@ -26,6 +26,12 @@ public class NoteController {
         return "redirect:/clients/see/" + noteDTO.getClient().getId();
     }
 
+    @PostMapping("/prospects/add")
+    public String addNoteProspect(NoteDTO noteDTO) {
+        noteService.addNote(noteDTO);
+        return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
+    }
+
     @PostMapping("/start")
     public String startProspection(NoteDTO noteDTO) {
         noteService.addNote(noteDTO);

@@ -258,10 +258,11 @@ public class Prospect {
         dto.setRoleEntreprise(this.getRoleEntreprise());
         dto.setRelanceDuration(this.getRelanceDuration());
         dto.setStartDate(DateUtils.convertDateToString(this.getStartDate()));
+        dto.setNotesById(this.getNotesById());
         return dto;
     }
 
-    public Prospect fromDTO(ProspectDTO prospectDTO){
+    public Prospect fromDTO(ProspectDTO prospectDTO) {
         this.firstName = prospectDTO.getFirstName();
         this.lastName = prospectDTO.getLastName();
         this.picture = prospectDTO.getPicture();

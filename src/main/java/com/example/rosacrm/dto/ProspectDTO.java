@@ -1,6 +1,9 @@
 package com.example.rosacrm.dto;
 
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Note;
+
+import java.util.List;
 
 public class ProspectDTO {
 
@@ -37,6 +40,8 @@ public class ProspectDTO {
     private Company company;
 
     private Long companyId;
+
+    private List<Note> notesById;
 
     public ProspectDTO() {
     }
@@ -193,4 +198,11 @@ public class ProspectDTO {
         this.companyId = companyId;
     }
 
+    public List<Note> getNotesById() {
+        return notesById;
+    }
+
+    public void setNotesById(List<Note> notesById) {
+        this.notesById = notesById;
+    }
 }
