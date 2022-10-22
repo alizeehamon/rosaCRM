@@ -45,14 +45,16 @@
                     </ul>
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/companies/edit/${company.id}">Edit
-                                profile</a></button>
+                            <button type="button" class="btn-link btn border-0 px-2 text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#editCompany${company.id}">
+                                <i class="bx bx-pencil font-size-18"></i>
+                            </button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class="btn btn-danger"><a class="text-white"
-                                                                            href="${pageContext.request.contextPath}/companies/delete/${company.id}">Delete
-                                profile</a></button>
+                            <button type="button" class="btn-link btn border-0 px-2 text-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirm${company.id}">
+                                <i class="bx bx-trash-alt font-size-18"></i>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -126,7 +128,7 @@
                                 </div>
                             </c:forEach>
                         </div>
-                        <hr>
+                        <hr class="hr shadow-sm">
                         <div>
                             <h5>Prospects from ${company.name}</h5>
                             <c:forEach items="${prospects}" var="prospect">
@@ -153,5 +155,10 @@
                 <div id="tab4" class="tab-pane"></div>
             </div>
         </div>
+
     </div>
+    <c:set var="company" value="${company}" scope="request"/>
+    <c:import url="editCompany.jsp"/>
+    <c:import url="deleteCompany.jsp"/>
 </section>
+<c:import url="footer.jsp"/>

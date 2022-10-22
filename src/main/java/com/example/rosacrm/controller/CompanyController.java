@@ -81,7 +81,7 @@ public class CompanyController {
         List<Client> clientList = companyDTO.getClientsById();
         model.addAttribute("company", companyDTO);
         model.addAttribute("prospects" , prospectsById);
-        model.addAttribute("clients" , prospectsById);
+        model.addAttribute("clients" , clientList);
         return "companyPage";
     }
 }
