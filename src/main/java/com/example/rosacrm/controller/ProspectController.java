@@ -2,11 +2,13 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;
 import com.example.rosacrm.service.UserService;
+import com.example.rosacrm.utils.SortByDate;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -63,6 +65,9 @@ public class ProspectController {
     public String displayProspectDetails(Model model, @PathVariable Long id) {
         ProspectDTO prospectDTO = prospectService.findProspectById(id);
         model.addAttribute("prospect", prospectDTO);
+        List<Note> notes = prospectDTO.getNotesById();
+        notes.sort(new SortByDate());
+        model.addAttribute("notes", notes);
         model.addAttribute("notStarted", ProspectionStatus.NOT_STARTED.getValue());
         return "prospectPage";
     }

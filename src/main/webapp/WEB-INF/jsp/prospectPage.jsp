@@ -124,8 +124,9 @@
 
                     <hr class="short br-lighter">
 
-                    <h6>Dates I contacted ${prospect.firstName}</h6>
-                    <p class="text-muted pb10"> //TO DO - Dates des diverses notes
+                    <h6>Last contact with ${prospect.firstName}</h6>
+                    <c:if test="${prospect.prospectionStatus eq notStarted}">None yet</c:if>
+                    <p class="text-muted pb10"> ${prospect.notesById[0].noteCreationDate}
                     </p>
 
                     <hr class="short br-lighter">
@@ -136,9 +137,9 @@
 
                     <hr class="short br-lighter">
 
-                    <h6>Events with ${prospect.firstName}</h6>
+                    <h6>Last/Next event with ${prospect.firstName}</h6>
 
-                    <p class="text-muted pb10"> //TO DO - Dates des events
+                    <p class="text-muted pb10"> //TO DO - Date last event programmed
                     </p>
 
                     <button type="button" class="btn btn-primary"><a class="text-white"
@@ -164,6 +165,39 @@
                 </ul>
                 <div class="tab-content p30" style="height: 730px;">
                     <div id="tab1" class="tab-pane active">
+                        <c:if test="${prospect.prospectionStatus eq notStarted}">
+                            <p>The prospection has not started yet....</p>
+                        </c:if>
+                        <c:if test="${prospect.prospectionStatus ne notStarted}">
+                            <div class="container justify-content-center mt-5 border-left border-right">
+                                <form method="post" action="${pageContext.request.contextPath}/notes/prospects/add">
+                                    <div class="d-flex justify-content-center pt-3 pb-2">
+                                        <input type="text" name="message" placeholder="+ Write your message"
+                                               class="form-control addtxt">
+                                        <input type="hidden" name="prospect" value="${prospect.id}"/>
+                                    </div>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Add
+                                            a note
+                                        </button>
+                                    </div>
+                                </form>
+                                <c:forEach items="${notes}" var="note">
+                                    <div class="note-container">
+                                        <div class="d-flex justify-content-center py-2">
+                                            <div class="second py-2 px-2"><span class="text1">${note.message}</span>
+                                                <div class="d-flex justify-content-end py-1 pt-2">
+                                                    <div><span class="text3">Date</span><span class="thumbup"><i
+                                                            class="fa fa-clock-o"></i></span><span
+                                                            class="text4">${note.noteCreationDate}</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </c:if>
 
                     </div>
                 </div>
