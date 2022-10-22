@@ -79,6 +79,8 @@ public class CompanyController {
         CompanyDTO companyDTO = companyService.findCompanyById(id).get();
         List<Prospect> prospectsById = companyDTO.getProspectsById();
         List<Client> clientList = companyDTO.getClientsById();
+        List<Sector> sectorList = sectorService.getAllSectors();
+        model.addAttribute("sectorList", sectorList);
         model.addAttribute("company", companyDTO);
         model.addAttribute("prospects" , prospectsById);
         model.addAttribute("clients" , clientList);

@@ -69,7 +69,7 @@
               <span class="panel-icon">
                 <i class="fa fa-info-circle"></i>
               </span>
-                    <span class="panel-title"> Contact infos</span>
+                    <span class="panel-title"> Company infos</span>
                 </div>
                 <div class="panel-body pn">
                     <p><span class="card-span-title">Name : </span>${company.name}</p>
@@ -78,6 +78,7 @@
                     <p><span class="card-span-title">Home phone : </span>${company.homePhone}</p>
                     <p><span class="card-span-title">Email : </span>${company.email}</p>
                     <p><span class="card-span-title">Website : </span><a href="${company.siteUrl}">Here !</a></p>
+                    <p><span class="card-span-title">Creation Date : </span>${company.entrepriseCreationDate}</p>
                 </div>
             </div>
             <!-- Liste des clients/prospects -->
