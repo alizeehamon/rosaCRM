@@ -1,5 +1,8 @@
 package com.example.rosacrm.entity;
 
+import com.example.rosacrm.dto.NoteDTO;
+import com.example.rosacrm.utils.DateUtils;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -48,14 +51,35 @@ public class Note {
     public Client getClient() {
         return client;
     }
+
     public void setClient(Client client) {
         this.client = client;
     }
+
     public Prospect getProspect() {
         return prospect;
     }
 
     public void setProspect(Prospect prospect) {
         this.prospect = prospect;
+    }
+
+    public NoteDTO toNoteDTO() {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setId(this.getId());
+        noteDTO.setClient(this.getClient());
+        noteDTO.setNoteCreationDate(DateUtils.convertDateToString(this.getNoteCreationDate()));
+        noteDTO.setProspect(this.getProspect());
+        noteDTO.setMessage(this.getMessage());
+        return noteDTO;
+    }
+
+    public Note FromNoteDTO(NoteDTO noteDTO) {
+        this.client = noteDTO.getClient();
+        this.id = noteDTO.getId();
+        this.message = noteDTO.getMessage();
+        this.noteCreationDate = (Timestamp) DateUtils.convertStringToDate(noteDTO.getNoteCreationDate());
+        this.prospect = noteDTO.getProspect();
+        return this;
     }
 }

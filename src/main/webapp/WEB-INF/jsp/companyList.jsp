@@ -92,8 +92,8 @@
                                 </td>
                             </tr>
                             <c:set var="company" value="${company}" scope="request"/>
-                            <c:import url="editCompany.jsp"></c:import>
-                            <c:import url="deleteCompany.jsp"></c:import>
+                            <c:import url="editCompany.jsp"/>
+                            <c:import url="deleteCompany.jsp"/>
                         </c:forEach>
                         <!-- Company for each end-->
                         </tbody>

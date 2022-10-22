@@ -1,11 +1,19 @@
 package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.NoteDTO;
+import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.service.NoteService;
 import com.example.rosacrm.service.ProspectService;
+import org.aspectj.weaver.ast.Not;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/notes")
@@ -38,5 +46,17 @@ public class NoteController {
         prospectService.changeProspectionStatus(noteDTO.getProspect());
         return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
     }
+    @PostMapping("/edit/")
+    public String editNoteProspect(NoteDTO noteDTO){
+        noteService.editNote(noteDTO);
+        return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
+    }
 
+    @PostMapping("/delete/{note}")
+    public String deleteNoteProspect(@PathVariable("note")Long id){
+        Optional<Note> note = this.noteService.findNoteById(id);
+        NoteDTO noteDTO = note.get().toNoteDTO();
+        this.noteService.deleteNote(noteDTO.getId());
+        return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
+    }
 }
