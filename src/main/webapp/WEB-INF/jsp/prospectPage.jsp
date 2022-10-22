@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="header.jsp">
     <c:param name="title" value="Prospect Details"></c:param>
 </c:import>
@@ -72,7 +74,7 @@
             </div>
         </div>
     </div>
-
+<!--Prospect infos -->
     <div class="row">
         <div class="col-md-4">
             <div class="panel">
@@ -169,7 +171,7 @@
                             <p>The prospection has not started yet....</p>
                         </c:if>
                         <c:if test="${prospect.prospectionStatus ne notStarted}">
-                            <div class="container justify-content-center mt-5 border-left border-right">
+                            <div class="container d-flex flex-column mt-5 border-left border-right ">
                                 <form method="post" action="${pageContext.request.contextPath}/notes/prospects/add">
                                     <div class="d-flex justify-content-center pt-3 pb-2">
                                         <input type="text" name="message" placeholder="+ Write your message"
@@ -183,14 +185,41 @@
                                         </button>
                                     </div>
                                 </form>
+
+                                <!-- Prospect notes display -->
                                 <c:forEach items="${notes}" var="note">
-                                    <div class="note-container">
-                                        <div class="d-flex justify-content-center py-2">
-                                            <div class="second py-2 px-2"><span class="text1">${note.message}</span>
-                                                <div class="d-flex justify-content-end py-1 pt-2">
-                                                    <div><span class="text3">Date</span><span class="thumbup"><i
-                                                            class="fa fa-clock-o"></i></span><span
-                                                            class="text4">${note.noteCreationDate}</span></div>
+                                    <div class="note-container border border-1 container my-3 bg-light shadow">
+                                        <div class="row note-container-row">
+                                            <div class="col-8 p-2 border border-right">
+                                                <h6 class="card-title border-bottom">Note message :</h6>
+                                                <form class="note-content" action="${pageContext.request.contextPath}/notes/edit/" method="post">
+                                                    <div class="form-group">
+                                                        <input hidden class="form-control" id="id" name="id" type="text" value="${note.id}" />
+                                                        <label for="message"></label>
+                                                        <textarea class="form-control bg-light text-areaControl" readonly="readonly" id="message" name="message" rows="3">${note.message}</textarea>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary align-self-end mt-1"><i class="bx bx-pencil font-size-18"></i></button>
+                                                </form>
+                                            </div>
+                                            <div class="col-4 p-2 bg-light d-flex flex-column justify-content-between align-items-end">
+                                                <div class="d-flex flex-column flex-lg-row align-self-end">
+                                                    <form action="${pageContext.request.contextPath}/notes/delete/${note.id}" method="post">
+                                                        <button class="btn btn-danger"><i class="bx bx-trash-alt font-size-18"></i></button>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                    </form>
+                                                </div>
+                                                <div class="note-content d-flex flex-column justify-content-end align-self-end">
+                                                    <div class="d-inline-flex justify-content-end">
+                                                        <div class="d-flex">
+                                                            <span class="text3">Date <span
+                                                                    class="thumbup"><i
+                                                                    class="fa fa-clock-o"></i></span>
+                                                            </span>
+                                                        </div>
+
+                                                        <span class="text4">${note.noteCreationDate}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,4 +239,5 @@
     </div>
 </section>
 <c:import url="startProspection.jsp"/>
-<c:import url="footer.jsp"></c:import>
+<script type="text/javascript" src="../../resources/static/js/textareaToggleProspects.js"></script>
+<c:import url="footer.jsp"/>

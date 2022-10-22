@@ -764,6 +764,7 @@
     font-size: 13px;
     font-weight: 500;
     color: #56575b;
+    overflow-wrap: break-word;
 }
 
 .text2 {
@@ -789,6 +790,7 @@
     font-size: 13px;
     font-weight: 500;
     color: #891919;
+    text-align: end;
 }
 
 .text4i {
@@ -814,7 +816,13 @@ a {
     text-decoration: none;
 }
 
-.note-container {
+.note-container{
+    min-height: 150px;
+}
+.note-content{
+    overflow-wrap: break-word
+}
 
-
+.note-container-row{
+    min-height: inherit;
 }
