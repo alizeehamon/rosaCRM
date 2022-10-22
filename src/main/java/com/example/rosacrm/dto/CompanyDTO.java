@@ -3,7 +3,9 @@ package com.example.rosacrm.dto;
 import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.Sector;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +33,8 @@ public class CompanyDTO {
     private String zipCode;
     private String country;
     private Sector sector;
-    private String entrepriseCreationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate entrepriseCreationDate;
 
     private List<Client> clientsById;
 
@@ -104,11 +107,11 @@ public class CompanyDTO {
         this.siteUrl = siteUrl;
     }
 
-    public String getEntrepriseCreationDate() {
+    public LocalDate getEntrepriseCreationDate() {
         return entrepriseCreationDate;
     }
 
-    public void setEntrepriseCreationDate(String entrepriseCreationDate) {
+    public void setEntrepriseCreationDate(LocalDate entrepriseCreationDate) {
         this.entrepriseCreationDate = entrepriseCreationDate;
     }
 

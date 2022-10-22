@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -39,31 +40,14 @@ public class Company {
     private User user;
     @ManyToOne
     private Sector sector;
-    private Date entrepriseCreationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate entrepriseCreationDate;
     @OneToMany(mappedBy = "company")
     private List<Client> clientsById;
     @OneToMany(mappedBy = "company")
     private List<Prospect> prospectsById;
 
     public Company() {
-    }
-
-    public Company(CompanyDTO companyDTO)  {
-        this.name = companyDTO.getName();
-        this.siret = companyDTO.getSiret();
-        this.logo = companyDTO.getLogo();
-        this.email = companyDTO.getEmail();
-        this.siteUrl = companyDTO.getSiteUrl();
-        this.cellPhone = companyDTO.getCellPhone();
-        this.homePhone = companyDTO.getHomePhone();
-        this.address1 = companyDTO.getAddress1();
-        this.address2 = companyDTO.getAddress2();
-        this.sector = companyDTO.getSector();
-        this.zipCode = companyDTO.getZipCode();
-        this.city = companyDTO.getCity();
-        this.country = companyDTO.getCountry();
-        this.clientsById = companyDTO.getClientsById();
-        this.prospectsById = companyDTO.getProspectsById();
     }
 
     public long getId() {
@@ -178,11 +162,11 @@ public class Company {
         this.sector = sector;
     }
 
-    public Date getEntrepriseCreationDate() {
+    public LocalDate getEntrepriseCreationDate() {
         return entrepriseCreationDate;
     }
 
-    public void setEntrepriseCreationDate(Date entrepriseCreationDate) {
+    public void setEntrepriseCreationDate(LocalDate entrepriseCreationDate) {
         this.entrepriseCreationDate = entrepriseCreationDate;
     }
 
@@ -209,6 +193,24 @@ public class Company {
     public void setUser(User user) {
         this.user = user;
     }
+    public Company(CompanyDTO companyDTO)  {
+        this.name = companyDTO.getName();
+        this.siret = companyDTO.getSiret();
+        this.logo = companyDTO.getLogo();
+        this.email = companyDTO.getEmail();
+        this.siteUrl = companyDTO.getSiteUrl();
+        this.cellPhone = companyDTO.getCellPhone();
+        this.homePhone = companyDTO.getHomePhone();
+        this.address1 = companyDTO.getAddress1();
+        this.address2 = companyDTO.getAddress2();
+        this.sector = companyDTO.getSector();
+        this.zipCode = companyDTO.getZipCode();
+        this.city = companyDTO.getCity();
+        this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate();
+        this.country = companyDTO.getCountry();
+        this.clientsById = companyDTO.getClientsById();
+        this.prospectsById = companyDTO.getProspectsById();
+    }
 
     public CompanyDTO toDTO() {
         CompanyDTO dto = new CompanyDTO();
@@ -219,7 +221,7 @@ public class Company {
         dto.setHomePhone(this.getHomePhone());
         dto.setLogo(this.getLogo());
         dto.setSiret(this.getSiret());
-        dto.setEntrepriseCreationDate(DateUtils.convertDateToString(this.getEntrepriseCreationDate()));
+        dto.setEntrepriseCreationDate(this.getEntrepriseCreationDate());
         dto.setSiteUrl(this.getSiteUrl());
         dto.setAddress1(this.getAddress1());
         dto.setAddress2(this.getAddress2());
@@ -246,6 +248,7 @@ public class Company {
         this.city = companyDTO.getCity();
         this.country = companyDTO.getCountry();
         this.sector = companyDTO.getSector();
+        this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate() ;
         this.clientsById = companyDTO.getClientsById();
         this.prospectsById = companyDTO.getProspectsById();
         return this;

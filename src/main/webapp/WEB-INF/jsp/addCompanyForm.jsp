@@ -51,7 +51,12 @@
                         <input id="siteUrl" name="siteUrl" class="form-control">
                     </div>
                 </div>
-
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="entrepriseCreationDate" class="form-label">Company creation date</label>
+                        <input id="entrepriseCreationDate" type="date" name="entrepriseCreationDate" class="form-control">
+                    </div>
+                </div>
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="address1" class="form-label">Address</label>

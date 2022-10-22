@@ -102,9 +102,9 @@
                                 <c:forEach items="${sectorList}" var="sector">
                                     <c:if test="${sector.id == company.sector.id }">
                                         <option selected="selected"
-                                                value="${requestScope.sector.id}">${sector.activitySector}</option>
+                                                value="${sector.id}">${sector.activitySector}</option>
                                     </c:if>
-                                    <option value="${requestScope.sector.id}">${sector.activitySector}</option>
+                                    <option value="${sector.id}">${sector.activitySector}</option>
                                 </c:forEach>
                             </select>
                         </div>
