@@ -83,4 +83,10 @@ public class ProspectController {
         prospectService.postEditProspectStatusToContact(prospectDTO);
         return new RedirectView("/prospects/see/" + prospectDTO.getId());
     }
+
+    @PostMapping("/prospect-to-client/{id}")
+    public String prospectToClient(@PathVariable Long id) {
+        Long clientId = prospectService.prospectToClient(id);
+        return "redirect:/clients/see/" + clientId;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.rosacrm.dto;
 
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Event;
 import com.example.rosacrm.entity.Note;
 
 import java.util.List;
@@ -24,8 +25,6 @@ public class ClientDTO {
 
     private Company company;
 
-    private Long companyId;
-
     private String creationDate;
 
     private Integer contactDuration;
@@ -39,6 +38,8 @@ public class ClientDTO {
     private String country;
 
     private List<Note> notesById;
+
+    private List<Event> eventsById;
 
 
     public ClientDTO() {
@@ -164,14 +165,6 @@ public class ClientDTO {
         this.company = company;
     }
 
-    public Long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
-    }
-
 
     public Integer getContactDuration() {
         return contactDuration;
@@ -196,5 +189,13 @@ public class ClientDTO {
 
     public void setNotesById(List<Note> notesById) {
         this.notesById = notesById;
+    }
+
+    public List<Event> getEventsById() {
+        return eventsById;
+    }
+
+    public void setEventsById(List<Event> eventsById) {
+        this.eventsById = eventsById;
     }
 }

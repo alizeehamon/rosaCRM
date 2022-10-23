@@ -62,20 +62,19 @@
                                 </button>
                             </li>
                         </c:if>
+                        <li class="m-1">
+                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
+                                <input hidden name="id" value="${prospect.id}">
+                                <input hidden name="prospectionStatus" value="To contact">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button type="submit" class="btn btn-success">To contact</button>
+                            </form>
+                        </li>
                         <c:if test="${prospect.prospectionStatus ne notStarted}">
                             <li class="m-1">
-                                <button type="button" class="btn btn-success"><a class="text-white"
-                                                                                 href="${pageContext.request.contextPath}/TDO">Become
-                                    a client</a></button>
-                            </li>
-                            <li class="m-1">
-                                <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact"
-                                      method="post">
-                                    <input hidden name="id" value="${prospect.id}">
-                                    <input hidden name="prospectionStatus" value="To contact">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <button type="submit" class="btn btn-success">To contact</button>
-                                </form>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#confirmToClient">Become
+                                    a client</button>
                             </li>
                         </c:if>
                     </ul>
@@ -255,6 +254,10 @@
         </div>
     </div>
 </section>
+
+<c:set var="prospect" value="${prospect}" scope="request"></c:set>
+<c:import url="confirmToClient.jsp"></c:import>
+
 <c:import url="startProspection.jsp"/>
 <c:set var="prospect" value="${prospect}" scope="request"/>
 <c:import url="editProspect.jsp"/>
