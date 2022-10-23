@@ -52,12 +52,12 @@
                         </li>
                         <li class="m-1">
                             <button type="button" class=" btn btn-danger border-0 px-2 text-white" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConfirm${prospect.id}">Delete client
+                                    data-bs-target="#deleteConfirm${prospect.id}">Delete Prospect
                             </button>
                         </li>
-                        <c:if test="${prospect.prospectionStatus eq notStarted}">
+                        <c:if test="${prospect.prospectionStatus eq 'Not started'}">
                             <li class="m-1">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                         data-bs-target="#startProspection">Start prospection
                                 </button>
                             </li>
@@ -254,12 +254,11 @@
         </div>
     </div>
 </section>
-
+<c:set var="prospectStatusListclean" value="${prospectStatusListclean}" scope="request"></c:set>
 <c:set var="prospect" value="${prospect}" scope="request"></c:set>
 <c:import url="confirmToClient.jsp"></c:import>
 
 <c:import url="startProspection.jsp"/>
-<c:set var="prospect" value="${prospect}" scope="request"/>
 <c:import url="editProspect.jsp"/>
 <c:import url="deleteProspect.jsp"/>
 <script type="text/javascript" src="../../resources/static/js/textareaToggleProspects.js"></script>

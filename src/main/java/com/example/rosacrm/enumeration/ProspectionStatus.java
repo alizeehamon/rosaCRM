@@ -30,6 +30,15 @@ public enum ProspectionStatus {
         return values;
     }
 
+    public static List<String> getValuesWithoutAllProspectionStatus() {
+        List<String> values = new ArrayList<>();
+        values.add(NOT_STARTED.getValue());
+        values.add(IN_PROGRESS.getValue());
+        values.add(TO_CONTACT.getValue());
+        return values;
+    }
+
+
     public String getValue() {
         return value;
     }

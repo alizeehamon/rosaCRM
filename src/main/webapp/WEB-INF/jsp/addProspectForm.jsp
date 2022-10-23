@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-12 mb-3">
                     <div class="form-group">
-                        <label for="email" class="form-label">Last name</label>
+                        <label for="email" class="form-label">Email</label>
                         <input id="email" name="email" class="form-control">
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         <label for="prospectionStatus" class="form-label">Prospection status</label>
                         <select id="prospectionStatus" class="form-select" aria-label="Choose company"
                                 name="prospectionStatus">
-                            <c:forEach items="${requestScope.prospectStatusList}" var="prospectStatus">
+                            <c:forEach items="${requestScope.prospectStatusListclean}" var="prospectStatus">
                                 <option value="${prospectStatus}">${prospectStatus}</option>
                             </c:forEach>
                         </select>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-6 mb-3">
                     <div class="form-group">
-                        <label for="city" class="form-label">Last name</label>
+                        <label for="city" class="form-label">City</label>
                         <input id="city" name="city" class="form-control">
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="relanceDuration" class="form-label">Relance duration</label>
-                        <input id="relanceDuration" name="relanceDuration" class="form-control">
+                        <input id="relanceDuration" type="number" name="relanceDuration" class="form-control">
                     </div>
                 </div>
             </div>

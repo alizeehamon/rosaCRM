@@ -71,7 +71,7 @@
                                 <label for="prospectionStatus" class="form-label">Prospection status</label>
                                 <select id="prospectionStatus" class="form-select" aria-label="Choose company"
                                         name="prospectionStatus">
-                                    <c:forEach items="${requestScope.prospectStatusList}" var="prospectStatus">
+                                    <c:forEach items="${requestScope.prospectStatusListclean}" var="prospectStatus">
                                         <option value="${prospectStatus}">${prospectStatus}</option>
                                     </c:forEach>
                                 </select>
