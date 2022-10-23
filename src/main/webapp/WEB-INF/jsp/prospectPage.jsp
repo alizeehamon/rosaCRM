@@ -62,19 +62,21 @@
                                 </button>
                             </li>
                         </c:if>
-                        <li class="m-1">
-                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
-                                <input hidden name="id" value="${prospect.id}">
-                                <input hidden name="prospectionStatus" value="To contact">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit" class="btn btn-success">To contact</button>
-                            </form>
-                        </li>
                         <c:if test="${prospect.prospectionStatus ne notStarted}">
+                            <li class="m-1">
+                                <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact"
+                                      method="post">
+                                    <input hidden name="id" value="${prospect.id}">
+                                    <input hidden name="prospectionStatus" value="To contact">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-success">To contact</button>
+                                </form>
+                            </li>
                             <li class="m-1">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                         data-bs-target="#confirmToClient">Become
-                                    a client</button>
+                                    a client
+                                </button>
                             </li>
                         </c:if>
                     </ul>
