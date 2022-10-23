@@ -62,13 +62,6 @@
                                 </button>
                             </li>
                         </c:if>
-                        <c:if test="${prospect.prospectionStatus ne notStarted}">
-                            <li class="m-1">
-                                <button type="button" class="btn btn-success"><a class="text-white"
-                                                                                 href="${pageContext.request.contextPath}/TDO">Become
-                                    a client</a></button>
-                            </li>
-                        </c:if>
                         <li class="m-1">
                             <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
                                 <input hidden name="id" value="${prospect.id}">
@@ -77,6 +70,13 @@
                                 <button type="submit" class="btn btn-success">To contact</button>
                             </form>
                         </li>
+                        <c:if test="${prospect.prospectionStatus ne notStarted}">
+                            <li class="m-1">
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#confirmToClient">Become
+                                    a client</button>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
@@ -255,6 +255,10 @@
     </div>
     </div>
 </section>
+
+<c:set var="prospect" value="${prospect}" scope="request"></c:set>
+<c:import url="confirmToClient.jsp"></c:import>
+
 <c:import url="startProspection.jsp"/>
 <script type="text/javascript" src="../../resources/static/js/textareaToggleProspects.js"></script>
 <c:import url="footer.jsp"/>

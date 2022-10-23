@@ -50,15 +50,16 @@ public class ClientService {
         return clients.stream().map(c -> c.toDTO()).collect(Collectors.toList());
     }
 
-    public void addClient(ClientDTO clientDTO, User user) {
+    public Client addClient(ClientDTO clientDTO, User user) {
         Client client = new Client(clientDTO);
-        Optional<Company> company = companyRepository.findById(clientDTO.getCompanyId());
+        Optional<Company> company = companyRepository.findById(client.getCompany().getId());
         if (company.isPresent()) {
             client.setCompany(company.get());
         }
         client.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         client.setUser(user);
         clientRepository.save(client);
+        return client;
     }
 
 

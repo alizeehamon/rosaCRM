@@ -51,14 +51,14 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public String addProspect(ClientDTO clientDTO, Authentication authentication) {
+    public String addClient(ClientDTO clientDTO, Authentication authentication) {
         User user = userService.getCurrentUser(authentication.getName());
         clientService.addClient(clientDTO, user);
         return "redirect:/clients/all";
     }
 
     @GetMapping("/see/{id}")
-    public String displayProspectDetails(Model model, @PathVariable Long id) {
+    public String displayClientDetails(Model model, @PathVariable Long id) {
         ClientDTO clientDTO = clientService.findClientById(id);
         model.addAttribute("client", clientDTO);
         List<Note> notes = clientDTO.getNotesById();

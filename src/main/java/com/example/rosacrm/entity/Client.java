@@ -41,9 +41,9 @@ public class Client {
 
     @ManyToOne
     private Company company;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
     private List<Event> eventsById;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
     private List<Note> notesById;
 
     public Client() {
@@ -64,7 +64,28 @@ public class Client {
         this.country = clientDTO.getCountry();
         this.company = clientDTO.getCompany();
         this.contactDuration = clientDTO.getContactDuration();
+        this.notesById = clientDTO.getNotesById();
+        this.eventsById = clientDTO.getEventsById();
     }
+
+    public Client(Prospect prospect) {
+        this.firstName = prospect.getFirstName();
+        this.lastName = prospect.getLastName();
+        this.picture = prospect.getPicture();
+        this.email = prospect.getEmail();
+        this.cellPhone = prospect.getCellPhone();
+        this.homePhone = prospect.getHomePhone();
+        this.roleEntreprise = prospect.getRoleEntreprise();
+        this.address1 = prospect.getAddress1();
+        this.address2 = prospect.getAddress2();
+        this.zipCode = prospect.getZipCode();
+        this.city = prospect.getCity();
+        this.country = prospect.getCountry();
+        this.company = prospect.getCompany();
+        this.user = prospect.getUser();
+        this.contactDuration = prospect.getRelanceDuration();
+    }
+
 
     public long getId() {
         return id;

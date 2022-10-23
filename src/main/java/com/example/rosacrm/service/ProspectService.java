@@ -1,14 +1,12 @@
 package com.example.rosacrm.service;
 
+import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.Prospect;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.entity.*;
 import com.example.rosacrm.enumeration.ProspectionStatus;
+import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
-import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -26,10 +24,13 @@ public class ProspectService {
 
     private final CompanyRepository companyRepository;
 
+    private final ClientService clientService;
 
-    public ProspectService(ProspectRepository prospectRepository, CompanyRepository companyRepository) {
+
+    public ProspectService(ProspectRepository prospectRepository, CompanyRepository companyRepository, ClientService clientService) {
         this.prospectRepository = prospectRepository;
         this.companyRepository = companyRepository;
+        this.clientService = clientService;
     }
 
 
@@ -133,5 +134,19 @@ public class ProspectService {
             prospect1.getNotesById().add(note);
             this.prospectRepository.save(prospect1);
         });
+    }
+
+    public Long prospectToClient(Long prospectId) {
+        Optional<Prospect> prospectOpt = prospectRepository.findById(prospectId);
+        Long clientId = null;
+        if (prospectOpt.isPresent()){
+            Prospect prospect = prospectOpt.get();
+            prospect.setProspectionStatus("Over");
+            prospectRepository.save(prospect);
+            ClientDTO clientDTO = new Client(prospect).toDTO();
+            Client client = clientService.addClient(clientDTO, prospect.getUser());
+            clientId = client.getId();
+        }
+        return clientId;
     }
 }
