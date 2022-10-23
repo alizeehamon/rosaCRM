@@ -1,14 +1,11 @@
 package com.example.rosacrm.service;
 
+import com.example.rosacrm.dto.ClientToProspectDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.Prospect;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.entity.*;
 import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
-import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -113,7 +110,7 @@ public class ProspectService {
         prospect.setStartDate(Timestamp.valueOf(LocalDateTime.now()));
         this.prospectRepository.save(prospect);
     }
-    
+
     public void editProspect(ProspectDTO prospectDTO) {
         Optional<Prospect> prospect = prospectRepository.findById(prospectDTO.getId());
         prospect.ifPresent(prospect1 -> {
@@ -133,5 +130,26 @@ public class ProspectService {
             prospect1.getNotesById().add(note);
             this.prospectRepository.save(prospect1);
         });
+    }
+
+    public void clientToProspect(Client client, ClientToProspectDTO clientToProspectDTO, Company company, User user) {
+        Prospect prospect = new Prospect();
+        prospect.setEmail(client.getEmail());
+        prospect.setUser(user);
+        prospect.setProspectionStatus(ProspectionStatus.NOT_STARTED.getValue());
+        prospect.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        prospect.setAddress1(client.getAddress1());
+        prospect.setAddress2(client.getAddress2());
+        prospect.setCity(client.getCity());
+        prospect.setCountry(client.getCountry());
+        prospect.setCellPhone(client.getCellPhone());
+        prospect.setHomePhone(client.getHomePhone());
+        prospect.setFirstName(client.getFirstName());
+        prospect.setLastName(client.getLastName());
+        prospect.setPicture(client.getPicture());
+        prospect.setZipCode(client.getZipCode());
+        prospect.setCompany(company);
+        prospect.setRoleEntreprise(clientToProspectDTO.getRoleEntreprise());
+        prospectRepository.save(prospect);
     }
 }

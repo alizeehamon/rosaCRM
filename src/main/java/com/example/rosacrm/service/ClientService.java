@@ -5,6 +5,7 @@ import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
+import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
@@ -62,8 +63,8 @@ public class ClientService {
     }
 
 
-    public List<ClientDTO> findAllClientsByCompanyId(User user , Long id){
-        List<Client> clientList = clientRepository.findAllByUserandCompanyId(user , id);
+    public List<ClientDTO> findAllClientsByCompanyId(User user, Long id) {
+        List<Client> clientList = clientRepository.findAllByUserandCompanyId(user, id);
         return clientList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
     }
 
@@ -75,15 +76,29 @@ public class ClientService {
     public void updateContactStatus(ClientDTO clientDTO) {
         List<Note> notes = clientDTO.getNotesById();
         Calendar contactDate = Calendar.getInstance();
-        contactDate.setTimeInMillis(notes.get(notes.size()-1).getNoteCreationDate().getTime());
+        if (notes.size() > 0) {
+            contactDate.setTimeInMillis(notes.get(notes.size() - 1).getNoteCreationDate().getTime());
+        }
         contactDate.add(Calendar.DATE, clientDTO.getContactDuration());
         contactDate.set(Calendar.HOUR_OF_DAY, 0);
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
-        if(contactDate.compareTo(today)<0){
-            clientDTO.setContactStatus("To contact");
-        }else {
+        if (contactDate.compareTo(today) < 0) {
+            clientDTO.setContactStatus(ProspectionStatus.TO_CONTACT.getValue());
+        } else {
             clientDTO.setContactStatus(contactDate.getTime().toString());
         }
+    }
+
+    public Client findClientByClientDTOId(Long id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        if (clientOptional.isPresent()) {
+            return clientOptional.get();
+        }
+        return clientOptional.orElseThrow(() -> new NoSuchElementException("Client not found with the id " + id));
+    }
+
+    public void deleteClient(Long clientId) {
+        clientRepository.deleteById(clientId);
     }
 }
