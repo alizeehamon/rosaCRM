@@ -27,111 +27,94 @@
           integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous"/>
 
 
-
     <title>${param.title}</title>
 </head>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <!-- Container wrapper -->
-    <div class="container-fluid">
-        <!-- Toggle button -->
-        <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-        >
-            <i class="fas fa-bars"></i>
-        </button>
+    <div class="container-fluid justify-content-start">
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="${pageContext.request.contextPath}/">
-                <img
-                        src="https://zupimages.net/up/22/41/5la4.jpg"
-                        height="45"
-                        alt="rosa logo"
-                        loading="lazy"
-                />
-            </a>
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all">Companies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/prospects/all">Prospects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/clients/all">Clients</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #891919" href="#">Calendar</a>
-                </li>
-            </ul>
-            <!-- Left links -->
-        </div>
-        <!-- Collapsible wrapper -->
-
-        <!-- Right elements -->
-        <div class="d-flex align-items-center">
-
-            <!-- Login and co -->
-            <sec:authorize access="!isAuthenticated()">
-                <a
-                        class="nav-link"
-                        href="${pageContext.request.contextPath}/signin"
-                        role="button"
-                        aria-expanded="false"
-                        style="color: #891919"
-                >
-                    Login
-                </a>
-                <a
-                        class="nav-link"
-                        href="${pageContext.request.contextPath}/register"
-                        role="button"
-                        aria-expanded="false"
-                        style="color: #891919"
-                >
-                    Register
-                </a>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
-                <a
-                        class="nav-link p-2"
-                        href="${pageContext.request.contextPath}/logout"
-                        role="button"
-                        aria-expanded="false"
-                        style="color: #891919"
-                >
-                    Logout
-                </a>
-
-                <!-- Avatar -->
-
-                <a
-                        class="nav-link"
-                        href="${pageContext.request.contextPath}/account"
-                        role="button"
-                        aria-expanded="false"
-                >
-                    <i class="bi bi-person-circle" style="font-size: 2rem; color: #CE2626;"></i>
-                </a>
-            </sec:authorize>
-
-        </div>
-        <!-- Right elements -->
+        <!-- Navbar brand -->
+        <a class="navbar-brand mt-2 mt-lg-0" href="${pageContext.request.contextPath}/">
+            <img
+                    src="https://zupimages.net/up/22/41/5la4.jpg"
+                    height="45"
+                    alt="rosa logo"
+                    loading="lazy"
+                    class="d-none d-lg-block"
+            />
+        </a>
+        <!-- Left links -->
+        <ul class="navbar-nav d-flex flex-lg-row justify-content-lg-start flex-md-column">
+            <li class="nav-item">
+                <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/companies/all">Companies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/prospects/all">Prospects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #891919"
+                   href="${pageContext.request.contextPath}/clients/all">Clients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: #891919" href="#">Calendar</a>
+            </li>
+        </ul>
+        <!-- Left links -->
     </div>
-    <!-- Container wrapper -->
+
+    <!-- Right elements -->
+    <div class="ml-1 d-flex align-items-center flex-lg-row flex-md-column flex-sm-column">
+
+        <!-- Login and co -->
+        <sec:authorize access="!isAuthenticated()">
+            <a
+                    class="nav-link"
+                    href="${pageContext.request.contextPath}/signin"
+                    role="button"
+                    aria-expanded="false"
+                    style="color: #891919"
+            >
+                Login
+            </a>
+            <a
+                    class="nav-link"
+                    href="${pageContext.request.contextPath}/register"
+                    role="button"
+                    aria-expanded="false"
+                    style="color: #891919"
+            >
+                Register
+            </a>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <!-- Avatar -->
+
+            <a
+                    class="nav-link"
+                    href="${pageContext.request.contextPath}/account"
+                    role="button"
+                    aria-expanded="false"
+            >
+                <i class="bi bi-person-circle" style="font-size: 2rem; color: #CE2626;"></i>
+            </a>
+            <a
+                    class="nav-link p-2"
+                    href="${pageContext.request.contextPath}/logout"
+                    role="button"
+                    aria-expanded="false"
+                    style="color: #891919"
+            >
+                Logout
+            </a>
+        </sec:authorize>
+
+    </div>
+    <!-- Right elements -->
 </nav>
 <!-- Navbar -->
 

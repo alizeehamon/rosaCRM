@@ -138,25 +138,31 @@
                 </div>
             </div>
             <!-- Call to action links to other pages-->
-            <aside class="d-flex justify-content-around bg-gradient rounded-3 p-4 p-sm-5 mt-5"
+            <aside class="bg-gradient rounded-3 p-4 p-sm-5 mt-5 d-none d-sm-block"
                    style="background-color: #e0e0e0;">
-                <h2>Start working now...</h2>
-                <button type="button" class="bg-danger rounded p-3" style="border: none; height: 10vh;"><a
-                        class="text-white text-decoration-none"
-                        href="${pageContext.request.contextPath}/companies/all">My
-                    companies</a></button>
-                <button type="button" class="bg-danger rounded p-3" style="border: none"><a
-                        class="text-white text-decoration-none"
-                        href="${pageContext.request.contextPath}/clients/all">My
-                    clients</a></button>
-                <button type="button" class="bg-danger rounded p-3" style="border: none"><a
-                        class="text-white text-decoration-none"
-                        href="${pageContext.request.contextPath}/prospects/all">My
-                    prospects</a></button>
-                <button type="button" class="bg-danger rounded p-3" style="border: none"><a
-                        class="text-white text-decoration-none"
-                        href="${pageContext.request.contextPath}/calendar">My
-                    schedule</a></button>
+                <div class="d-flex flex-md-column flex-sm-column flex-xs-column flex-lg-row">
+                    <h2>Start working now...</h2>
+                    <button type="button" class="bg-danger rounded p-3"
+                            style="border: none; height: 10vh; margin: 1rem;"><a
+                            class="text-white text-decoration-none"
+                            href="${pageContext.request.contextPath}/companies/all">My
+                        companies</a></button>
+                    <button type="button" class="bg-danger rounded p-3"
+                            style="border: none; height: 10vh; margin: 1rem;"><a
+                            class="text-white text-decoration-none"
+                            href="${pageContext.request.contextPath}/clients/all">My
+                        clients</a></button>
+                    <button type="button" class="bg-danger rounded p-3"
+                            style="border: none; height: 10vh; margin: 1rem;"><a
+                            class="text-white text-decoration-none"
+                            href="${pageContext.request.contextPath}/prospects/all">My
+                        prospects</a></button>
+                    <button type="button" class="bg-danger rounded p-3"
+                            style="border: none; height: 10vh; margin: 1rem;"><a
+                            class="text-white text-decoration-none"
+                            href="${pageContext.request.contextPath}/calendar">My
+                        schedule</a></button>
+                </div>
             </aside>
         </div>
     </section>

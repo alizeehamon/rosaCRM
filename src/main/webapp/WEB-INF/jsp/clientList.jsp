@@ -22,7 +22,8 @@
                     </form>
                 </div>
                 <div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#addClient">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#addClient">
                         <i class="bx bx-plus me-1"></i> Add New
                     </button>
                 </div>
@@ -32,8 +33,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="">
-                <div class="table-responsive">
-                    <table id="table_id" class="table project-list-table table-nowrap align-middle table-borderless">
+                <div class="table-responsive-xl">
+                    <table id="table_id"
+                           class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">Name</th>

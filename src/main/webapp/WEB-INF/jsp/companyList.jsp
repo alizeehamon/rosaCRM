@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="">
-                <div class="table-responsive">
+                <div class="table-responsive-xl">
                     <table id="table_id" class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                         <tr>
@@ -64,6 +64,7 @@
                                         class="text-body">${company.name}</a></td>
                                 <td>
                                     <a target="_blank" class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
+
                                 </td>
                                 <td><a href="mailto:${company.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${company.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a
@@ -75,14 +76,16 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn-link px-2 btn border-0 text-primary" data-bs-toggle="modal"
+                                            <button type="button" class="btn-link px-2 btn border-0 text-primary"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#editCompany${company.id}">
                                                 <i class="bx bx-pencil font-size-18"></i>
                                             </button>
                                         </li>
 
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn-link btn border-0 px-2 text-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn-link btn border-0 px-2 text-danger"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#deleteConfirm${company.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>
                                             </button>
