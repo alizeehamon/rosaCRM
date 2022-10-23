@@ -110,7 +110,6 @@ public class ProspectService {
         return prospectOpt.orElseThrow(() -> new NoSuchElementException("Prospect not found with the id " + id)).toDTO();
     }
 
-
     public void changeProspectionStatus(Prospect prospect) {
         prospect.setProspectionStatus(ProspectionStatus.IN_PROGRESS.getValue());
         prospect.setStartDate(Timestamp.valueOf(LocalDateTime.now()));

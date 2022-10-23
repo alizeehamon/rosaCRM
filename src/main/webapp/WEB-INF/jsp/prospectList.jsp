@@ -65,9 +65,9 @@
                                 <td><img src="${prospect.picture}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
                                         href="${pageContext.request.contextPath}/prospects/see/${prospect.id}"
                                         class="text-body">${prospect.firstName} ${prospect.lastName}</a></td>
-                                <td><a
-                                        class="badge badge-soft-success mb-0 entity-address">${prospect.address1}
-                                    - ${prospect.zipCode} ${prospect.city}</a>
+
+                                <td><a target="_blank"
+                                        class="badge badge-soft-success mb-0 entity-address">${prospect.address1} - ${prospect.zipCode} ${prospect.city}</a>
                                 </td>
                                 <td><a href="mailto:${prospect.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${prospect.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou
@@ -80,7 +80,8 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn-link px-2 text-danger"
+
+                                            <button type="button" class="btn-link btn border-0 px-2 text-primary"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#editProspect${prospect.id}">
                                                 <i class="bx bx-pencil font-size-18"></i>
@@ -88,7 +89,8 @@
                                         </li>
 
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn-link px-2 text-danger"
+
+                                            <button type="button" class="btn-link btn border-0 px-2 text-danger"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#deleteConfirm${prospect.id}">
                                                 <i class="bx bx-trash-alt font-size-18"></i>

@@ -44,6 +44,7 @@ public class ProspectController {
         model.addAttribute("prospects", searchProspectsByStatusAndName);
         model.addAttribute("prospectName", prospectName);
         model.addAttribute("companies", companyList);
+        model.addAttribute("prospectStatusListclean" , ProspectionStatus.getValuesWithoutAllProspectionStatus());
         model.addAttribute("prospectStatusList", ProspectionStatus.getValuesWithoutOver());
         return "prospectList";
     }
@@ -66,6 +67,7 @@ public class ProspectController {
         ProspectDTO prospectDTO = prospectService.findProspectById(id);
         model.addAttribute("prospect", prospectDTO);
         List<Note> notes = prospectDTO.getNotesById();
+        model.addAttribute("prospectStatusListclean" , ProspectionStatus.getValuesWithoutAllProspectionStatus());
         notes.sort(new SortByDate());
         model.addAttribute("notes", notes);
         model.addAttribute("notStarted", ProspectionStatus.NOT_STARTED.getValue());

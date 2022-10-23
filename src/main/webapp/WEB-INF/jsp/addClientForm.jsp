@@ -54,7 +54,7 @@
                 <div class="col-6 mb-3">
                     <div class="form-group">
                         <label for="company" class="form-label">Company</label>
-                        <select id="company" class="form-select" aria-label="Choose company" name="companyId">
+                        <select id="company" class="form-select" aria-label="Choose company" name="company">
                             <c:forEach items="${requestScope.companies}" var="company">
                                 <option value="${company.id}">${company.name}</option>
                             </c:forEach>
@@ -64,7 +64,7 @@
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="contactDuration" class="form-label">Contact duration</label>
-                        <input id="contactDuration" name="contactDuration" class="form-control">
+                        <input id="contactDuration" required name="contactDuration" class="form-control">
                     </div>
                 </div>
                 <div class="col-12 mb-3">

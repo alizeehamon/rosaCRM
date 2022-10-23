@@ -45,14 +45,14 @@
                     </ul>
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/clients/edit/${client.id}">Edit
-                                profile</a></button>
+                            <button type="button" class="btn btn-primary border-0 px-2 text-white" data-bs-toggle="modal"
+                                    data-bs-target="#editClient${client.id}">Edit profile
+                            </button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class="btn btn-danger"><a class="text-white"
-                                                                            href="${pageContext.request.contextPath}/clients/delete/${client.id}">Delete
-                                profile</a></button>
+                            <button type="button" class=" btn btn-danger border-0 px-2 text-white" data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirm${client.id}">Delete client
+                            </button>
                         </li>
                         <li class="m-1">
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -188,8 +188,9 @@
             <div id="tab4" class="tab-pane"></div>
         </div>
     </div>
-    </div>
-    </div>
 </section>
+<c:set var="client" value="${client}" scope="request"/>
+<c:import url="editClient.jsp"/>
+<c:import url="deleteClient.jsp"/>
 <c:import url="changeCompany.jsp"/>
 <c:import url="footer.jsp"/>

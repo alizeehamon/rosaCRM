@@ -2,10 +2,7 @@ package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.NoteDTO;
-import com.example.rosacrm.entity.Client;
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.entity.*;
 import com.example.rosacrm.enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
@@ -111,5 +108,13 @@ public class ClientService {
 
     public void deleteClient(Long clientId) {
         clientRepository.deleteById(clientId);
+    }
+
+    public void editClient(ClientDTO clientDTO) {
+        Optional<Client> client = clientRepository.findById(clientDTO.getId());
+        client.ifPresent(client1 -> {
+            client1.fromDTO(clientDTO);
+            this.clientRepository.save(client1);
+        });
     }
 }

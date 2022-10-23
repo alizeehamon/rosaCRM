@@ -1,3 +1,10 @@
 nav {
     background-color: #E0E0E0;
 }
+
+table {
+    width: 100%;
+}
+td{
+    box-sizing: border-box;
+}

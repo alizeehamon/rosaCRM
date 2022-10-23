@@ -54,9 +54,8 @@
                                 <td><img src="${client.picture}" alt="logo" class="avatar-sm rounded-circle me-2"/> <a
                                         href="${pageContext.request.contextPath}/clients/see/${client.id}"
                                         class="text-body">${client.firstName} ${client.lastName}</a></td>
-                                <td><a
-                                        class="badge badge-soft-success mb-0 entity-address">${client.address1}
-                                    - ${client.zipCode} ${client.city}</a>
+                                <td><a target="_blank"
+                                        class="badge badge-soft-success mb-0 entity-address">${client.address1} - ${client.zipCode} ${client.city}</a>
                                 </td>
                                 <td><a href="mailto:${client.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${client.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a
@@ -68,18 +67,24 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="${pageContext.request.contextPath}/clients/edit/${client.id}"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
-                                               class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                            <button type="button" class="btn-link px-2 btn border-0 text-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#editClient${client.id}">
+                                                <i class="bx bx-pencil font-size-18"></i>
+                                            </button>
                                         </li>
+
                                         <li class="list-inline-item">
-                                            <a href="${pageContext.request.contextPath}/clients/delete/${client.id}"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
-                                               class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+                                            <button type="button" class="btn-link btn border-0 px-2 text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteConfirm${client.id}">
+                                                <i class="bx bx-trash-alt font-size-18"></i>
+                                            </button>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
+                            <c:set var="client" value="${client}" scope="request"/>
+                            <c:import url="editClient.jsp"/>
+                            <c:import url="deleteClient.jsp"/>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -88,7 +93,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:import url="addClientForm.jsp"/>
