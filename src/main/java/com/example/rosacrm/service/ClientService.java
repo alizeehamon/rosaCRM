@@ -1,12 +1,14 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.ClientDTO;
+import com.example.rosacrm.dto.NoteDTO;
 import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
+import com.example.rosacrm.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -24,9 +26,12 @@ public class ClientService {
 
     private final CompanyRepository companyRepository;
 
-    public ClientService(ClientRepository clientRepository, CompanyRepository companyRepository) {
+    private final NoteService noteService;
+
+    public ClientService(ClientRepository clientRepository, CompanyRepository companyRepository, NoteService noteService) {
         this.clientRepository = clientRepository;
         this.companyRepository = companyRepository;
+        this.noteService = noteService;
     }
 
     public List<ClientDTO> findAll() {
@@ -59,6 +64,11 @@ public class ClientService {
         client.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         client.setUser(user);
         clientRepository.save(client);
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setClient(client);
+        noteDTO.setMessage("Client created");
+        noteDTO.setNoteCreationDate(String.valueOf(LocalDateTime.now()));
+        noteService.addNote(noteDTO);
         return client;
     }
 
