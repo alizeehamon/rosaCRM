@@ -115,7 +115,7 @@
                 <div class="modal-footer">
                     <input hidden name="id" value="${requestScope.company.id}">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-white btn-outline-danger">Save</button>
+                    <button type="submit" class="btn btn-outline-danger">Save</button>
                 </div>
             </form>
         </div>

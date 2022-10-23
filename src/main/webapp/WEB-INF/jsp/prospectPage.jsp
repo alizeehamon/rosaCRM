@@ -46,14 +46,14 @@
                     </ul>
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}">Edit
-                                profile</a></button>
+                            <button type="button" class="btn btn-primary border-0 px-2 text-white" data-bs-toggle="modal"
+                                    data-bs-target="#editProspect${prospect.id}">Edit profile
+                            </button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class="btn btn-danger"><a class="text-white"
-                                                                            href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}">Delete
-                                profile</a></button>
+                            <button type="button" class=" btn btn-danger border-0 px-2 text-white" data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirm${prospect.id}">Delete client
+                            </button>
                         </li>
                         <c:if test="${prospect.prospectionStatus eq notStarted}">
                             <li class="m-1">
@@ -254,8 +254,10 @@
             </div>
         </div>
     </div>
-    </div>
 </section>
 <c:import url="startProspection.jsp"/>
+<c:set var="prospect" value="${prospect}" scope="request"/>
+<c:import url="editProspect.jsp"/>
+<c:import url="deleteProspect.jsp"/>
 <script type="text/javascript" src="../../resources/static/js/textareaToggleProspects.js"></script>
 <c:import url="footer.jsp"/>

@@ -4,7 +4,6 @@
 <c:import url="header.jsp">
     <c:param name="title" value="ROSACRM | Companies"/>
 </c:import>
-
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:set var="sectorList" value="${sectorList}" scope="request"/>
 
@@ -64,7 +63,7 @@
                                         href="${pageContext.request.contextPath}/companies/see/${company.id}"
                                         class="text-body">${company.name}</a></td>
                                 <td>
-                                    <a class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
+                                    <a target="_blank" class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
                                 </td>
                                 <td><a href="mailto:${company.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${company.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a
