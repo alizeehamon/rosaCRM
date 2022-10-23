@@ -22,7 +22,8 @@
                     </form>
                 </div>
                 <div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#addClient">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#addClient">
                         <i class="bx bx-plus me-1"></i> Add New
                     </button>
                 </div>
@@ -32,8 +33,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="">
-                <div class="table-responsive">
-                    <table id="table_id" class="table project-list-table table-nowrap align-middle table-borderless">
+                <div class="table-responsive-xl">
+                    <table id="table_id"
+                           class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -53,7 +55,8 @@
                                         href="${pageContext.request.contextPath}/clients/see/${client.id}"
                                         class="text-body">${client.firstName} ${client.lastName}</a></td>
                                 <td><a
-                                        class="badge badge-soft-success mb-0 entity-address">${client.address1} - ${client.zipCode} ${client.city}</a>
+                                        class="badge badge-soft-success mb-0 entity-address">${client.address1}
+                                    - ${client.zipCode} ${client.city}</a>
                                 </td>
                                 <td><a href="mailto:${client.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${client.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou <a
