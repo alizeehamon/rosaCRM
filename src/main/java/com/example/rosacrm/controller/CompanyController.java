@@ -61,11 +61,11 @@ public class CompanyController {
     }
 
     @PostMapping("/delete/{id}")
-    public RedirectView deleteCompany(CompanyDTO companyDTO, RedirectAttributes redir){
-        Optional<CompanyDTO> company = companyService.findCompanyById(companyDTO.getId());
+    public RedirectView deleteCompany(CompanyDTO companyDTO, RedirectAttributes redir) {
+        Optional<CompanyDTO> company = companyService.findCompanyDTOById(companyDTO.getId());
         if (company.isPresent()) {
             if (!company.get().getClientsById().isEmpty() || !company.get().getProspectsById().isEmpty()) {
-                redir.addFlashAttribute("errorsql" , true);
+                redir.addFlashAttribute("errorsql", true);
                 return new RedirectView("/companies/all/");
             } else {
                 this.companyService.deleteCompanyById(companyDTO.getId());
@@ -76,14 +76,14 @@ public class CompanyController {
 
     @GetMapping("/see/{id}")
     public String displayProspectDetails(Model model, @PathVariable Long id) {
-        CompanyDTO companyDTO = companyService.findCompanyById(id).get();
+        CompanyDTO companyDTO = companyService.findCompanyDTOById(id).get();
         List<Prospect> prospectsById = companyDTO.getProspectsById();
         List<Client> clientList = companyDTO.getClientsById();
         List<Sector> sectorList = sectorService.getAllSectors();
         model.addAttribute("sectorList", sectorList);
         model.addAttribute("company", companyDTO);
-        model.addAttribute("prospects" , prospectsById);
-        model.addAttribute("clients" , clientList);
+        model.addAttribute("prospects", prospectsById);
+        model.addAttribute("clients", clientList);
         return "companyPage";
     }
 }

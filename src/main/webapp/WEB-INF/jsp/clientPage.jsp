@@ -55,9 +55,10 @@
                                 profile</a></button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class="btn btn-warning"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/TODO">Change
-                                company</a></button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#changeCompany">Change
+                                company
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -87,11 +88,11 @@
               <span class="panel-icon">
                 <i class="fa fa-briefcase"></i>
               </span>
-                    <span class="panel-title"> My work</span>
+                    <span class="panel-title"> Work place</span>
                 </div>
                 <div class="panel-body pb5">
-                    <p>My company : ${client.company.name}</p>
-                    <p>My function : ${client.roleEntreprise}</p>
+                    <p>Company : ${client.company.name}</p>
+                    <p>Function : ${client.roleEntreprise}</p>
                 </div>
             </div>
             <div class="panel">
@@ -121,9 +122,9 @@
 
                     <hr class="short br-lighter">
 
-                    <h6>Events with ${client.firstName}</h6>
+                    <h6>Last/Next event with ${client.firstName}</h6>
 
-                    <p class="text-muted pb10"> //TO DO - Dates des events
+                    <p class="text-muted pb10"> //TO DO - Date last next event
                     </p>
 
                     <button type="button" class="btn btn-primary"><a class="text-white"
@@ -190,3 +191,5 @@
     </div>
     </div>
 </section>
+<c:import url="changeCompany.jsp"/>
+<c:import url="footer.jsp"/>

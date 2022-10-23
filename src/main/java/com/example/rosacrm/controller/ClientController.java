@@ -1,13 +1,13 @@
 package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.ClientDTO;
+import com.example.rosacrm.dto.ClientToProspectDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.entity.Client;
+import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
-import com.example.rosacrm.service.ClientService;
-import com.example.rosacrm.service.CompanyService;
-import com.example.rosacrm.service.NoteService;
-import com.example.rosacrm.service.UserService;
+import com.example.rosacrm.service.*;
 import com.example.rosacrm.utils.SortByDate;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/clients")
@@ -30,12 +31,14 @@ public class ClientController {
     private final UserService userService;
 
     private final NoteService noteService;
+    private final ProspectService prospectService;
 
-    public ClientController(ClientService clientService, CompanyService companyService, UserService userService, NoteService noteService) {
+    public ClientController(ClientService clientService, CompanyService companyService, UserService userService, NoteService noteService, ProspectService prospectService) {
         this.clientService = clientService;
         this.companyService = companyService;
         this.userService = userService;
         this.noteService = noteService;
+        this.prospectService = prospectService;
     }
 
     @GetMapping("/all")
@@ -58,13 +61,27 @@ public class ClientController {
     }
 
     @GetMapping("/see/{id}")
-    public String displayClientDetails(Model model, @PathVariable Long id) {
+    public String displayClientDetails(Authentication authentication, Model model, @PathVariable Long id) {
+        User user = userService.getCurrentUser(authentication.getName());
         ClientDTO clientDTO = clientService.findClientById(id);
         model.addAttribute("client", clientDTO);
+        List<CompanyDTO> companyList = companyService.getAllCompanies(null, user);
+        companyList = companyList.stream().filter(c -> c.getId() != clientDTO.getCompany().getId()).collect(Collectors.toList());
+        model.addAttribute("companies", companyList);
         List<Note> notes = clientDTO.getNotesById();
         notes.sort(new SortByDate());
         model.addAttribute("notes", notes);
         return "clientPage";
+    }
+
+    @PostMapping("/change")
+    public String changeCompany(Authentication authentication, ClientToProspectDTO clientToProspectDTO) {
+        User user = userService.getCurrentUser(authentication.getName());
+        Client client = clientService.findClientByClientDTOId(clientToProspectDTO.getClientId());
+        Company company = companyService.findCompanyById(clientToProspectDTO.getCompanyId());
+        prospectService.clientToProspect(client, clientToProspectDTO, company, user);
+        clientService.deleteClient(clientToProspectDTO.getClientId());
+        return "redirect:/prospects/all";
     }
 
 
