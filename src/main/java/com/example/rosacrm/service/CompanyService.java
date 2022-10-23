@@ -1,18 +1,13 @@
 package com.example.rosacrm.service;
 
-import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.CompanyDTO;
-import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.CompanyRepository;
-import com.example.rosacrm.repository.ProspectRepository;
-import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -44,7 +39,7 @@ public class CompanyService {
         return entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
     }
 
-    public Optional<CompanyDTO> findCompanyById(Long id) {
+    public Optional<CompanyDTO> findCompanyDTOById(Long id) {
         return Optional.ofNullable(this.companyRepository.findById(id).get().toDTO());
     }
 
@@ -64,6 +59,14 @@ public class CompanyService {
 
     public void deleteCompanyById(Long id) {
         this.companyRepository.deleteById(id);
+    }
+
+    public Company findCompanyById(Long companyId) {
+        Optional<Company> companyOptional = companyRepository.findById(companyId);
+        if (companyOptional.isPresent()) {
+            return companyOptional.get();
+        }
+        return companyOptional.orElseThrow(() -> new NoSuchElementException("Company not found with id " + companyId));
     }
 
 /*

@@ -68,15 +68,16 @@
                                                                                  href="${pageContext.request.contextPath}/TDO">Become
                                     a client</a></button>
                             </li>
+                            <li class="m-1">
+                                <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact"
+                                      method="post">
+                                    <input hidden name="id" value="${prospect.id}">
+                                    <input hidden name="prospectionStatus" value="To contact">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-success">To contact</button>
+                                </form>
+                            </li>
                         </c:if>
-                        <li class="m-1">
-                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
-                                <input hidden name="id" value="${prospect.id}">
-                                <input hidden name="prospectionStatus" value="To contact">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit" class="btn btn-success">To contact</button>
-                            </form>
-                        </li>
                     </ul>
                 </div>
             </div>
