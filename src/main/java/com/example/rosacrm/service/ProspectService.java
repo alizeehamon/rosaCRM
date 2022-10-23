@@ -2,6 +2,7 @@ package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.enumeration.ProspectionStatus;
@@ -117,6 +118,19 @@ public class ProspectService {
         Optional<Prospect> prospect = prospectRepository.findById(prospectDTO.getId());
         prospect.ifPresent(prospect1 -> {
             prospect1.fromDTO(prospectDTO);
+            this.prospectRepository.save(prospect1);
+        });
+    }
+
+    public void postEditProspectStatusToContact(ProspectDTO prospectDTO) {
+        Optional<Prospect> prospect = prospectRepository.findById(prospectDTO.getId());
+        prospect.ifPresent(prospect1 -> {
+            prospect1.setProspectionStatus(prospectDTO.getProspectionStatus());
+            Note note = new Note();
+            note.setProspect(prospect1);
+            note.setNoteCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+            note.setMessage("The prospection need to be relaunched");
+            prospect1.getNotesById().add(note);
             this.prospectRepository.save(prospect1);
         });
     }

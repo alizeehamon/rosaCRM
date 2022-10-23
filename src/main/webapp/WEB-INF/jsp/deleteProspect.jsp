@@ -15,8 +15,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <form action="${pageContext.request.contextPath}/prospects/delete" method="post">
-                    <input hidden name="prospectId" value="${requestScope.prospect.id}">
+                <form action="${pageContext.request.contextPath}/prospects/delete/${requestScope.prospect.id}" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-white border-danger"><i class="bx bx-trash-alt font-size-18"></i></button>
                 </form>

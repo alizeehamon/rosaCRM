@@ -45,9 +45,9 @@ public class Prospect {
 
     @ManyToOne
     private Company company;
-    @OneToMany(mappedBy = "prospect")
+    @OneToMany(mappedBy = "prospect", cascade = {CascadeType.ALL})
     private List<Event> eventsById;
-    @OneToMany(mappedBy = "prospect")
+    @OneToMany(mappedBy = "prospect", cascade = {CascadeType.ALL})
     private List<Note> notesById;
 
     public Prospect() {

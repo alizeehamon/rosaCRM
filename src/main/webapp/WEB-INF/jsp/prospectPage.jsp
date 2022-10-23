@@ -69,12 +69,20 @@
                                     a client</a></button>
                             </li>
                         </c:if>
+                        <li class="m-1">
+                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
+                                <input hidden name="id" value="${prospect.id}">
+                                <input hidden name="prospectionStatus" value="To contact">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button type="submit" class="btn btn-success">To contact</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<!--Prospect infos -->
+    <!--Prospect infos -->
     <div class="row">
         <div class="col-md-4">
             <div class="panel">
@@ -192,20 +200,30 @@
                                         <div class="row note-container-row">
                                             <div class="col-8 p-2 border border-right">
                                                 <h6 class="card-title border-bottom mb-3">Note message :</h6>
-                                                <form class="note-content" action="${pageContext.request.contextPath}/notes/edit/" method="post">
+                                                <form class="note-content"
+                                                      action="${pageContext.request.contextPath}/notes/edit/"
+                                                      method="post">
                                                     <div class="form-group">
-                                                        <input hidden class="form-control" name="id" type="text" value="${note.id}" />
-                                                        <textarea class="form-control bg-light text-areaControl" readonly="readonly" name="message" rows="3">${note.message}</textarea>
-                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                        <input hidden class="form-control" name="id" type="text"
+                                                               value="${note.id}"/>
+                                                        <textarea class="form-control bg-light text-areaControl"
+                                                                  readonly="readonly" name="message"
+                                                                  rows="3">${note.message}</textarea>
+                                                        <input type="hidden" name="${_csrf.parameterName}"
+                                                               value="${_csrf.token}"/>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary align-self-end mt-1"><i class="bx bx-pencil font-size-18"></i></button>
+                                                    <button type="submit" class="btn btn-primary align-self-end mt-1"><i
+                                                            class="bx bx-pencil font-size-18"></i></button>
                                                 </form>
                                             </div>
                                             <div class="col-4 p-2 bg-light d-flex flex-column justify-content-between align-items-end">
                                                 <div class="d-flex flex-column flex-lg-row align-self-end">
-                                                    <form action="${pageContext.request.contextPath}/notes/delete/${note.id}" method="post">
-                                                        <button class="btn btn-danger"><i class="bx bx-trash-alt font-size-18"></i></button>
-                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                    <form action="${pageContext.request.contextPath}/notes/delete/${note.id}"
+                                                          method="post">
+                                                        <button class="btn btn-danger"><i
+                                                                class="bx bx-trash-alt font-size-18"></i></button>
+                                                        <input type="hidden" name="${_csrf.parameterName}"
+                                                               value="${_csrf.token}"/>
                                                     </form>
                                                 </div>
                                                 <div class="note-content d-flex flex-column justify-content-end align-self-end">

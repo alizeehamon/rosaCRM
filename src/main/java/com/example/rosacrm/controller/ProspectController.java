@@ -55,9 +55,9 @@ public class ProspectController {
         return "redirect:/prospects/all";
     }
 
-    @PostMapping("/delete")
-    public String deleteProspect(String prospectId) {
-        prospectService.deleteProspect(Long.parseLong(prospectId));
+    @PostMapping("/delete/{id}")
+    public String deleteProspect(@PathVariable Long id) {
+        prospectService.deleteProspect(id);
         return "redirect:/prospects/all";
     }
 
@@ -73,8 +73,14 @@ public class ProspectController {
     }
 
     @PostMapping("/edit")
-    public RedirectView postEditCompany(ProspectDTO prospectDTO) {
+    public RedirectView postEditProspect(ProspectDTO prospectDTO) {
         prospectService.editProspect(prospectDTO);
         return new RedirectView("/prospects/all");
+    }
+
+    @PostMapping("/edit-status-to-contact")
+    public RedirectView postEditProspectStatusToContact(ProspectDTO prospectDTO) {
+        prospectService.postEditProspectStatusToContact(prospectDTO);
+        return new RedirectView("/prospects/see/" + prospectDTO.getId());
     }
 }
