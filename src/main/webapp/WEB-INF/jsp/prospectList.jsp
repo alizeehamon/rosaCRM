@@ -42,6 +42,7 @@
             </div>
         </div>
     </div>
+    <c:import url="mapLocation.jsp"></c:import>
     <div class="row">
         <div class="col-lg-12">
             <div class="">

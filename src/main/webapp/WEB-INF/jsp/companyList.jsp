@@ -32,6 +32,7 @@
             </div>
         </div>
     </div>
+    <c:import url="mapLocation.jsp"></c:import>
     <div class="row">
         <div class="col-lg-12">
             <div class="">
@@ -110,7 +111,7 @@
         window.location = "${pageContext.request.contextPath}/companies/all";
     }
 </script>
-<script src="../../resources/static/js/displayAddressGMap.js"></script>
+
 <c:import url="footer.jsp"/>
 
 
