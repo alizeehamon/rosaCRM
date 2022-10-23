@@ -270,4 +270,22 @@ public class Client {
     }
 
 
+    public void fromDTO(ClientDTO clientDTO) {
+        this.firstName = clientDTO.getFirstName();
+        this.lastName = clientDTO.getLastName();
+        this.picture = clientDTO.getPicture();
+        this.email = clientDTO.getEmail();
+        this.cellPhone = clientDTO.getCellPhone();
+        this.homePhone = clientDTO.getHomePhone();
+        this.roleEntreprise = clientDTO.getRoleEntreprise();
+        this.address1 = clientDTO.getAddress1();
+        this.address2 = clientDTO.getAddress2();
+        this.zipCode = clientDTO.getZipCode();
+        this.city = clientDTO.getCity();
+        this.country = clientDTO.getCountry();
+        this.company = clientDTO.getCompany();
+        this.contactDuration = clientDTO.getContactDuration();
+        this.notesById = clientDTO.getNotesById();
+        this.eventsById = clientDTO.getEventsById();
+    }
 }

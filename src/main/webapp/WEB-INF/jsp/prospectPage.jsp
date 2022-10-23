@@ -46,35 +46,39 @@
                     </ul>
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                             href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}">Edit
-                                profile</a></button>
+                            <button type="button" class="btn btn-primary border-0 px-2 text-white"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editProspect${prospect.id}">Edit profile
+                            </button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class="btn btn-danger"><a class="text-white"
-                                                                            href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}">Delete
-                                profile</a></button>
+                            <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirm${prospect.id}">Delete Prospect
+                            </button>
                         </li>
-                        <c:if test="${prospect.prospectionStatus eq notStarted}">
+                        <c:if test="${prospect.prospectionStatus eq 'Not started'}">
                             <li class="m-1">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                         data-bs-target="#startProspection">Start prospection
                                 </button>
                             </li>
                         </c:if>
-                        <li class="m-1">
-                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
-                                <input hidden name="id" value="${prospect.id}">
-                                <input hidden name="prospectionStatus" value="To contact">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit" class="btn btn-success">To contact</button>
-                            </form>
-                        </li>
                         <c:if test="${prospect.prospectionStatus ne notStarted}">
+                            <li class="m-1">
+                                <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact"
+                                      method="post">
+                                    <input hidden name="id" value="${prospect.id}">
+                                    <input hidden name="prospectionStatus" value="To contact">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-success">To contact</button>
+                                </form>
+                            </li>
                             <li class="m-1">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                         data-bs-target="#confirmToClient">Become
-                                    a client</button>
+                                    a client
+                                </button>
                             </li>
                         </c:if>
                     </ul>
@@ -253,12 +257,13 @@
             </div>
         </div>
     </div>
-    </div>
 </section>
-
-<c:set var="prospect" value="${prospect}" scope="request"></c:set>
-<c:import url="confirmToClient.jsp"></c:import>
+<c:set var="prospectStatusListclean" value="${prospectStatusListclean}" scope="request"/>
+<c:set var="prospect" value="${prospect}" scope="request"/>
+<c:import url="confirmToClient.jsp"/>
 
 <c:import url="startProspection.jsp"/>
+<c:import url="editProspect.jsp"/>
+<c:import url="deleteProspect.jsp"/>
 <script type="text/javascript" src="../../resources/static/js/textareaToggleProspects.js"></script>
 <c:import url="footer.jsp"/>

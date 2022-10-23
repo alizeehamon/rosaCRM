@@ -3,6 +3,7 @@ package com.example.rosacrm.controller;
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.ClientToProspectDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Note;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,5 +86,14 @@ public class ClientController {
         return "redirect:/prospects/all";
     }
 
-
+    @PostMapping("/edit")
+    public RedirectView postEditClient(ClientDTO clientDTO) {
+        clientService.editClient(clientDTO);
+        return new RedirectView("/clients/all");
+    }
+    @PostMapping("/delete/{id}")
+    public String deleteClient(@PathVariable Long id) {
+        clientService.deleteClient(id);
+        return "redirect:/clients/all";
+    }
 }
