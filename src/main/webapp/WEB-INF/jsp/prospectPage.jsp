@@ -46,12 +46,14 @@
                     </ul>
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <button type="button" class="btn btn-primary border-0 px-2 text-white" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary border-0 px-2 text-white"
+                                    data-bs-toggle="modal"
                                     data-bs-target="#editProspect${prospect.id}">Edit profile
                             </button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class=" btn btn-danger border-0 px-2 text-white" data-bs-toggle="modal"
+                            <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                                    data-bs-toggle="modal"
                                     data-bs-target="#deleteConfirm${prospect.id}">Delete Prospect
                             </button>
                         </li>
@@ -63,7 +65,8 @@
                             </li>
                         </c:if>
                         <li class="m-1">
-                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact" method="post">
+                            <form action="${pageContext.request.contextPath}/prospects/edit-status-to-contact"
+                                  method="post">
                                 <input hidden name="id" value="${prospect.id}">
                                 <input hidden name="prospectionStatus" value="To contact">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -74,7 +77,8 @@
                             <li class="m-1">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                         data-bs-target="#confirmToClient">Become
-                                    a client</button>
+                                    a client
+                                </button>
                             </li>
                         </c:if>
                     </ul>
@@ -254,9 +258,9 @@
         </div>
     </div>
 </section>
-<c:set var="prospectStatusListclean" value="${prospectStatusListclean}" scope="request"></c:set>
-<c:set var="prospect" value="${prospect}" scope="request"></c:set>
-<c:import url="confirmToClient.jsp"></c:import>
+<c:set var="prospectStatusListclean" value="${prospectStatusListclean}" scope="request"/>
+<c:set var="prospect" value="${prospect}" scope="request"/>
+<c:import url="confirmToClient.jsp"/>
 
 <c:import url="startProspection.jsp"/>
 <c:import url="editProspect.jsp"/>

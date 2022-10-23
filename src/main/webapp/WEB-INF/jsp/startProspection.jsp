@@ -27,7 +27,7 @@
 
                     <input hidden name="id" value="${requestScope.prospect.id}">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-white border-danger">Start</button>
+                    <button type="submit" class="btn btn-outline-danger">Start</button>
 
                 </div>
             </form>
