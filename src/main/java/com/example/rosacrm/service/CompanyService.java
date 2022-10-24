@@ -43,8 +43,7 @@ public class CompanyService {
             List<Company> searchCompanies = this.companyRepository.findAllByNameAndUser(companyName, user);
             return searchCompanies.stream().map(e -> e.toDTO()).collect(Collectors.toList());
         }
-        List<Company> entreprises = this.companyRepository.findAllByUser(user);
-        return entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
+        return findCompaniesByUser(user);
     }
 
     public Optional<CompanyDTO> findCompanyDTOById(Long id) {
@@ -83,6 +82,11 @@ public class CompanyService {
             return companyOptional.get();
         }
         return companyOptional.orElseThrow(() -> new NoSuchElementException("Company not found with id " + companyId));
+    }
+
+    public List<CompanyDTO> findCompaniesByUser(User user) {
+        List<Company> entreprises = this.companyRepository.findAllByUser(user);
+        return entreprises.stream().map(e -> e.toDTO()).collect(Collectors.toList());
     }
 
 /*

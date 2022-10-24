@@ -48,4 +48,8 @@ public class UserService {
             this.userRepository.save(user);
         }
     }
+
+    public void deleteUser(User user) {
+        userRepository.deleteById(user.getId());
+    }
 }

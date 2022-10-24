@@ -81,7 +81,7 @@
         <!-- Login and co -->
         <sec:authorize access="!isAuthenticated()">
             <a
-                    class="nav-link"
+                    class="nav-link p-2"
                     href="${pageContext.request.contextPath}/signin"
                     role="button"
                     aria-expanded="false"
@@ -90,7 +90,7 @@
                 Login
             </a>
             <a
-                    class="nav-link"
+                    class="nav-link p-1"
                     href="${pageContext.request.contextPath}/register"
                     role="button"
                     aria-expanded="false"

@@ -19,7 +19,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="login-clean">
     <form:form action="${pageContext.request.contextPath}/account" method="post" modelAttribute="user">
-        <h2 class="sr-only">Edit my Account</h2>
+        <h2 class="sr-only">Manage my Account</h2>
         <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
 
 
@@ -59,6 +59,14 @@
 
 
     </form:form>
+    <div class="text-center mt-2">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#deleteAccount">I want to delete my account
+        </button>
+    </div>
 </div>
+
+<c:import url="deleteUserAccount.jsp"/>
+<c:import url="footer.jsp"/>
 </body>
 </html>

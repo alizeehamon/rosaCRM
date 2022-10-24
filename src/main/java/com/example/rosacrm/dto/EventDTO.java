@@ -1,18 +1,18 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto;
 
-import com.example.rosacrm.dto.EventDTO;
-import com.example.rosacrm.utils.DateUtils;
+import com.example.rosacrm.entity.Client;
+import com.example.rosacrm.entity.Prospect;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 
-@Entity
-public class Event {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+public class EventDTO {
+
     private long id;
 
     private String name;
@@ -27,17 +27,16 @@ public class Event {
 
     private String link;
 
-    private Date startTime;
+    private String startTime;
 
-    private Date endTime;
+    private String endTime;
 
-    @ManyToOne
     private Prospect prospect;
 
-    @ManyToOne
     private Client client;
 
-    public Event() {
+
+    public EventDTO() {
     }
 
     public long getId() {
@@ -112,19 +111,19 @@ public class Event {
         this.link = link;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -144,18 +143,4 @@ public class Event {
         this.client = client;
     }
 
-    public Event(EventDTO eventDTO){
-        this.name = eventDTO.getName();
-        this.client = eventDTO.getClient();
-        this.prospect = eventDTO.getProspect();
-        this.description = eventDTO.getDescription();
-        this.link = eventDTO.getLink();
-        this.address1 = eventDTO.getAddress1();
-        this.address2 = eventDTO.getAddress2();
-        this.city = eventDTO.getCity();
-        this.country = eventDTO.getCountry();
-        this.zipCode = eventDTO.getZipCode();
-        this.startTime =  DateUtils.convertStringToDate(eventDTO.getStartTime());
-        this.endTime = DateUtils.convertStringToDate(eventDTO.getEndTime());
-    }
 }

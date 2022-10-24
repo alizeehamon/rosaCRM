@@ -1,5 +1,6 @@
 <!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -113,64 +114,161 @@
             </div>
         </div>
     </div>
-    <!-- Graph and stats section-->
-    <section class="py-5">
-        <div class="container px-5 my-5">
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-8 col-xl-6">
-                    <div class="text-center">
-                        <h2 class="fw-bolder">From your business</h2>
-                        <p class="lead fw-normal text-muted mb-5">Follow here your business evolution: number of
-                            clients, prospects, how many follow-ups you have to make... Come into your business
-                            peacefully and instantly!</p>
+    <sec:authorize access="!isAuthenticated()">
+        <section class="py-5">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <div class="text-center">
+                            <button type="button" class="btn" style="background-color: #CE2626; width: 30vw;"><a
+                                    class="text-white text-decoration-none"
+                                    href="${pageContext.request.contextPath}/register" style="font-size: 2vw;">REGISTER
+                                NOW
+                            </a></button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row gx-5">
-                <div class="col-lg-4 mb-5">
-                    Graph 1
+        </section>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <!-- Graph and stats section-->
+        <section class="py-5">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <div class="text-center">
+                            <h2 class="fw-bolder">From your business</h2>
+                            <p class="lead fw-normal text-muted mb-5">Follow here your business evolution: number of
+                                clients, prospects, how many follow-ups you have to make... Come into your business
+                                peacefully and instantly!</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 mb-5">
-                    Graph 2
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5">
+                        <div id="donutchart1"
+                             style="width:25vw; height:30vh"></div>
+                    </div>
+                    <div class="col-lg-4 mb-5">
+                        <div id="donutchart2"
+                             style="width:25vw; height:30vh"></div>
+                    </div>
+                    <div class="col-lg-4 mb-5">
+                        <div id="donutchart3"
+                             style="width:25vw; height:30vh"></div>
+                    </div>
                 </div>
-                <div class="col-lg-4 mb-5">
-                    Graph 3
-                </div>
+                <!-- Call to action links to other pages-->
+                <aside class="bg-gradient rounded-3 p-4 p-sm-5 mt-5 d-none d-sm-block"
+                       style="background-color: #e0e0e0;">
+                    <div class="d-flex flex-md-column flex-sm-column flex-xs-column flex-lg-row">
+                        <h2>Start working now...</h2>
+                        <button type="button" class="bg-danger rounded p-3"
+                                style="border: none; height: 10vh; margin: 1rem;"><a
+                                class="text-white text-decoration-none"
+                                href="${pageContext.request.contextPath}/companies/all">My
+                            companies</a></button>
+                        <button type="button" class="bg-danger rounded p-3"
+                                style="border: none; height: 10vh; margin: 1rem;"><a
+                                class="text-white text-decoration-none"
+                                href="${pageContext.request.contextPath}/clients/all">My
+                            clients</a></button>
+                        <button type="button" class="bg-danger rounded p-3"
+                                style="border: none; height: 10vh; margin: 1rem;"><a
+                                class="text-white text-decoration-none"
+                                href="${pageContext.request.contextPath}/prospects/all">My
+                            prospects</a></button>
+                        <button type="button" class="bg-danger rounded p-3"
+                                style="border: none; height: 10vh; margin: 1rem;"><a
+                                class="text-white text-decoration-none"
+                                href="${pageContext.request.contextPath}/calendar">My
+                            schedule</a></button>
+                    </div>
+                </aside>
             </div>
-            <!-- Call to action links to other pages-->
-            <aside class="bg-gradient rounded-3 p-4 p-sm-5 mt-5 d-none d-sm-block"
-                   style="background-color: #e0e0e0;">
-                <div class="d-flex flex-md-column flex-sm-column flex-xs-column flex-lg-row">
-                    <h2>Start working now...</h2>
-                    <button type="button" class="bg-danger rounded p-3"
-                            style="border: none; height: 10vh; margin: 1rem;"><a
-                            class="text-white text-decoration-none"
-                            href="${pageContext.request.contextPath}/companies/all">My
-                        companies</a></button>
-                    <button type="button" class="bg-danger rounded p-3"
-                            style="border: none; height: 10vh; margin: 1rem;"><a
-                            class="text-white text-decoration-none"
-                            href="${pageContext.request.contextPath}/clients/all">My
-                        clients</a></button>
-                    <button type="button" class="bg-danger rounded p-3"
-                            style="border: none; height: 10vh; margin: 1rem;"><a
-                            class="text-white text-decoration-none"
-                            href="${pageContext.request.contextPath}/prospects/all">My
-                        prospects</a></button>
-                    <button type="button" class="bg-danger rounded p-3"
-                            style="border: none; height: 10vh; margin: 1rem;"><a
-                            class="text-white text-decoration-none"
-                            href="${pageContext.request.contextPath}/calendar">My
-                        schedule</a></button>
-                </div>
-            </aside>
-        </div>
-    </section>
+        </section>
+    </sec:authorize>
 </main>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', {'packages': ['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart2);
+    google.charts.setOnLoadCallback(drawChart3);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    let prospects = ${prospectNumber};
+    let clients = ${clientNumber};
+    let companies = ${companyNumber};
+
+    let prospectsToStart = ${prospectNotStarted};
+    let prospectsInProgress = ${prospectInProgress};
+    let prospectsToContact = ${prospectToContact};
+
+    let clientsNotes = ${clientNotes};
+    let prospectsNotes = ${prospectNotes};
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Type of partners', '%'],
+            ['Clients', clients],
+            ['Prospects', prospects],
+            ['Companies', companies]
+        ]);
+
+        var options = {
+            title: 'My business portfolio',
+            pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart1'));
+        chart.draw(data, options);
+    }
+
+    function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            ['Prospection Status', '%'],
+            ['Not started', prospectsToStart],
+            ['In progress', prospectsInProgress],
+            ['To contact', prospectsToContact],
+        ]);
+
+        var options = {
+            title: 'State of my prospection',
+            pieHole: 0.4,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('donutchart2'));
+        chart2.draw(data, options);
+    }
+
+    function drawChart3() {
+        var data = google.visualization.arrayToDataTable([
+            ['Number of notes shared with my portfolio', '%'],
+            ['Notes to Prospects', prospectsNotes],
+            ['Notes to Clients', clientsNotes],
+        ]);
+
+        var options = {
+            title: 'Notes I have shared with my partners',
+            pieHole: 0.4,
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('donutchart3'));
+        chart3.draw(data, options);
+    }
+</script>
 </body>
 </html>
 
