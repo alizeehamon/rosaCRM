@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,6 +45,8 @@
             <form:errors path="password" cssClass="alert alert-danger"></form:errors>
         </div>
 
+        <form:input type="hidden" class="form-control" id="role" path="role"/>
+
         <div class="text-center mb-3">
             <form:button type="submit" class="btn btn-primary">Modify</form:button>
         </div>
@@ -64,9 +67,17 @@
                 data-bs-target="#deleteAccount">I want to delete my account
         </button>
     </div>
+    <c:if test="${user.role eq 'ROLE_ADMIN'}">
+        <div class="text-center mt-2">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteAdmin">I want to delete a user account (admin)
+            </button>
+        </div>
+    </c:if>
 </div>
 
 <c:import url="deleteUserAccount.jsp"/>
+<c:import url="deleteWhenAdmin.jsp"/>
 <c:import url="footer.jsp"/>
 </body>
 </html>

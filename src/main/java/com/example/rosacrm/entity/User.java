@@ -1,5 +1,7 @@
 package com.example.rosacrm.entity;
 
+import com.example.rosacrm.dto.UserDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -91,5 +93,15 @@ public class User {
 
     public void setProspectsById(List<Prospect> prospectsById) {
         this.prospectsById = prospectsById;
+    }
+
+    public UserDTO toDTO() {
+        UserDTO dto = new UserDTO();
+        dto.setId(this.getId());
+        dto.setEmail(this.getEmail());
+        dto.setFirstName(this.getFirstName());
+        dto.setLastName(this.getLastName());
+        dto.setPassword(this.getPassword());
+        return dto;
     }
 }
