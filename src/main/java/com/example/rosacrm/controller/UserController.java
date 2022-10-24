@@ -1,6 +1,7 @@
 package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.UserDTO;
+import com.example.rosacrm.dto.UserDeleteDTO;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.security.CustomLogoutHandler;
 import com.example.rosacrm.service.UserService;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -25,6 +27,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
 
     @GetMapping("/signin")
     public String displayLoginForm() {
@@ -52,6 +55,8 @@ public class UserController {
         String email = principal.getName();
         UserDTO userDTO = userService.findUserByEmail(email);
         model.addAttribute("user", userDTO);
+        List<UserDTO> userDTOList = userService.findAllUsers();
+        model.addAttribute("users", userDTOList);
         return "editAccount";
     }
 
@@ -74,6 +79,13 @@ public class UserController {
         CustomLogoutHandler clh = new CustomLogoutHandler();
         clh.logout(request, response, authentication);
         userService.deleteUser(user);
+    }
+
+    @PostMapping("/admin/delete")
+    public void DeleteWhenAdminAccount(UserDeleteDTO userDTO) {
+        User userToDelete = userService.findUserById(userDTO.getUserId());
+        userService.removeSession(userToDelete.getEmail());
+        userService.deleteUser(userToDelete);
     }
 
 }

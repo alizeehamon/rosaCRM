@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +35,7 @@ public class WebSecurityConfig {
         //Configuration de toutes les Urls utilisées
         http
                 .authorizeHttpRequests()
+                .antMatchers("/admin").hasRole("ROLE_ADMIN")
                 .antMatchers("/signin").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/").permitAll()
@@ -54,7 +57,13 @@ public class WebSecurityConfig {
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
                 .permitAll();
         http.csrf().ignoringAntMatchers("/api/**");
+        http.sessionManagement().invalidSessionUrl("/signin").maximumSessions(1).sessionRegistry(sessionRegistry()).expiredUrl("/signin");
         return http.build();
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 
     @Bean
