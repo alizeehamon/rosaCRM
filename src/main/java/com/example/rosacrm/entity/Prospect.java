@@ -259,6 +259,7 @@ public class Prospect {
         dto.setRelanceDuration(this.getRelanceDuration());
         dto.setStartDate(DateUtils.convertDateToString(this.getStartDate()));
         dto.setNotesById(this.getNotesById());
+        dto.setEventsById(this.getEventsById());
         return dto;
     }
 

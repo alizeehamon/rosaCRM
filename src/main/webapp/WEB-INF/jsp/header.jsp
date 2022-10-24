@@ -35,6 +35,8 @@
     <link href='../../resources/static/fullcalendar/lib/main.css' rel='stylesheet' />
     <script src='../../resources/static/fullcalendar/lib/main.js'></script>
 
+    <script src="../../resources/static/js/calendar.js"></script>
+
     <title>${param.title}</title>
 </head>
 
