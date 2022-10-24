@@ -36,11 +36,4 @@ public class Sector {
         this.activitySector = activitySector;
     }
 
-    public List<Company> getEntreprisesById() {
-        return entreprisesById;
-    }
-
-    public void setEntreprisesById(List<Company> entreprisesById) {
-        this.entreprisesById = entreprisesById;
-    }
 }

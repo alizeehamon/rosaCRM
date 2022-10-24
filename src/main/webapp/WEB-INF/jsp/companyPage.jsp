@@ -88,7 +88,7 @@
                     <span class="panel-title"> My work</span>
                 </div>
                 <div class="panel-body pb5">
-                    <p><span class="card-span-title">Activity : </span>${company.sector.activitySector}</p>
+                    <p><span class="card-span-title">Activity : </span>${company.sector}</p>
                 </div>
             </div>
         </div>

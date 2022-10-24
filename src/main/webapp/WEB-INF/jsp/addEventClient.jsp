@@ -64,11 +64,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-2">
-                            <input type="checkbox" id="fullday" name="fullday" value="fullday">
-                            <label for="fullday">Reserve complete day ?</label>
-                        </div>
-
                         <div class="col-6 mb-3">
                             <div class="form-group">
                                 <label for="startTimeInput" class="form-label">Event start time</label>
@@ -98,4 +93,3 @@
     </div>
 </div>
 
-<script src="../../resources/static/js/eventFullDayToggle.js" type="text/javascript"></script>
