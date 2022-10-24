@@ -22,4 +22,5 @@ public class EventService {
         eventRepository.save(event);
     }
 
+    /* Récup utilisateur -> récup ses clients / ses prospects ->  */
 }

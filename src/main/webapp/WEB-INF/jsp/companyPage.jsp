@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li class="m-1">
-                            <a href="#" title="address link">
+                            <a target="_blank" href="https://www.google.com/maps/search/${company.address1}+${company.address2}+${company.city}+${company.zipCode}" title="address link">
                                 <span class="fa fa-globe fs35 text-muted"></span>
                             </a>
                         </li>
@@ -122,7 +122,7 @@
                                         <p class="card-text mb-1 link"><span class="card-span-title">Email :</span><a class="link mx-1"
                                                                             href="mailto:${client.email}">${client.email}</a>
                                         </p>
-                                        <a  class="btn-outline-danger btn card-text" href="/clients/see/${client.id}">Click here for details about this client</a>
+                                        <a class="btn-outline-danger btn card-text" href="/clients/see/${client.id}">Click here for details about this client</a>
                                     </div>
                                 </div>
                             </c:forEach>
