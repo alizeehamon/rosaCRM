@@ -56,6 +56,7 @@
                                         href="${pageContext.request.contextPath}/clients/see/${client.id}"
                                         class="text-body">${client.firstName} ${client.lastName}</a></td>
                                 <td><a target="_blank"
+                                       href="https://www.google.com/maps/search/${client.address1}+${client.address2}+${client.city}+${client.zipCode}"
                                         class="badge badge-soft-success mb-0 entity-address">${client.address1} - ${client.zipCode} ${client.city}</a>
                                 </td>
                                 <td><a href="mailto:${client.email}"><i class="bi bi-envelope"></i></a></td>

@@ -68,6 +68,7 @@
                                         class="text-body">${prospect.firstName} ${prospect.lastName}</a></td>
 
                                 <td><a target="_blank"
+                                       href="https://www.google.com/maps/search/${prospect.address1}+${prospect.address2}+${prospect.city}+${prospect.zipCode}"
                                         class="badge badge-soft-success mb-0 entity-address">${prospect.address1} - ${prospect.zipCode} ${prospect.city}</a>
                                 </td>
                                 <td><a href="mailto:${prospect.email}"><i class="bi bi-envelope"></i></a></td>

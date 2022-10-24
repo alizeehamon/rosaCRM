@@ -64,7 +64,7 @@
                                         href="${pageContext.request.contextPath}/companies/see/${company.id}"
                                         class="text-body">${company.name}</a></td>
                                 <td>
-                                    <a target="_blank" class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
+                                    <a target="_blank" href="https://www.google.com/maps/search/${company.address1}+${company.address2}+${company.city}+${company.zipCode}" class="badge badge-soft-success mb-0 entity-address">${company.address1} - ${company.zipCode} ${company.city}</a>
 
                                 </td>
                                 <td><a href="mailto:${company.email}"><i class="bi bi-envelope"></i></a></td>
