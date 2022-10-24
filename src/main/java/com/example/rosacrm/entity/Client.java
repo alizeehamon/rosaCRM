@@ -1,6 +1,8 @@
 package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.ClientDTO;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -35,6 +37,7 @@ public class Client {
     private String city;
     private String country;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
     private User user;
 
