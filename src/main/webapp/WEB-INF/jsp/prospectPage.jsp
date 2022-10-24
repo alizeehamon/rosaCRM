@@ -156,9 +156,10 @@
                     <p class="text-muted pb10"> //TO DO - Date last event programmed
                     </p>
 
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Add
-                        an event</a></button>
+                    <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addEventProspect${prospect.id}">Create an event
+                    </button>
 
                 </div>
             </div>
@@ -263,6 +264,7 @@
 <c:import url="confirmToClient.jsp"/>
 
 <c:import url="startProspection.jsp"/>
+<c:import url="addEventProspect.jsp"/>
 <c:import url="editProspect.jsp"/>
 <c:import url="deleteProspect.jsp"/>
 <script type="text/javascript" src="../../resources/static/js/textareaToggleProspects.js"></script>
