@@ -35,6 +35,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests()
                 .antMatchers("/signin").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 /*.antMatchers("/api/**").permitAll()*/
                 //All urls

@@ -6,7 +6,6 @@ import com.example.rosacrm.entity.Sector;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class CompanyDTO {
@@ -32,7 +31,7 @@ public class CompanyDTO {
     private String city;
     private String zipCode;
     private String country;
-    private Sector sector;
+    private String sector;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate entrepriseCreationDate;
 
@@ -163,11 +162,11 @@ public class CompanyDTO {
         this.zipCode = zipCode;
     }
 
-    public Sector getSector() {
+    public String getSector() {
         return sector;
     }
 
-    public void setSector(Sector sector) {
+    public void setSector(String sector) {
         this.sector = sector;
     }
 

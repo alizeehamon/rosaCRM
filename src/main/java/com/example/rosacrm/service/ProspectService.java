@@ -5,10 +5,8 @@ import com.example.rosacrm.dto.ClientToProspectDTO;
 import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.entity.*;
 import com.example.rosacrm.enumeration.ProspectionStatus;
-import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
-import com.example.rosacrm.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -91,8 +89,7 @@ public class ProspectService {
         } else if (!Objects.equals(filterByStatus, "All prospection status") && filterByStatus != null) {
             return searchActiveProspectsByStatusAndUser(filterByStatus, user);
         }
-        List<Prospect> prospects = this.prospectRepository.findAllActiveProspects(user);
-        return prospects.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+        return findAllProspectsByUser(user);
     }
 
     public void deleteProspect(long prospectId) {
@@ -157,10 +154,11 @@ public class ProspectService {
         prospect.setRoleEntreprise(clientToProspectDTO.getRoleEntreprise());
         prospectRepository.save(prospect);
     }
+
     public Long prospectToClient(Long prospectId) {
         Optional<Prospect> prospectOpt = prospectRepository.findById(prospectId);
         Long clientId = null;
-        if (prospectOpt.isPresent()){
+        if (prospectOpt.isPresent()) {
             Prospect prospect = prospectOpt.get();
             prospect.setProspectionStatus("Over");
             prospectRepository.save(prospect);
@@ -171,4 +169,8 @@ public class ProspectService {
         return clientId;
     }
 
+    public List<ProspectDTO> findAllProspectsByUser(User user) {
+        List<Prospect> prospectList = prospectRepository.findAllActiveProspects(user);
+        return prospectList.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
 }

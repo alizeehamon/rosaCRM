@@ -73,7 +73,7 @@
                                         class="bi bi-phone"></i></a></td>
                                 <td>${company.siret}</td>
                                 <td><a href="${company.siteUrl}"><i class="bi bi-globe"></i></a></td>
-                                <td>${company.sector.activitySector}</td>
+                                <td>${company.sector}</td>
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">

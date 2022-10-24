@@ -1,14 +1,10 @@
 package com.example.rosacrm.entity;
 
 import com.example.rosacrm.dto.CompanyDTO;
-import com.example.rosacrm.utils.DateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -35,7 +31,7 @@ public class Company {
     private String zipCode;
     private String city;
     private String country;
-
+    
     @ManyToOne
     private User user;
     @ManyToOne
@@ -48,6 +44,24 @@ public class Company {
     private List<Prospect> prospectsById;
 
     public Company() {
+    }
+
+    public Company(CompanyDTO companyDTO) {
+        this.name = companyDTO.getName();
+        this.siret = companyDTO.getSiret();
+        this.logo = companyDTO.getLogo();
+        this.email = companyDTO.getEmail();
+        this.siteUrl = companyDTO.getSiteUrl();
+        this.cellPhone = companyDTO.getCellPhone();
+        this.homePhone = companyDTO.getHomePhone();
+        this.address1 = companyDTO.getAddress1();
+        this.address2 = companyDTO.getAddress2();
+        this.zipCode = companyDTO.getZipCode();
+        this.city = companyDTO.getCity();
+        this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate();
+        this.country = companyDTO.getCountry();
+        this.clientsById = companyDTO.getClientsById();
+        this.prospectsById = companyDTO.getProspectsById();
     }
 
     public long getId() {
@@ -193,24 +207,6 @@ public class Company {
     public void setUser(User user) {
         this.user = user;
     }
-    public Company(CompanyDTO companyDTO)  {
-        this.name = companyDTO.getName();
-        this.siret = companyDTO.getSiret();
-        this.logo = companyDTO.getLogo();
-        this.email = companyDTO.getEmail();
-        this.siteUrl = companyDTO.getSiteUrl();
-        this.cellPhone = companyDTO.getCellPhone();
-        this.homePhone = companyDTO.getHomePhone();
-        this.address1 = companyDTO.getAddress1();
-        this.address2 = companyDTO.getAddress2();
-        this.sector = companyDTO.getSector();
-        this.zipCode = companyDTO.getZipCode();
-        this.city = companyDTO.getCity();
-        this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate();
-        this.country = companyDTO.getCountry();
-        this.clientsById = companyDTO.getClientsById();
-        this.prospectsById = companyDTO.getProspectsById();
-    }
 
     public CompanyDTO toDTO() {
         CompanyDTO dto = new CompanyDTO();
@@ -227,14 +223,15 @@ public class Company {
         dto.setAddress2(this.getAddress2());
         dto.setCity(this.getCity());
         dto.setZipCode(this.getZipCode());
-        dto.setSector(this.getSector());
+        dto.setSector(this.getSector().getActivitySector());
         dto.setCountry(this.getCountry());
         dto.setProspectsById(this.getProspectsById());
         dto.setClientsById(this.getClientsById());
         return dto;
     }
+
     /* to do update date */
-    public Company fromDTO(CompanyDTO companyDTO){
+    public Company fromDTO(CompanyDTO companyDTO) {
         this.name = companyDTO.getName();
         this.logo = companyDTO.getLogo();
         this.email = companyDTO.getEmail();
@@ -247,8 +244,8 @@ public class Company {
         this.zipCode = companyDTO.getZipCode();
         this.city = companyDTO.getCity();
         this.country = companyDTO.getCountry();
-        this.sector = companyDTO.getSector();
-        this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate() ;
+        this.sector.setActivitySector(companyDTO.getSector());
+        this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate();
         this.clientsById = companyDTO.getClientsById();
         this.prospectsById = companyDTO.getProspectsById();
         return this;

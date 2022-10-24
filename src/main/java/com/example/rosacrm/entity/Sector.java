@@ -10,10 +10,14 @@ public class Sector {
     private long id;
 
     private String activitySector;
-    @OneToMany(mappedBy = "sector")
+    @OneToMany(mappedBy = "sector", cascade = CascadeType.PERSIST)
     private List<Company> entreprisesById;
 
     public Sector() {
+    }
+
+    public Sector(String activitySector) {
+        this.activitySector = activitySector;
     }
 
     public long getId() {

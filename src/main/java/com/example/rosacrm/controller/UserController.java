@@ -1,13 +1,18 @@
 package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.UserDTO;
+import com.example.rosacrm.entity.User;
+import com.example.rosacrm.security.CustomLogoutHandler;
 import com.example.rosacrm.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -61,6 +66,14 @@ public class UserController {
             userService.edit(userDTO, email);
             return "redirect:/";
         }
+    }
+
+    @PostMapping("/users/delete")
+    public void DeleteAccount(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
+        User user = userService.getCurrentUser(authentication.getName());
+        CustomLogoutHandler clh = new CustomLogoutHandler();
+        clh.logout(request, response, authentication);
+        userService.deleteUser(user);
     }
 
 }
