@@ -203,7 +203,6 @@ public class Company {
         this.homePhone = companyDTO.getHomePhone();
         this.address1 = companyDTO.getAddress1();
         this.address2 = companyDTO.getAddress2();
-        this.sector = companyDTO.getSector();
         this.zipCode = companyDTO.getZipCode();
         this.city = companyDTO.getCity();
         this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate();
@@ -227,7 +226,7 @@ public class Company {
         dto.setAddress2(this.getAddress2());
         dto.setCity(this.getCity());
         dto.setZipCode(this.getZipCode());
-        dto.setSector(this.getSector());
+        dto.setSector(this.getSector().getActivitySector());
         dto.setCountry(this.getCountry());
         dto.setProspectsById(this.getProspectsById());
         dto.setClientsById(this.getClientsById());
@@ -247,7 +246,7 @@ public class Company {
         this.zipCode = companyDTO.getZipCode();
         this.city = companyDTO.getCity();
         this.country = companyDTO.getCountry();
-        this.sector = companyDTO.getSector();
+        this.sector.setActivitySector(companyDTO.getSector());
         this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate() ;
         this.clientsById = companyDTO.getClientsById();
         this.prospectsById = companyDTO.getProspectsById();

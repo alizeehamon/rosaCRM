@@ -100,7 +100,7 @@
                             <label for="sector" class="form-label">Activity Sector</label>
                             <select id="sector" name="sector">
                                 <c:forEach items="${sectorList}" var="sector">
-                                    <c:if test="${sector.id == company.sector.id }">
+                                    <c:if test="${sector.activitySector == company.sector}">
                                         <option selected="selected"
                                                 value="${sector.id}">${sector.activitySector}</option>
                                     </c:if>

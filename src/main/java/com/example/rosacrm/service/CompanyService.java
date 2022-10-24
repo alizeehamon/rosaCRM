@@ -2,8 +2,10 @@ package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.entity.Company;
+import com.example.rosacrm.entity.Sector;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.repository.CompanyRepository;
+import com.example.rosacrm.repository.SectorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +17,19 @@ import java.util.stream.Collectors;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
+
+    private final SectorRepository sectorRepository;
     private final ClientService clientService;
     private final ProspectService prospectService;
 
-    public CompanyService(CompanyRepository companyRepository, ClientService clientService, ProspectService prospectService) {
+    private final SectorService sectorService;
+
+    public CompanyService(CompanyRepository companyRepository, ClientService clientService, ProspectService prospectService, SectorService sectorService, SectorRepository sectorRepository) {
         this.companyRepository = companyRepository;
         this.clientService = clientService;
         this.prospectService = prospectService;
+        this.sectorService = sectorService;
+        this.sectorRepository = sectorRepository;
     }
 
     public List<CompanyDTO> getAllCompanies() {
@@ -46,6 +54,14 @@ public class CompanyService {
     public void createCompany(CompanyDTO companyDTO, User user) {
         Company company = new Company(companyDTO);
         company.setUser(user);
+        Optional<Sector> sectorOpt = sectorService.findSectorByActivitySector(companyDTO.getSector());
+        if (sectorOpt.isPresent()){
+            company.setSector(sectorOpt.get());
+        }else{
+            Sector sector = new Sector(companyDTO.getSector());
+            company.setSector(sector);
+            sectorRepository.save(sector);
+        }
         companyRepository.save(company);
     }
 

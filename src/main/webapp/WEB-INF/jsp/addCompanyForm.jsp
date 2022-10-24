@@ -90,11 +90,12 @@
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="sector" class="form-label">Activity Sector</label>
-                        <select id="sector" name="sector">
+                        <input class="form-control" id="sector" name="sector" type="text" list="sectorList" />
+                        <datalist id="sectorList">
                             <c:forEach items="${sectorList}" var="sector">
                                 <option value="${sector.id}">${sector.activitySector}</option>
                             </c:forEach>
-                        </select>
+                        </datalist>
                     </div>
                 </div>
             </div>
