@@ -45,12 +45,14 @@
                     </ul>
                     <ul class="list-inline list-unstyled d-flex justify-content-center">
                         <li class="m-1">
-                            <button type="button" class="btn btn-primary border-0 px-2 text-white" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary border-0 px-2 text-white"
+                                    data-bs-toggle="modal"
                                     data-bs-target="#editClient${client.id}">Edit profile
                             </button>
                         </li>
                         <li class="m-1">
-                            <button type="button" class=" btn btn-danger border-0 px-2 text-white" data-bs-toggle="modal"
+                            <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                                    data-bs-toggle="modal"
                                     data-bs-target="#deleteConfirm${client.id}">Delete client
                             </button>
                         </li>
@@ -164,33 +166,69 @@
                                     </button>
                                 </div>
                             </form>
+                            <!-- Prospect notes display -->
                             <c:forEach items="${notes}" var="note">
-                                <div class="note-container">
-                                    <div class="d-flex justify-content-center py-2">
-                                        <div class="second py-2 px-2"><span class="text1">${note.message}</span>
-                                            <div class="d-flex justify-content-end py-1 pt-2">
-                                                <div><span class="text3">Date</span><span class="thumbup"><i
-                                                        class="fa fa-clock-o"></i></span><span
-                                                        class="text4">${note.noteCreationDate}</span></div>
+                                <div class="note-container container my-3 bg-light shadow p-0">
+                                    <div class="row note-container-row bg-light border border-left-0 d-flex flex-column flex-md-row">
+                                        <div class="col-12 col-md-8 p-1 p-lg-2 border border-right-1 border-left-0 border-bottom-0 border-top-0">
+                                            <h6 class="card-title border-bottom mb-3">Note message :</h6>
+                                            <form class="note-content d-flex flex-column"
+                                                  action="${pageContext.request.contextPath}/notes/clients/edit/"
+                                                  method="post">
+                                                <div class="form-group">
+                                                    <input hidden class="form-control" name="id" type="text"
+                                                           value="${note.id}"/>
+                                                    <textarea class="form-control bg-light text-areaControl"
+                                                              readonly="readonly" name="message"
+                                                              rows="3">${note.message}</textarea>
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                           value="${_csrf.token}"/>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary align-self-end mt-1"><i
+                                                        class="bx bx-pencil font-size-18"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="col-12 col-md-4 p-md-1 p-1 p-lg-2 bg-light d-flex flex-column justify-content-between align-items-end border-0 border-left-1 border-bottom-1">
+                                            <div class="d-flex flex-column flex-md-row align-self-end">
+                                                <form action="${pageContext.request.contextPath}/notes/clients/delete/${note.id}"
+                                                      method="post">
+                                                    <button class="btn btn-danger"><i
+                                                            class="bx bx-trash-alt font-size-18"></i></button>
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                           value="${_csrf.token}"/>
+                                                </form>
+                                            </div>
+                                            <div class="note-content d-flex flex-column justify-content-end align-self-end">
+                                                <div class="d-inline-flex justify-content-end">
+                                                    <div class="d-flex">
+                                                            <span class="text3">Date <span
+                                                                    class="thumbup"><i
+                                                                    class="fa fa-clock-o"></i></span>
+                                                            </span>
+                                                    </div>
+
+                                                    <span class="text4">${note.noteCreationDate}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </c:forEach>
                         </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="tab2" class="tab-pane active">
-            </div>
+                <div id="tab2" class="tab-pane active">
+                </div>
 
-            <div id="tab3" class="tab-pane"></div>
-            <div id="tab4" class="tab-pane"></div>
+                <div id="tab3" class="tab-pane"></div>
+                <div id="tab4" class="tab-pane"></div>
+            </div>
         </div>
-    </div>
 </section>
 <c:set var="client" value="${client}" scope="request"/>
 <c:import url="editClient.jsp"/>
 <c:import url="deleteClient.jsp"/>
 <c:import url="changeCompany.jsp"/>
+<script type="text/javascript" src="../../resources/static/js/textAreaToggleClient.js"></script>
 <c:import url="footer.jsp"/>

@@ -46,17 +46,34 @@ public class NoteController {
         prospectService.changeProspectionStatus(noteDTO.getProspect());
         return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
     }
-    @PostMapping("/edit/")
+    @PostMapping("/prospects/edit/")
     public String editNoteProspect(NoteDTO noteDTO){
         noteService.editNote(noteDTO);
         return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
     }
 
-    @PostMapping("/delete/{note}")
+    @PostMapping("/prospects/delete/{note}")
     public String deleteNoteProspect(@PathVariable("note")Long id){
         Optional<Note> note = this.noteService.findNoteById(id);
         NoteDTO noteDTO = note.get().toNoteDTO();
         this.noteService.deleteNote(noteDTO.getId());
         return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
+    }
+
+    @PostMapping("/clients/edit/")
+    public String editNoteClient(NoteDTO noteDTO){
+        noteService.editNote(noteDTO);
+        return "redirect:/clients/see/" + noteDTO.getClient().getId();
+    }
+
+    @PostMapping("/clients/delete/{note}")
+    public String deleteNoteClient(@PathVariable("note")Long id){
+        Optional<Note> note = this.noteService.findNoteById(id);
+        if(note.isPresent()){
+            NoteDTO noteDTO = note.get().toNoteDTO();
+            this.noteService.deleteNote(noteDTO.getId());
+            return "redirect:/clients/see/" + noteDTO.getClient().getId();
+        }
+        return "redirect:/clients/all/";
     }
 }

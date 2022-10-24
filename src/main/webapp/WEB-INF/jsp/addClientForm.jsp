@@ -97,11 +97,9 @@
                         <input id="country" name="country" class="form-control">
                     </div>
                 </div>
-
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input type="submit" class="btn btn-secondary" value="Save">
-
         </form>
     </div>
 </div>
