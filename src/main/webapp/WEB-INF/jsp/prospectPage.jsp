@@ -201,11 +201,11 @@
                                 <!-- Prospect notes display -->
                                 <c:forEach items="${notes}" var="note">
                                     <div class="note-container border border-1 container my-3 bg-light shadow">
-                                        <div class="row note-container-row">
-                                            <div class="col-8 p-2 border border-right">
+                                        <div class="row note-container-row d-flex flex-column flex-md-row">
+                                            <div class="col-12 col-md-8 p-1 p-lg-2 border border-right">
                                                 <h6 class="card-title border-bottom mb-3">Note message :</h6>
-                                                <form class="note-content"
-                                                      action="${pageContext.request.contextPath}/notes/edit/"
+                                                <form class="note-content d-flex flex-column"
+                                                      action="${pageContext.request.contextPath}/notes/prospects/edit/"
                                                       method="post">
                                                     <div class="form-group">
                                                         <input hidden class="form-control" name="id" type="text"
@@ -220,9 +220,9 @@
                                                             class="bx bx-pencil font-size-18"></i></button>
                                                 </form>
                                             </div>
-                                            <div class="col-4 p-2 bg-light d-flex flex-column justify-content-between align-items-end">
+                                            <div class="col-12 col-md-4 p-md-1 p-1 p-lg-2  bg-light d-flex flex-column justify-content-between align-items-end">
                                                 <div class="d-flex flex-column flex-lg-row align-self-end">
-                                                    <form action="${pageContext.request.contextPath}/notes/delete/${note.id}"
+                                                    <form action="${pageContext.request.contextPath}/notes/prospects/delete/${note.id}"
                                                           method="post">
                                                         <button class="btn btn-danger"><i
                                                                 class="bx bx-trash-alt font-size-18"></i></button>
