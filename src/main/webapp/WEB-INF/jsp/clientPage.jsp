@@ -129,9 +129,11 @@
                     <p class="text-muted pb10"> //TO DO - Date last next event
                     </p>
 
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Add
-                        an event</a></button>
+
+                    <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addEventClient${client.id}">Create an event
+                    </button>
 
                 </div>
             </div>
@@ -228,6 +230,7 @@
 </section>
 <c:set var="client" value="${client}" scope="request"/>
 <c:import url="editClient.jsp"/>
+<c:import url="addEventClient.jsp"/>
 <c:import url="deleteClient.jsp"/>
 <c:import url="changeCompany.jsp"/>
 <script type="text/javascript" src="../../resources/static/js/textAreaToggleClient.js"></script>

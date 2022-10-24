@@ -244,7 +244,7 @@ public class Company {
         this.zipCode = companyDTO.getZipCode();
         this.city = companyDTO.getCity();
         this.country = companyDTO.getCountry();
-        this.sector.setActivitySector(companyDTO.getSector());
+        // this.sector.setActivitySector(companyDTO.getSector());
         this.entrepriseCreationDate = companyDTO.getEntrepriseCreationDate();
         this.clientsById = companyDTO.getClientsById();
         this.prospectsById = companyDTO.getProspectsById();

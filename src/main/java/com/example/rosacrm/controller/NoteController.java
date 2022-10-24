@@ -55,9 +55,13 @@ public class NoteController {
     @PostMapping("/prospects/delete/{note}")
     public String deleteNoteProspect(@PathVariable("note")Long id){
         Optional<Note> note = this.noteService.findNoteById(id);
-        NoteDTO noteDTO = note.get().toNoteDTO();
-        this.noteService.deleteNote(noteDTO.getId());
-        return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
+
+        if(note.isPresent()){
+            NoteDTO noteDTO = note.get().toNoteDTO();
+            this.noteService.deleteNote(noteDTO.getId());
+            return "redirect:/prospects/see/" + noteDTO.getProspect().getId();
+        }
+        return "redirect:/prospects/all/";
     }
 
     @PostMapping("/clients/edit/")
