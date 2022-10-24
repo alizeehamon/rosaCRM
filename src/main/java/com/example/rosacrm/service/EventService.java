@@ -17,8 +17,9 @@ public class EventService {
         this.prospectRepository = prospectRepository;
     }
 
-    public void addProspectEvent(EventDTO eventDTO) {
+    public void addEvent(EventDTO eventDTO) {
         Event event = new Event(eventDTO);
         eventRepository.save(event);
     }
+
 }
