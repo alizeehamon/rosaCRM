@@ -1,6 +1,5 @@
 package com.example.rosacrm.repository;
 
-import com.example.rosacrm.entity.Client;
 import com.example.rosacrm.entity.Prospect;
 import com.example.rosacrm.entity.User;
 import org.springframework.data.jpa.repository.Query;
@@ -31,5 +30,6 @@ public interface ProspectRepository extends CrudRepository<Prospect, Long> {
     List<Prospect> filterByStatusUserAndFullName(String firstName, String lastName, String filterByStatus, User user);
 
     @Query("select p from Prospect p where p.user = ?1 AND p.company.id = ?2")
-    List<Prospect> findAllByUserandCompanyId(User user , Long id);
+    List<Prospect> findAllByUserandCompanyId(User user, Long id);
+
 }
