@@ -1,5 +1,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="header.jsp">
     <c:param name="title" value="Client Details"></c:param>
 </c:import>
@@ -171,19 +170,18 @@
         <div class="col-md-8">
 
             <div class="tab-block">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#tab1" data-toggle="tab">Notes</a>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="home" aria-selected="true">Notes</button>
                     </li>
-                    <li>
-                        <a href="#tab2" data-toggle="tab">Prospection History</a>
-                    </li>
-                    <li>
-                        <a href="#tab3" data-toggle="tab">TAB</a>
-                    </li>
+                    <c:if test="${!prospectionNotes.isEmpty()}" >
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="profile" aria-selected="false">Prospection History</button>
+                        </li>
+                    </c:if>
                 </ul>
-                <div class="tab-content p30" style="height: 730px;">
-                    <div id="tab1" class="tab-pane active">
+                <div id="myTabContent" class="tab-content p30" style="height: 730px;">
+                    <div id="tab1" class="tab-pane fade show active" role="tabpanel">
                         <div class="container justify-content-center mt-5 border-left border-right">
                             <form method="post" action="${pageContext.request.contextPath}/notes/add">
                                 <div class="d-flex justify-content-center pt-3 pb-2">
@@ -248,11 +246,45 @@
                             </c:forEach>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div id="tab2" class="tab-pane active">
-            </div>
+                    <div id="tab2" class="tab-pane fade" role="tabpanel">
+                        <div class="container justify-content-center mt-5 border-left border-right">
+                            <!-- Prospection notes display -->
+                            <c:forEach items="${prospectionNotes}" var="prospectionNote">
+                                <div class="note-container container my-3 bg-light shadow p-0">
+                                    <div class="row note-container-row bg-light border border-left-0 d-flex flex-column flex-md-row">
+                                        <div class="col-12 col-md-8 p-1 p-lg-2 border border-right-1 border-left-0 border-bottom-0 border-top-0">
+                                            <h6 class="card-title border-bottom mb-3">Note message :</h6>
+                                            <div class="form-group">
+                                                <input hidden class="form-control" name="id" type="text"
+                                                       value="${prospectionNote.id}"/>
+                                                <textarea disabled class="form-control bg-light text-areaControl"
+                                                          readonly="readonly" name="message"
+                                                          rows="3">${prospectionNote.message}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4 p-md-1 p-1 p-lg-2 bg-light d-flex flex-column justify-content-between align-items-end border-0 border-left-1 border-bottom-1">
 
+                                            <div class="note-content d-flex flex-column justify-content-end align-self-end">
+                                                <div class="d-inline-flex justify-content-end">
+                                                    <div class="d-flex">
+                                                            <span class="text3">Date <span
+                                                                    class="thumbup"><i
+                                                                    class="fa fa-clock-o"></i></span>
+                                                            </span>
+                                                    </div>
+
+                                                    <span class="text4">${prospectionNote.noteCreationDate}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>

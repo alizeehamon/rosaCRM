@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,6 +74,12 @@ public class ClientController {
         List<Note> notes = clientDTO.getNotesById();
         notes.sort(new SortByDate());
         model.addAttribute("notes", notes);
+        List<ProspectDTO> prospectDTOList = prospectService.searchProspectsByStatusUserAndFullName(clientDTO.getFirstName() + " " + clientDTO.getLastName(), "Over", user);
+        List<Note> prospectionNotes = new ArrayList<>();
+        if(prospectDTOList.isEmpty()){
+            prospectionNotes = prospectDTOList.get(0).getNotesById();
+        }
+        model.addAttribute("prospectionNotes", prospectionNotes);
         return "clientPage";
     }
 
@@ -91,6 +98,7 @@ public class ClientController {
         clientService.editClient(clientDTO);
         return new RedirectView("/clients/all");
     }
+
     @PostMapping("/delete/{id}")
     public String deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
