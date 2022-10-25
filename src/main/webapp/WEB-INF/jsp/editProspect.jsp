@@ -69,7 +69,7 @@
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="prospectionStatus" class="form-label">Prospection status</label>
-                                <select id="prospectionStatus" class="form-select" aria-label="Choose company"
+                                <select id="prospectionStatus" class="form-select"
                                         name="prospectionStatus">
                                     <c:forEach items="${requestScope.prospectStatusListclean}" var="prospectStatus">
                                         <option value="${prospectStatus}">${prospectStatus}</option>

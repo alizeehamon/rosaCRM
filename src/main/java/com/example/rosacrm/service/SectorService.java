@@ -1,6 +1,6 @@
 package com.example.rosacrm.service;
 
-import com.example.rosacrm.entity.Sector;
+import com.example.rosacrm.dto.entity.Sector;
 import com.example.rosacrm.repository.SectorRepository;
 import org.springframework.stereotype.Service;
 

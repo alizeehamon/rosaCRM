@@ -2,10 +2,9 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.User;
-import com.example.rosacrm.enumeration.ProspectionStatus;
+import com.example.rosacrm.dto.entity.Note;
+import com.example.rosacrm.dto.entity.User;
+import enumeration.ProspectionStatus;
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;
 import com.example.rosacrm.service.UserService;

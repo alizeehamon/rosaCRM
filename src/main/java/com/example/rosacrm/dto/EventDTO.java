@@ -1,15 +1,7 @@
 package com.example.rosacrm.dto;
 
-import com.example.rosacrm.entity.Client;
-import com.example.rosacrm.entity.Prospect;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.sql.Timestamp;
-import java.time.LocalDate;
+import com.example.rosacrm.dto.entity.Client;
+import com.example.rosacrm.dto.entity.Prospect;
 
 public class EventDTO {
 

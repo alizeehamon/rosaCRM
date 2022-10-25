@@ -1,4 +1,4 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto.entity;
 
 import javax.persistence.*;
 import java.util.List;

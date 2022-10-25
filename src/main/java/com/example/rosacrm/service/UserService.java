@@ -1,7 +1,7 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.UserDTO;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.User;
 import com.example.rosacrm.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

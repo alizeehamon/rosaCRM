@@ -1,7 +1,7 @@
 package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.UserDTO;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.User;
 import com.example.rosacrm.security.CustomLogoutHandler;
 import com.example.rosacrm.service.UserService;
 import org.springframework.security.core.Authentication;

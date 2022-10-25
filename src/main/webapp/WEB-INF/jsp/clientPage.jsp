@@ -126,7 +126,7 @@
 
                     <h6>Last/Next event with ${client.firstName}</h6>
 
-                    <p class="text-muted pb10"> //TO DO - Date last next event
+                    <p class="text-muted pb10"> ${client.eventsById[0].name}
                     </p>
 
 

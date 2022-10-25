@@ -1,7 +1,7 @@
 package com.example.rosacrm.repository;
 
 
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

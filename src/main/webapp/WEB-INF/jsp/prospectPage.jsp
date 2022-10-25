@@ -146,8 +146,7 @@
                     <hr class="short br-lighter">
 
                     <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Choose
-                        your time before calling again</a></button>
+                                                                     href="${pageContext.request.contextPath}/">Set a reminder for this prospect</a></button>
 
                     <hr class="short br-lighter">
 

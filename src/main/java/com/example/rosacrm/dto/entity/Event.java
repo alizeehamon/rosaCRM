@@ -1,12 +1,9 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto.entity;
 
 import com.example.rosacrm.dto.EventDTO;
 import com.example.rosacrm.utils.DateUtils;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

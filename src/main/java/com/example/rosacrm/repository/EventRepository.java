@@ -1,6 +1,6 @@
 package com.example.rosacrm.repository;
 
-import com.example.rosacrm.entity.Event;
+import com.example.rosacrm.dto.entity.Event;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

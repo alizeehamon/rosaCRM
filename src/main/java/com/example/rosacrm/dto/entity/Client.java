@@ -1,4 +1,4 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto.entity;
 
 import com.example.rosacrm.dto.ClientDTO;
 import org.hibernate.annotations.OnDelete;

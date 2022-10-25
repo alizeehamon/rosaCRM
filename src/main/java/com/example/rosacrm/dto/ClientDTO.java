@@ -1,8 +1,8 @@
 package com.example.rosacrm.dto;
 
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Event;
-import com.example.rosacrm.entity.Note;
+import com.example.rosacrm.dto.entity.Company;
+import com.example.rosacrm.dto.entity.Event;
+import com.example.rosacrm.dto.entity.Note;
 
 import java.util.List;
 
