@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="header.jsp">
     <c:param name="title" value="Client Details"></c:param>
 </c:import>

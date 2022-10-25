@@ -24,7 +24,7 @@
         <div class="form-group"><input class="form-control" type="text" name="firstName" placeholder="First Name"></div>
         <div class="form-group"><input class="form-control" type="text" name="lastName" placeholder="Last Name"></div>
         <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
+        <div class="form-group"><input class="form-control" type="password" required name="password" minlength="5" placeholder="Password">
         </div>
         <div class="form-group">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
