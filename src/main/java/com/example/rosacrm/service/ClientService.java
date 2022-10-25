@@ -2,11 +2,9 @@ package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.NoteDTO;
-import com.example.rosacrm.entity.Client;
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.User;
-import com.example.rosacrm.enumeration.ProspectionStatus;
+import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.dto.entity.*;
+import enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.ClientRepository;
 import com.example.rosacrm.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
@@ -123,5 +121,13 @@ public class ClientService {
     public List<ClientDTO> findAllClientsByUser(User user) {
         List<Client> clientList = clientRepository.findAllByUser(user);
         return clientList.stream().map(c -> c.toDTO()).collect(Collectors.toList());
+    }
+
+    public void  setClientContactDuration(ClientDTO clientDTO){
+        Optional <Client> client = this.clientRepository.findById(clientDTO.getId());
+        if(client.isPresent()){
+            client.get().setContactDuration(clientDTO.getContactDuration());
+            this.clientRepository.save(client.get());
+        }
     }
 }

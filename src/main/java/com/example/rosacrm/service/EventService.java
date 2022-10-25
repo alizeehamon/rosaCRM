@@ -1,7 +1,7 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.EventDTO;
-import com.example.rosacrm.entity.Event;
+import com.example.rosacrm.dto.entity.Event;
 import com.example.rosacrm.repository.EventRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;

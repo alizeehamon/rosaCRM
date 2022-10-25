@@ -1,17 +1,13 @@
 package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.NoteDTO;
-import com.example.rosacrm.entity.Note;
+import com.example.rosacrm.dto.entity.Note;
 import com.example.rosacrm.service.NoteService;
 import com.example.rosacrm.service.ProspectService;
-import org.aspectj.weaver.ast.Not;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 

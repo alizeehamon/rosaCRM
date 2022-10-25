@@ -1,8 +1,7 @@
 package com.example.rosacrm.dto;
 
-import com.example.rosacrm.entity.Client;
-import com.example.rosacrm.entity.Prospect;
-import com.example.rosacrm.entity.Sector;
+import com.example.rosacrm.dto.entity.Client;
+import com.example.rosacrm.dto.entity.Prospect;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;

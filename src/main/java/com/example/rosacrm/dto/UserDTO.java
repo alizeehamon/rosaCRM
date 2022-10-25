@@ -1,6 +1,6 @@
 package com.example.rosacrm.dto;
 
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserDTO {

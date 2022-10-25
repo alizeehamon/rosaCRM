@@ -3,9 +3,6 @@
 </footer>
 
 <script type="text/javascript">
-  function clearSearch() {
-    window.location = "${pageContext.request.contextPath}/prospects/all";
-  }
 </script>
 <script src="../../resources/static/js/orderTables.js"></script>
 <script type="text/javascript" charset="utf8" src="../../resources/static/DataTables/datatables.js"></script>

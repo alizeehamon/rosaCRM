@@ -2,8 +2,8 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Event;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.Event;
+import com.example.rosacrm.dto.entity.User;
 import com.example.rosacrm.service.ClientService;
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;

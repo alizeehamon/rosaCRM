@@ -1,7 +1,7 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.UserDTO;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.User;
 import com.example.rosacrm.repository.UserRepository;
 import com.example.rosacrm.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;

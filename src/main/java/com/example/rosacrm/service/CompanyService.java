@@ -1,9 +1,9 @@
 package com.example.rosacrm.service;
 
 import com.example.rosacrm.dto.CompanyDTO;
-import com.example.rosacrm.entity.Company;
-import com.example.rosacrm.entity.Sector;
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.Company;
+import com.example.rosacrm.dto.entity.Sector;
+import com.example.rosacrm.dto.entity.User;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.SectorRepository;
 import org.springframework.stereotype.Service;

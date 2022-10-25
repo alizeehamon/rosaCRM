@@ -57,7 +57,7 @@
                                 <input id="city" name="city" class="form-control">
                             </div>
                         </div>
-                        <div class="col-6 mb-3">
+                        <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="country" class="form-label">Country</label>
                                 <input id="country" name="country" class="form-control">
@@ -67,14 +67,14 @@
                         <div class="col-6 mb-3">
                             <div class="form-group">
                                 <label for="startTimeInput" class="form-label">Event start time</label>
-                                <input id="startTimeInput" min="00:00" type="datetime-local" name="startTime"
+                                <input id="startTimeInput" min="00:00" type="datetime-local" required name="startTime"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="col-6 mb-3">
                             <div class="form-group">
                                 <label for="endTimeInput" class="form-label">Event end time</label>
-                                <input id="endTimeInput" type="datetime-local" max="23:59" name="endTime"
+                                <input id="endTimeInput" type="datetime-local" max="23:59" required name="endTime"
                                        class="form-control">
                             </div>
                         </div>
@@ -92,4 +92,3 @@
         </div>
     </div>
 </div>
-

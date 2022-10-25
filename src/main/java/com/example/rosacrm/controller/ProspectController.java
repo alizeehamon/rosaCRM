@@ -2,9 +2,9 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.User;
-import com.example.rosacrm.enumeration.ProspectionStatus;
+import com.example.rosacrm.dto.entity.Note;
+import com.example.rosacrm.dto.entity.User;
+import enumeration.ProspectionStatus;
 import com.example.rosacrm.service.CompanyService;
 import com.example.rosacrm.service.ProspectService;
 import com.example.rosacrm.service.UserService;
@@ -94,5 +94,11 @@ public class ProspectController {
     public String prospectToClient(@PathVariable Long id) {
         Long clientId = prospectService.prospectToClient(id);
         return "redirect:/clients/see/" + clientId;
+    }
+
+    @PostMapping("/reminder")
+    public String setProspectReminder(ProspectDTO prospectDTO) {
+        prospectService.setReminderProspect(prospectDTO);
+        return "redirect:/prospects/see/" + prospectDTO.getId();
     }
 }

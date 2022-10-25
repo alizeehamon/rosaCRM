@@ -38,7 +38,9 @@
                             </a>
                         </li>
                         <li class="m-1">
-                            <a target="_blank" href="https://www.google.com/maps/search/${client.address1}+${client.address2}+${client.city}+${client.zipCode}" title="address link">
+                            <a target="_blank"
+                               href="https://www.google.com/maps/search/${client.address1}+${client.address2}+${client.city}+${client.zipCode}"
+                               title="address link">
                                 <span class="fa fa-globe fs35 text-muted"></span>
                             </a>
                         </li>
@@ -104,7 +106,7 @@
               </span>
                     <span class="panel-title">History with my client</span>
                 </div>
-                <div class="panel-body pb5">
+                <div class="panel-body pb5 d-flex flex-column align-items-left">
 
                     <h6>Client creation date</h6>
                     <p class="text-muted"> ${client.creationDate}
@@ -118,16 +120,43 @@
 
                     <hr class="short br-lighter">
 
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Choose
-                        your time before calling again</a></button>
+                    <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                            data-bs-toggle="modal"
+                            data-bs-target="#setReminder${client.id}">Set a reminder
+                    </button>
 
                     <hr class="short br-lighter">
 
                     <h6>Last/Next event with ${client.firstName}</h6>
 
-                    <p class="text-muted pb10"> //TO DO - Date last next event
-                    </p>
+                    <c:if test="${empty client.eventsById}">
+                        <p>You have no event with ${client.firstName} ${client.lastName}</p>
+                    </c:if>
+                    <c:if test="${not empty client.eventsById[0]}">
+                        <ul>
+                            <li>
+                                <p class="text-muted pb10"><span
+                                        class="text-dark">Nom de l'évènement : </span><br>${client.eventsById[0].name}
+                                </p>
+                            </li>
+                            <li>
+                                <p class="text-muted pb10"><span
+                                        class="text-dark">Date de fin : </span><br>${client.eventsById[0].endTime}</p>
+                            </li>
+                            <c:if test="${not empty client.eventsById[0].link }">
+                                <li>
+                                    <p class="text-muted pb10"><span class="text-dark">Where : </span><br>Remote</p>
+                                </li>
+                            </c:if>
+                            <c:if test="${empty client.eventsById[0].link}">
+                                <li>
+                                    <p class="text-muted pb10"><span
+                                            class="text-dark">Where : </span><br>${client.eventsById[0].address1} ${client.eventsById[0].address2} ${client.eventsById[0].city} ${client.eventsById[0].zipCode}
+                                    </p>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </c:if>
 
 
                     <button type="button" class=" btn btn-danger border-0 px-2 text-white"
@@ -258,6 +287,7 @@
     </div>
 </section>
 <c:set var="client" value="${client}" scope="request"/>
+<c:import url="setReminderClient.jsp"/>
 <c:import url="editClient.jsp"/>
 <c:import url="addEventClient.jsp"/>
 <c:import url="deleteClient.jsp"/>
