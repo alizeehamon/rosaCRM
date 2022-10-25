@@ -41,6 +41,7 @@ public class ProspectController {
         User user = userService.getCurrentUser(authentication.getName());
         List<CompanyDTO> companyList = companyService.getAllCompanies(null, user);
         List<ProspectDTO> searchProspectsByStatusAndName = prospectService.searchProspectsByStatusAndName(prospectName, filterByStatus, user);
+        searchProspectsByStatusAndName.forEach(prospectDTO -> prospectService.updateContactStatus(prospectDTO));
         model.addAttribute("prospects", searchProspectsByStatusAndName);
         model.addAttribute("prospectName", prospectName);
         model.addAttribute("companies", companyList);
