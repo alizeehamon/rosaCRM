@@ -165,24 +165,24 @@
                     <div class="d-flex flex-column flex-lg-row align-items-center">
                         <h2>Start working now...</h2>
                         <a
-                                class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
                                 href="${pageContext.request.contextPath}/companies/all"
-                                style="border: none; margin: 1rem; min-width: 140px ;min-height: 96px; box-sizing: border-box;"
+                                class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
+                                style=" margin: 1rem; min-width: 140px; min-height: 96px; box-sizing: border-box"
                         >My companies</a>
                         <a
                                 class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
                                 href="${pageContext.request.contextPath}/clients/all"
-                                style="border: none; margin: 1rem; min-width: 140px ;min-height: 96px;box-sizing: border-box;"
+                                style=" margin: 1rem; min-width: 140px ;min-height: 96px;box-sizing: border-box"
                         >My clients</a>
                         <a
                                 class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
                                 href="${pageContext.request.contextPath}/prospects/all"
-                                style="border: none; margin: 1rem; min-width: 140px ;min-height: 96px;box-sizing: border-box;"
+                                style=" margin: 1rem; min-width: 140px; min-height: 96px; box-sizing: border-box"
                         >My prospects</a>
                         <a
                                 class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
                                 href="${pageContext.request.contextPath}/calendar"
-                                style="border: none; margin: 1rem; min-width: 140px;min-height: 96px;box-sizing: border-box;"
+                                style=" margin: 1rem; min-width: 140px;min-height: 96px;box-sizing: border-box"
                         >My Calendar</a>
                     </div>
                 </aside>

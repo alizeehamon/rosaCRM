@@ -67,14 +67,14 @@
                         <div class="col-6 mb-3">
                             <div class="form-group">
                                 <label for="startTimeInput" class="form-label">Event start time</label>
-                                <input id="startTimeInput" min="00:00" type="datetime-local" name="startTime"
+                                <input id="startTimeInput" min="00:00" type="datetime-local" required name="startTime"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="col-6 mb-3">
                             <div class="form-group">
                                 <label for="endTimeInput" class="form-label">Event end time</label>
-                                <input id="endTimeInput" type="datetime-local" max="23:59" name="endTime"
+                                <input id="endTimeInput" type="datetime-local" required max="23:59" name="endTime"
                                        class="form-control">
                             </div>
                         </div>
