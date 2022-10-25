@@ -48,7 +48,7 @@ public class ClientController {
         User user = userService.getCurrentUser(authentication.getName());
         List<ClientDTO> clientDTOList = clientService.searchContacts(clientName, user);
         clientDTOList.forEach(clientDTO -> clientService.updateContactStatus(clientDTO));
-        List<CompanyDTO> companyList = companyService.getAllCompanies();
+        List<CompanyDTO> companyList = companyService.getAllCompanies(null, user);
         model.addAttribute("clients", clientDTOList);
         model.addAttribute("clientName", clientName);
         model.addAttribute("companies", companyList);

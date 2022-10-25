@@ -18,7 +18,7 @@
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                 <div>
                     <form class="d-flex" action="${pageContext.request.contextPath}/companies/all">
-                        <input class="form-control me-2 w-30" type="search" placeholder="search a company"
+                        <input class="form-control me-2 w-30" type="search" placeholder="Search a company"
                                name="companyName"
                                aria-label="Search" value="${companyName}">
                         <button class="btn btn-outline-success m-1" type="submit">Search</button>
