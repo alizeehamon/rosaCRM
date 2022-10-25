@@ -27,6 +27,7 @@
                         <button type="submit" class="btn btn-white border-danger">Yes</button>
 
                     </div>
+                </div>
             </form>
         </div>
     </div>

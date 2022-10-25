@@ -24,9 +24,9 @@ public class Event {
 
     private String link;
 
-    private Date startTime;
+    private Timestamp startTime;
 
-    private Date endTime;
+    private Timestamp endTime;
 
     @ManyToOne
     private Prospect prospect;
@@ -113,7 +113,7 @@ public class Event {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
@@ -121,7 +121,7 @@ public class Event {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
@@ -152,7 +152,7 @@ public class Event {
         this.city = eventDTO.getCity();
         this.country = eventDTO.getCountry();
         this.zipCode = eventDTO.getZipCode();
-        this.startTime =  DateUtils.convertStringToDate(eventDTO.getStartTime());
-        this.endTime = DateUtils.convertStringToDate(eventDTO.getEndTime());
+        this.startTime =  DateUtils.convertHtmlDateToDateStamp(eventDTO.getStartTime());
+        this.endTime = DateUtils.convertHtmlDateToDateStamp(eventDTO.getEndTime());
     }
 }

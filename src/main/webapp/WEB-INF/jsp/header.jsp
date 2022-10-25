@@ -31,6 +31,11 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
             integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
             crossorigin=""></script>
+    <!-- fullcalendar -->
+    <link href='../../resources/static/fullcalendar/lib/main.css' rel='stylesheet' />
+    <script src='../../resources/static/fullcalendar/lib/main.js'></script>
+
+    <script src="../../resources/static/js/calendar.js"></script>
 
     <title>${param.title}</title>
 </head>
@@ -66,7 +71,7 @@
                    href="${pageContext.request.contextPath}/clients/all">Clients</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color: #891919" href="#">Calendar</a>
+                <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/calendar">Calendar</a>
             </li>
         </ul>
         <!-- Left links -->
