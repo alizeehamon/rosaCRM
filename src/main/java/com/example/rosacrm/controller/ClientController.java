@@ -73,6 +73,9 @@ public class ClientController {
         List<Note> notes = clientDTO.getNotesById();
         notes.sort(new SortByDate());
         model.addAttribute("notes", notes);
+        List<ProspectDTO> prospectDTOList = prospectService.searchProspectsByStatusUserAndFullName(clientDTO.getFirstName() + " " + clientDTO.getLastName(), "Over", user);
+        List<Note> prospectionNotes = prospectDTOList.get(0).getNotesById();
+        model.addAttribute("prospectionNotes", prospectionNotes);
         return "clientPage";
     }
 
@@ -91,6 +94,7 @@ public class ClientController {
         clientService.editClient(clientDTO);
         return new RedirectView("/clients/all");
     }
+
     @PostMapping("/delete/{id}")
     public String deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);

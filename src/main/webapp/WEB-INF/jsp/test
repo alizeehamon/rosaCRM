@@ -1,0 +1,111 @@
+<ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab">Notes</a>
+                    </li>
+                    <li>
+                        <a href="#tab2" data-toggle="tab">Prospection History</a>
+                    </li>
+                </ul>
+                <div class="tab-content p30" style="height: 730px;">
+                    <div id="tab2" class="tab-pane ">
+                        <div class="container justify-content-center mt-5 border-left border-right">
+                            <form method="post" action="${pageContext.request.contextPath}/notes/add">
+                                <div class="d-flex justify-content-center pt-3 pb-2">
+                                    <input type="text" name="message" placeholder="+ Write your message"
+                                           class="form-control addtxt">
+                                    <input type="hidden" name="client" value="${client.id}"/>
+                                </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Add
+                                        a note
+                                    </button>
+                                </div>
+                            </form>
+                            <!-- Prospect notes display -->
+                            <c:forEach items="${notes}" var="note">
+                                <div class="note-container container my-3 bg-light shadow p-0">
+                                    <div class="row note-container-row bg-light border border-left-0 d-flex flex-column flex-md-row">
+                                        <div class="col-12 col-md-8 p-1 p-lg-2 border border-right-1 border-left-0 border-bottom-0 border-top-0">
+                                            <h6 class="card-title border-bottom mb-3">Note message :</h6>
+                                            <form class="note-content d-flex flex-column"
+                                                  action="${pageContext.request.contextPath}/notes/clients/edit/"
+                                                  method="post">
+                                                <div class="form-group">
+                                                    <input hidden class="form-control" name="id" type="text"
+                                                           value="${note.id}"/>
+                                                    <textarea class="form-control bg-light text-areaControl"
+                                                              readonly="readonly" name="message"
+                                                              rows="3">${note.message}</textarea>
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                           value="${_csrf.token}"/>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary align-self-end mt-1"><i
+                                                        class="bx bx-pencil font-size-18"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="col-12 col-md-4 p-md-1 p-1 p-lg-2 bg-light d-flex flex-column justify-content-between align-items-end border-0 border-left-1 border-bottom-1">
+                                            <div class="d-flex flex-column flex-md-row align-self-end">
+                                                <form action="${pageContext.request.contextPath}/notes/clients/delete/${note.id}"
+                                                      method="post">
+                                                    <button class="btn btn-danger"><i
+                                                            class="bx bx-trash-alt font-size-18"></i></button>
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                           value="${_csrf.token}"/>
+                                                </form>
+                                            </div>
+                                            <div class="note-content d-flex flex-column justify-content-end align-self-end">
+                                                <div class="d-inline-flex justify-content-end">
+                                                    <div class="d-flex">
+                                                            <span class="text3">Date <span
+                                                                    class="thumbup"><i
+                                                                    class="fa fa-clock-o"></i></span>
+                                                            </span>
+                                                    </div>
+
+                                                    <span class="text4">${note.noteCreationDate}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        </div>
+                    <div id="tab1" class="tab-pane active">
+                        <div class="container justify-content-center mt-5 border-left border-right">
+                            <!-- Prospection notes display -->
+                            <c:forEach items="${prospectionNotes}" var="prospectionNote">
+                                <div class="note-container container my-3 bg-light shadow p-0">
+                                    <div class="row note-container-row bg-light border border-left-0 d-flex flex-column flex-md-row">
+                                        <div class="col-12 col-md-8 p-1 p-lg-2 border border-right-1 border-left-0 border-bottom-0 border-top-0">
+                                            <h6 class="card-title border-bottom mb-3">Note message :</h6>
+                                            <div class="form-group">
+                                                <input hidden class="form-control" name="id" type="text"
+                                                       value="${prospectionNote.id}"/>
+                                                <textarea disabled class="form-control bg-light text-areaControl"
+                                                          readonly="readonly" name="message"
+                                                          rows="3">${prospectionNote.message}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4 p-md-1 p-1 p-lg-2 bg-light d-flex flex-column justify-content-between align-items-end border-0 border-left-1 border-bottom-1">
+
+                                            <div class="note-content d-flex flex-column justify-content-end align-self-end">
+                                                <div class="d-inline-flex justify-content-end">
+                                                    <div class="d-flex">
+                                                            <span class="text3">Date <span
+                                                                    class="thumbup"><i
+                                                                    class="fa fa-clock-o"></i></span>
+                                                            </span>
+                                                    </div>
+
+                                                    <span class="text4">${prospectionNote.noteCreationDate}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
