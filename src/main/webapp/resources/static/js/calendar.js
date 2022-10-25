@@ -1,9 +1,9 @@
-
+let today = new Date().toISOString().slice(0, 10)
 document.addEventListener('DOMContentLoaded', function () {
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        initialDate: '2022-08-07',
+        initialDate: today,
         themeSystem: 'bootstrap5',
         headerToolbar: {
             left: 'prev,next today',

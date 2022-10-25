@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-12 mb-3">
                     <div class="form-group">
-                        <label for="email" class="form-label">Last name</label>
+                        <label for="email" class="form-label">Email</label>
                         <input id="email" name="email" class="form-control">
                     </div>
                 </div>
