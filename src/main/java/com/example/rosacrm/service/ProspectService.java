@@ -38,6 +38,9 @@ public class ProspectService {
             prospect.setCompany(company.get());
         }
         prospect.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        if(prospect.getRelanceDuration()==null){
+            prospect.setRelanceDuration(7);
+        }
         prospect.setUser(user);
         prospectRepository.save(prospect);
     }

@@ -61,6 +61,9 @@ public class ClientService {
         }
         client.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         client.setUser(user);
+        if(client.getContactDuration()==null){
+            client.setContactDuration(7);
+        }
         clientRepository.save(client);
         NoteDTO noteDTO = new NoteDTO();
         noteDTO.setClient(client);

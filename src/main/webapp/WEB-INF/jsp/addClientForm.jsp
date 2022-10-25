@@ -64,7 +64,7 @@
                 <div class="col-12 mb-3">
                     <div class="form-group">
                         <label for="contactDuration" class="form-label">Contact duration</label>
-                        <input id="contactDuration" required name="contactDuration" class="form-control">
+                        <input id="contactDuration" type="number" name="contactDuration" class="form-control">
                     </div>
                 </div>
                 <div class="col-12 mb-3">
