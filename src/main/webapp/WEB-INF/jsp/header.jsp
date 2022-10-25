@@ -8,7 +8,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- jQuert -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- CDN dataTables -->
@@ -41,22 +43,29 @@
 </head>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-md">
     <!-- Container wrapper -->
-    <div class="container-fluid justify-content-start">
+    <div class="container-fluid justify-content-md-start ml-auto justify-content-center">
 
         <!-- Navbar brand -->
-        <a class="navbar-brand mt-2 mt-lg-0" href="${pageContext.request.contextPath}/">
+        <a class="navbar-brand nav-item mt-2 mt-md-0" href="${pageContext.request.contextPath}/">
             <img
                     src="https://zupimages.net/up/22/41/5la4.jpg"
                     height="45"
                     alt="rosa logo"
                     loading="lazy"
-                    class="d-none d-lg-block"
+                    class=" d-md-block"
             />
         </a>
+        <!-- Collapse button -->
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- nav bar collapse parent -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
         <!-- Left links -->
-        <ul class="navbar-nav d-flex flex-lg-row justify-content-lg-start flex-md-column">
+        <ul class="navbar-nav d-flex flex-column flex-md-row justify-content-center align-items-center justify-content-md-start  mr-auto">
             <li class="nav-item">
                 <a class="nav-link" style="color: #891919" href="${pageContext.request.contextPath}/">Dashboard</a>
             </li>
@@ -76,14 +85,13 @@
         </ul>
         <!-- Left links -->
     </div>
-
     <!-- Right elements -->
-    <div class="ml-1 d-flex align-items-center flex-lg-row flex-md-column flex-sm-column">
+    <div class="ml-1 mr-auto d-flex align-items-center flex-lg-row flex-md-column flex-sm-column">
 
         <!-- Login and co -->
         <sec:authorize access="!isAuthenticated()">
             <a
-                    class="nav-link p-2"
+                    class="nav-link nav-item p-2"
                     href="${pageContext.request.contextPath}/signin"
                     role="button"
                     aria-expanded="false"
@@ -92,7 +100,7 @@
                 Login
             </a>
             <a
-                    class="nav-link p-1"
+                    class="nav-link nav-item p-1"
                     href="${pageContext.request.contextPath}/register"
                     role="button"
                     aria-expanded="false"
@@ -105,7 +113,7 @@
             <!-- Avatar -->
 
             <a
-                    class="nav-link"
+                    class="nav-link nav-item ml-1"
                     href="${pageContext.request.contextPath}/account"
                     role="button"
                     aria-expanded="false"
@@ -113,7 +121,7 @@
                 <i class="bi bi-person-circle" style="font-size: 2rem; color: #CE2626;"></i>
             </a>
             <a
-                    class="nav-link p-2"
+                    class="nav-link nav-item p-2 ml-1"
                     href="${pageContext.request.contextPath}/logout"
                     role="button"
                     aria-expanded="false"
@@ -125,6 +133,7 @@
 
     </div>
     <!-- Right elements -->
+    </div>
 </nav>
 <!-- Navbar -->
 

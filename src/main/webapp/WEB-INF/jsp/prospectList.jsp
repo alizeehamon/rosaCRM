@@ -10,15 +10,14 @@
 
 <div class="container mt-2 bg-light p-2 rounded">
     <div class="row align-items-center">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="mb-3">
                 <h5 class="card-title">Prospects list </h5>
             </div>
         </div>
-    </div>
-    <div class="row align-items-center">
-        <div class="">
-            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-3">
+
+        <div class="col-md-8">
+            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                 <div>
                     <form class="d-flex" action="${pageContext.request.contextPath}/prospects/all">
                         <select class="form-select me-2" aria-label="Default select example" name="filterByStatus">
@@ -26,7 +25,7 @@
                                 <option value="${prospectStatus}">${prospectStatus}</option>
                             </c:forEach>
                         </select>
-                        <input class="form-control me-2 w-30" type="search" placeholder="search a prospect"
+                        <input class="form-control me-2 w-30" type="search" placeholder="Search a prospect"
                                name="prospectName"
                                aria-label="Search" value="${prospectName}">
                         <button class="btn btn-outline-success m-1" type="submit">Search</button>
@@ -69,7 +68,8 @@
 
                                 <td><a target="_blank"
                                        href="https://www.google.com/maps/search/${prospect.address1}+${prospect.address2}+${prospect.city}+${prospect.zipCode}"
-                                        class="badge badge-soft-success mb-0 entity-address">${prospect.address1} - ${prospect.zipCode} ${prospect.city}</a>
+                                       class="badge badge-soft-success mb-0 entity-address">${prospect.address1}
+                                    - ${prospect.zipCode} ${prospect.city}</a>
                                 </td>
                                 <td><a href="mailto:${prospect.email}"><i class="bi bi-envelope"></i></a></td>
                                 <td><a href="tel:${prospect.homePhone}"><i class="bi bi-telephone-forward"></i></a> ou
@@ -102,8 +102,8 @@
                                 </td>
                             </tr>
                             <c:set var="prospect" value="${prospect}" scope="request"/>
-                            <c:import url="editProspect.jsp"></c:import>
-                            <c:import url="deleteProspect.jsp"></c:import>
+                            <c:import url="editProspect.jsp"/>
+                            <c:import url="deleteProspect.jsp"/>
                         </c:forEach>
                         </tbody>
                     </table>

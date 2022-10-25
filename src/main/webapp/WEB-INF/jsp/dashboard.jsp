@@ -33,7 +33,7 @@
                             customers' relationship, use it to manage every aspect of your business without having to
                             worry about schedule, follow-ups and contract activities!</p>
                         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
+                            <a class="btn btn-light border-1 rounded-3 text-dark btn-lg px-4 me-sm-3" href="#features">Get Started</a>
                         </div>
                     </div>
                 </div>
@@ -162,28 +162,28 @@
                 <!-- Call to action links to other pages-->
                 <aside class="bg-gradient rounded-3 p-4 p-sm-5 mt-5 d-none d-sm-block"
                        style="background-color: #e0e0e0;">
-                    <div class="d-flex flex-md-column flex-sm-column flex-xs-column flex-lg-row">
+                    <div class="d-flex flex-column flex-lg-row align-items-center">
                         <h2>Start working now...</h2>
-                        <button type="button" class="bg-danger rounded p-3"
-                                style="border: none; height: 10vh; margin: 1rem;"><a
-                                class="text-white text-decoration-none"
-                                href="${pageContext.request.contextPath}/companies/all">My
-                            companies</a></button>
-                        <button type="button" class="bg-danger rounded p-3"
-                                style="border: none; height: 10vh; margin: 1rem;"><a
-                                class="text-white text-decoration-none"
-                                href="${pageContext.request.contextPath}/clients/all">My
-                            clients</a></button>
-                        <button type="button" class="bg-danger rounded p-3"
-                                style="border: none; height: 10vh; margin: 1rem;"><a
-                                class="text-white text-decoration-none"
-                                href="${pageContext.request.contextPath}/prospects/all">My
-                            prospects</a></button>
-                        <button type="button" class="bg-danger rounded p-3"
-                                style="border: none; height: 10vh; margin: 1rem;"><a
-                                class="text-white text-decoration-none"
-                                href="${pageContext.request.contextPath}/calendar">My
-                            schedule</a></button>
+                        <a
+                                class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
+                                href="${pageContext.request.contextPath}/companies/all"
+                                style="border: none; margin: 1rem; min-width: 140px ;min-height: 96px; box-sizing: border-box;"
+                        >My companies</a>
+                        <a
+                                class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
+                                href="${pageContext.request.contextPath}/clients/all"
+                                style="border: none; margin: 1rem; min-width: 140px ;min-height: 96px;box-sizing: border-box;"
+                        >My clients</a>
+                        <a
+                                class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
+                                href="${pageContext.request.contextPath}/prospects/all"
+                                style="border: none; margin: 1rem; min-width: 140px ;min-height: 96px;box-sizing: border-box;"
+                        >My prospects</a>
+                        <a
+                                class="text-white btn-danger bg-danger rounded p-4 text-decoration-none text-center"
+                                href="${pageContext.request.contextPath}/calendar"
+                                style="border: none; margin: 1rem; min-width: 140px;min-height: 96px;box-sizing: border-box;"
+                        >My Calendar</a>
                     </div>
                 </aside>
             </div>
