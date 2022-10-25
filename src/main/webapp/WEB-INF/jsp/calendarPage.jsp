@@ -26,8 +26,9 @@
     <c:forEach items="${eventList}" var="event">
     events.push({
         title: "${event.name}",
+        url: "${event.link}",
         start: "${event.startTime}".replace(" ", "T"),
-        end: "${event.endTime}".replace(" ", "T")
+        end: "${event.endTime}".replace(" ", "T"),
     });
     </c:forEach>
     console.log(events);
