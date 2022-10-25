@@ -76,7 +76,7 @@ public class ClientController {
         model.addAttribute("notes", notes);
         List<ProspectDTO> prospectDTOList = prospectService.searchProspectsByStatusUserAndFullName(clientDTO.getFirstName() + " " + clientDTO.getLastName(), "Over", user);
         List<Note> prospectionNotes = new ArrayList<>();
-        if(prospectDTOList.isEmpty()){
+        if(!prospectDTOList.isEmpty()){
             prospectionNotes = prospectDTOList.get(0).getNotesById();
         }
         model.addAttribute("prospectionNotes", prospectionNotes);
