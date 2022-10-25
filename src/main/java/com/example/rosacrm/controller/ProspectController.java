@@ -94,4 +94,10 @@ public class ProspectController {
         Long clientId = prospectService.prospectToClient(id);
         return "redirect:/clients/see/" + clientId;
     }
+
+    @PostMapping("/reminder")
+    public String setProspectReminder(ProspectDTO prospectDTO) {
+        prospectService.setReminderProspect(prospectDTO);
+        return "redirect:/prospects/see/" + prospectDTO.getId();
+    }
 }

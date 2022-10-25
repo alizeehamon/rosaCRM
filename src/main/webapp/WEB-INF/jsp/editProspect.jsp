@@ -68,17 +68,6 @@
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
-                                <label for="prospectionStatus" class="form-label">Prospection status</label>
-                                <select id="prospectionStatus" class="form-select"
-                                        name="prospectionStatus">
-                                    <c:forEach items="${requestScope.prospectStatusListclean}" var="prospectStatus">
-                                        <option value="${prospectStatus}">${prospectStatus}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <div class="form-group">
                                 <label for="address1" class="form-label">Address</label>
                                 <input id="address1" name="address1" class="form-control" value="${requestScope.prospect.address1}">
                             </div>

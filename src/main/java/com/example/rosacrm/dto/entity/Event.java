@@ -4,6 +4,7 @@ import com.example.rosacrm.dto.EventDTO;
 import com.example.rosacrm.utils.DateUtils;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity

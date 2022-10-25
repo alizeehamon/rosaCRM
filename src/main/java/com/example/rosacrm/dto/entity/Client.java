@@ -260,6 +260,7 @@ public class Client {
         dto.setPicture(this.getPicture());
         dto.setRoleEntreprise(this.getRoleEntreprise());
         dto.setNotesById(this.getNotesById());
+        dto.setEventsById(this.getEventsById());
         return dto;
     }
 

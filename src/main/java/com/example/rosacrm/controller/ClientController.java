@@ -3,6 +3,7 @@ package com.example.rosacrm.controller;
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.ClientToProspectDTO;
 import com.example.rosacrm.dto.CompanyDTO;
+import com.example.rosacrm.dto.ProspectDTO;
 import com.example.rosacrm.dto.entity.Client;
 import com.example.rosacrm.dto.entity.Company;
 import com.example.rosacrm.dto.entity.Note;
@@ -94,5 +95,11 @@ public class ClientController {
     public String deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
         return "redirect:/clients/all";
+    }
+
+    @PostMapping("/reminder")
+    public String setProspectReminder(ClientDTO clientDTO) {
+        clientService.setClientContactDuration(clientDTO);
+        return "redirect:/clients/see/" + clientDTO.getId();
     }
 }
