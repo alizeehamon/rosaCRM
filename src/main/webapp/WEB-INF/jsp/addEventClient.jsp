@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="modal fade" id="addEventProspect${requestScope.prospect.id}">
+<div class="modal fade" id="addEventClient${requestScope.client.id}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -9,7 +9,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Plan an event</h4>
             </div>
-            <form action="${pageContext.request.contextPath}/event/prospects/add" method="post">
+            <form action="${pageContext.request.contextPath}/event/clients/add" method="post">
                 <!-- Modal body -->
                 <div class="text-center modal-body">
                     <div class="row text-start">
@@ -83,8 +83,8 @@
 
                 <!-- Modal footer - Prospect -->
                 <div class="modal-footer">
-                    <input hidden name="prospect" value="${prospect.id}">
-                    <input hidden id="id" value="${requestScope.prospect.id}">
+                    <input hidden name="client" value="${client.id}">
+                    <input hidden id="id" value="${requestScope.client.id}">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-outline-danger">Create this event</button>
                 </div>

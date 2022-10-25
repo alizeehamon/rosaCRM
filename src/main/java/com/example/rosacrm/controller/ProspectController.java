@@ -2,6 +2,7 @@ package com.example.rosacrm.controller;
 
 import com.example.rosacrm.dto.CompanyDTO;
 import com.example.rosacrm.dto.ProspectDTO;
+import com.example.rosacrm.entity.Company;
 import com.example.rosacrm.entity.Note;
 import com.example.rosacrm.entity.User;
 import com.example.rosacrm.enumeration.ProspectionStatus;
@@ -63,9 +64,12 @@ public class ProspectController {
     }
 
     @GetMapping("/see/{id}")
-    public String displayProspectDetails(Model model, @PathVariable Long id) {
+    public String displayProspectDetails(Model model, @PathVariable Long id, Authentication authentication) {
         ProspectDTO prospectDTO = prospectService.findProspectById(id);
+        User user = userService.getCurrentUser(authentication.getName());
+        List<CompanyDTO> companyList = companyService.getAllCompanies(null, user);
         model.addAttribute("prospect", prospectDTO);
+        model.addAttribute("companies", companyList);
         List<Note> notes = prospectDTO.getNotesById();
         model.addAttribute("prospectStatusListclean" , ProspectionStatus.getValuesWithoutAllProspectionStatus());
         notes.sort(new SortByDate());

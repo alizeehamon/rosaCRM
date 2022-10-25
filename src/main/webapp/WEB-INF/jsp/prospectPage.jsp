@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li class="m-1">
-                            <a href="#" title="address link">
+                            <a target="_blank" href="https://www.google.com/maps/search/${prospect.address1}+${prospect.address2}+${prospect.city}+${prospect.zipCode}" title="address link">
                                 <span class="fa fa-globe fs35 text-muted"></span>
                             </a>
                         </li>

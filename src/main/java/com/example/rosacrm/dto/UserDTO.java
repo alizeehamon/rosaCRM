@@ -15,6 +15,8 @@ public class UserDTO {
 
     private String password;
 
+    private String role;
+
     public UserDTO() {
     }
 
@@ -58,6 +60,14 @@ public class UserDTO {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public User toEntity() {
         User u = new User();
         u.setEmail(this.getEmail());
@@ -66,7 +76,7 @@ public class UserDTO {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(this.getPassword());
         u.setPassword(encodedPassword);
-        u.setRole("user");
+        u.setRole("ROLE_USER");
         return u;
     }
 }

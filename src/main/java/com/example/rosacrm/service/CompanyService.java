@@ -67,7 +67,11 @@ public class CompanyService {
     public void editCompany(CompanyDTO companyDTO) {
         Optional<Company> company = this.companyRepository.findById(companyDTO.getId());
         company.ifPresent(company1 -> {
+            Optional<Sector> sector = this.sectorRepository.findByActivitySector(companyDTO.getSector());
             company1.fromDTO(companyDTO);
+            if(sector.isPresent()){
+                company1.setSector(sector.get());
+            }
             this.companyRepository.save(company1);
         });
     }
