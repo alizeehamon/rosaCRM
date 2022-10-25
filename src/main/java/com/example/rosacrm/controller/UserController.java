@@ -82,10 +82,11 @@ public class UserController {
     }
 
     @PostMapping("/admin/delete")
-    public void DeleteWhenAdminAccount(UserDeleteDTO userDTO) {
+    public String DeleteWhenAdminAccount(UserDeleteDTO userDTO) {
         User userToDelete = userService.findUserById(userDTO.getUserId());
         userService.removeSession(userToDelete.getEmail());
         userService.deleteUser(userToDelete);
+        return "redirect:/account";
     }
 
 }

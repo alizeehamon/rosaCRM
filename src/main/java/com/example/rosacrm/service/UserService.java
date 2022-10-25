@@ -84,7 +84,9 @@ public class UserService {
                 .stream()
                 .filter(u -> ((CustomUserDetails) u).getUsername().equals(email))
                 .findFirst();
-        List<SessionInformation> sessions = sessionRegistry.getAllSessions(principal.get(), false);
-        sessions.forEach(session -> session.expireNow());
+        if (principal.isPresent()) {
+            List<SessionInformation> sessions = sessionRegistry.getAllSessions(principal.get(), false);
+            sessions.forEach(session -> session.expireNow());
+        }
     }
 }
