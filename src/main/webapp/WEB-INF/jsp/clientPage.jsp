@@ -174,9 +174,11 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="home" aria-selected="true">Notes</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="profile" aria-selected="false">Prospection History</button>
-                    </li>
+                    <c:if test="${!prospectionNotes.isEmpty()}" >
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="profile" aria-selected="false">Prospection History</button>
+                        </li>
+                    </c:if>
                 </ul>
                 <div id="myTabContent" class="tab-content p30" style="height: 730px;">
                     <div id="tab1" class="tab-pane fade show active" role="tabpanel">
