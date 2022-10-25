@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -172,5 +169,20 @@ public class ProspectService {
     public List<ProspectDTO> findAllProspectsByUser(User user) {
         List<Prospect> prospectList = prospectRepository.findAllActiveProspects(user);
         return prospectList.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
+
+    public void updateContactStatus(ProspectDTO prospectDTO) {
+        List<Note> notes = prospectDTO.getNotesById();
+        Calendar contactDate = Calendar.getInstance();
+        if (notes.size() > 0) {
+            contactDate.setTimeInMillis(notes.get(notes.size() - 1).getNoteCreationDate().getTime());
+        }
+        contactDate.add(Calendar.DATE, prospectDTO.getRelanceDuration());
+        contactDate.set(Calendar.HOUR_OF_DAY, 0);
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        if (contactDate.compareTo(today) < 0) {
+            prospectDTO.setProspectionStatus(ProspectionStatus.TO_CONTACT.getValue());
+        }
     }
 }
