@@ -150,6 +150,7 @@ public class ProspectService {
         prospect.setZipCode(client.getZipCode());
         prospect.setCompany(company);
         prospect.setRoleEntreprise(clientToProspectDTO.getRoleEntreprise());
+        prospect.setRelanceDuration(client.getContactDuration());
         prospectRepository.save(prospect);
     }
 
