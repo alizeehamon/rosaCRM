@@ -1,4 +1,4 @@
-package com.example.rosacrm.entity;
+package com.example.rosacrm.dto.entity;
 
 import com.example.rosacrm.dto.ClientDTO;
 import org.hibernate.annotations.OnDelete;
@@ -260,6 +260,7 @@ public class Client {
         dto.setPicture(this.getPicture());
         dto.setRoleEntreprise(this.getRoleEntreprise());
         dto.setNotesById(this.getNotesById());
+        dto.setEventsById(this.getEventsById());
         return dto;
     }
 

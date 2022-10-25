@@ -123,7 +123,7 @@
               </span>
                     <span class="panel-title">History of our exchanges</span>
                 </div>
-                <div class="panel-body pb5">
+                <div class="panel-body pb5 d-flex flex-column align-items-left">
 
                     <h6>Prospect creation date</h6>
                     <p class="text-muted"> ${prospect.creationDate}
@@ -145,16 +145,41 @@
 
                     <hr class="short br-lighter">
 
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                                                                     href="${pageContext.request.contextPath}/TODO">Choose
-                        your time before calling again</a></button>
+                    <button type="button" class=" btn btn-danger border-0 px-2 text-white"
+                            data-bs-toggle="modal"
+                            data-bs-target="#setReminder${prospect.id}">Set a reminder
+                    </button>
+
 
                     <hr class="short br-lighter">
 
                     <h6>Last/Next event with ${prospect.firstName}</h6>
 
-                    <p class="text-muted pb10"> //TO DO - Date last event programmed
-                    </p>
+                    <c:if test="${empty prospect.eventsById}">
+                        <p>You have no event with ${prospect.firstName} ${prospect.lastName}</p>
+                    </c:if>
+                    <c:if test="${not empty prospect.eventsById[0]}">
+
+                    <ul>
+                        <li>
+                            <p class="text-muted pb10"><span class="text-dark">Nom de l'évènement : </span><br>${prospect.eventsById[0].name}</p>
+                        </li>
+                        <li>
+                            <p class="text-muted pb10" ><span class="text-dark">Date de fin : </span><br>${prospect.eventsById[0].endTime}</p>
+                        </li>
+                        <c:if test="${not empty prospect.eventsById[0].link }">
+                            <li>
+                                <p class="text-muted pb10"><span class="text-dark">Where : </span><br>Remote</p>
+                            </li>
+                        </c:if>
+                        <c:if test="${empty prospect.eventsById[0].link}">
+                            <li>
+                                <p class="text-muted pb10"><span class="text-dark">Where : </span><br>${prospect.eventsById[0].address1} ${prospect.eventsById[0].address2} ${prospect.eventsById[0].city} ${prospect.eventsById[0].zipCode}</p>
+                            </li>
+                        </c:if>
+                    </ul>
+                    </c:if>
+
 
                     <button type="button" class=" btn btn-danger border-0 px-2 text-white"
                             data-bs-toggle="modal"
@@ -262,7 +287,7 @@
 <c:set var="prospectStatusListclean" value="${prospectStatusListclean}" scope="request"/>
 <c:set var="prospect" value="${prospect}" scope="request"/>
 <c:import url="confirmToClient.jsp"/>
-
+<c:import url="setReminderProspect.jsp"/>
 <c:import url="startProspection.jsp"/>
 <c:import url="addEventProspect.jsp"/>
 <c:import url="editProspect.jsp"/>

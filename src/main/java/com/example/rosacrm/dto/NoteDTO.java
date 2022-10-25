@@ -1,8 +1,8 @@
 package com.example.rosacrm.dto;
 
-import com.example.rosacrm.entity.Client;
-import com.example.rosacrm.entity.Note;
-import com.example.rosacrm.entity.Prospect;
+import com.example.rosacrm.dto.entity.Client;
+import com.example.rosacrm.dto.entity.Note;
+import com.example.rosacrm.dto.entity.Prospect;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

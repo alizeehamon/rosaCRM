@@ -3,8 +3,8 @@ package com.example.rosacrm.service;
 import com.example.rosacrm.dto.ClientDTO;
 import com.example.rosacrm.dto.ClientToProspectDTO;
 import com.example.rosacrm.dto.ProspectDTO;
-import com.example.rosacrm.entity.*;
-import com.example.rosacrm.enumeration.ProspectionStatus;
+import com.example.rosacrm.dto.entity.*;
+import enumeration.ProspectionStatus;
 import com.example.rosacrm.repository.CompanyRepository;
 import com.example.rosacrm.repository.ProspectRepository;
 import org.springframework.stereotype.Service;
@@ -113,6 +113,7 @@ public class ProspectService {
     public void editProspect(ProspectDTO prospectDTO) {
         Optional<Prospect> prospect = prospectRepository.findById(prospectDTO.getId());
         prospect.ifPresent(prospect1 -> {
+            prospectDTO.setProspectionStatus(prospect1.getProspectionStatus());
             prospect1.fromDTO(prospectDTO);
             this.prospectRepository.save(prospect1);
         });
@@ -169,6 +170,14 @@ public class ProspectService {
     public List<ProspectDTO> findAllProspectsByUser(User user) {
         List<Prospect> prospectList = prospectRepository.findAllActiveProspects(user);
         return prospectList.stream().map(p -> p.toDTO()).collect(Collectors.toList());
+    }
+
+    public void setReminderProspect(ProspectDTO prospectDTO) {
+        Optional<Prospect> prospect = this.prospectRepository.findById(prospectDTO.getId());
+        if (prospect.isPresent()) {
+            prospect.get().setRelanceDuration(prospectDTO.getRelanceDuration());
+            this.prospectRepository.save(prospect.get());
+        }
     }
 
     public void updateContactStatus(ProspectDTO prospectDTO) {

@@ -1,6 +1,6 @@
 package com.example.rosacrm.security;
 
-import com.example.rosacrm.entity.User;
+import com.example.rosacrm.dto.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,6 +1,6 @@
 package com.example.rosacrm.repository;
 
-import com.example.rosacrm.entity.Sector;
+import com.example.rosacrm.dto.entity.Sector;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

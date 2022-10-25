@@ -1,6 +1,6 @@
 package com.example.rosacrm.utils;
 
-import com.example.rosacrm.entity.Note;
+import com.example.rosacrm.dto.entity.Note;
 
 import java.util.Comparator;
 import java.util.function.Function;

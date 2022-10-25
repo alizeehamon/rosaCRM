@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="header.jsp">
-    <c:param name="title" value="ROSACRM | Companies"/>
+    <c:param name="title" value="Companies"/>
 </c:import>
 <c:set var="companies" value="${companies}" scope="request"/>
 <c:set var="sectorList" value="${sectorList}" scope="request"/>
